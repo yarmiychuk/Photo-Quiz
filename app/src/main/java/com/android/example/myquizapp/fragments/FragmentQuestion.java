@@ -31,16 +31,22 @@ public class FragmentQuestion extends Fragment {
 
     /**
      * TODO Prepare question image and text to show
-     * @param view
-     * @param question
+     * @param view - Root view of fragment
+     * @param question - number of current question
      */
     private void invalidateQuestion(View view, int question) {
+        // Define views
         ImageView questionImageView = view.findViewById(R.id.iv_question_image);
         TextView questionTextView = view.findViewById(R.id.tv_question_text);
+        //
         switch (question) {
             case QuestionHelper.Q_CABO_DA_ROCA:
                 questionImageView.setImageResource(R.drawable.cabo_da_roca_square);
                 questionTextView.setText(getString(R.string.question_cabo_da_roca));
+                break;
+            case QuestionHelper.Q_QUINTA_DA_REGALEIRA:
+                questionImageView.setImageResource(R.drawable.quinta_da_regaleira_square);
+                questionTextView.setText(getString(R.string.question_quinta_da_regaleira));
                 break;
             default:
                 questionImageView.setImageResource(R.drawable.yarmiychuk);

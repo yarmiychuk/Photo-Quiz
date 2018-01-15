@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Фото-викторина</string>
+    <string name="nav_start">Старт</string>
+    <string name="desc_portugal_pena">Дворец Пена</string>
+    <string name="question_image">Изображение для вопроса</string>
+    <string name="error_question">Ошибка приложения. Вопрос не может быть отображён</string>
+    <string name="question_cabo_da_roca">На фото - замая западная точка Евразийского континента. Как называется это место?</string>
+    <string name="question_quinta_da_regaleira">Какой-то вопрос</string>
+</resources>

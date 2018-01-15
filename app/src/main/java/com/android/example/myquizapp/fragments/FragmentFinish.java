@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import com.android.example.myquizapp.R;
 
 /**
- * Created by Dmitry Yarmiychuk on 15.01.2018.
- * Создал Dmitry Yarmiychuk 15.01.2018
+ * Created by Dmitriy Yarmiychuk on 15.01.2018.
+ * Создал Dmitriy Yarmiychuk 15.01.2018
  */
 
 public class FragmentFinish extends Fragment{
