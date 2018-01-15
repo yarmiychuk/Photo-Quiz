@@ -10,9 +10,11 @@
 
     // Questions
     <string name="error_question">App error. The question can not be displayed.</string>
+    <string name="question_actinia">This photo of the sea anemone is made in the shallow waters of the beach in Laguna Beach (California, USA). In which oceans do these multicellular animals live?</string>
     <string name="question_cabo_da_roca">The photo shows the westernmost point of the Eurasian continent. What\'s the name of this place?</string>
+    <string name="question_general_sherman">General Sherman</string>
     <string name="question_quinta_da_regaleira">Some question</string>
 
     <string name="test_text" translatable="false">Текст вопроса, который люди увидят на экране, причём очень длинного вопроса, с краткой исторической справкой, объяснением, что на фотографии и ТД</string>
-    <string name="test_text_panel" translatable="false">панелька с вариантами ответов в виде радио переключателей</string>
+    <string name="test_text_panel" translatable="false">панелька с вариантами ответов в виде радио переключателей, чекбоксов или EditText</string>
 </resources>

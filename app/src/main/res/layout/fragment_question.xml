@@ -31,8 +31,8 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_answers"
+    <RelativeLayout
+        android:id="@+id/rl_answers"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -48,6 +48,6 @@
             android:text="@string/test_text_panel"
             android:textColor="@android:color/white" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

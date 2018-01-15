@@ -1,6 +1,7 @@
 package com.android.example.myquizapp;
 
 import android.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.android.example.myquizapp.fragments.FragmentIntro;
 public class MainActivity extends AppCompatActivity {
 
     // Views
+    private ActionBar actionBar;
     private FrameLayout flContent;
 
     // Animations
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Define views
+        actionBar = getSupportActionBar();
         flContent = findViewById(R.id.content_frame);
         // Define variables
         animationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
@@ -82,6 +85,14 @@ public class MainActivity extends AppCompatActivity {
         // Show fragment
         flContent.setVisibility(View.VISIBLE);
         flContent.startAnimation(animationIn);
+        // Change activity's title
+        if (actionBar != null) {
+            String title = getString(R.string.app_name);
+            if (currentQuestion > 0 && currentQuestion <= QuestionHelper.TOTAL_QUESTIONS) {
+                title += ": " + currentQuestion + "/" + QuestionHelper.TOTAL_QUESTIONS;
+            }
+            actionBar.setTitle(title);
+        }
     }
 
     /**
