@@ -41,12 +41,25 @@
         android:orientation="vertical"
         android:padding="8dp">
 
+        <include layout="@layout/answers_check_boxes" />
+
         <TextView
+            android:id="@+id/tv_error_message"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/test_text_panel"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:text="@string/nav_submit"/>
 
     </RelativeLayout>
 

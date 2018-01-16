@@ -15,7 +15,7 @@
         android:id="@+id/btn_next"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_margin="24dp"
+        android:layout_margin="16dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"

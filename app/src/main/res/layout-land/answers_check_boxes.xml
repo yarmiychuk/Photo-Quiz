@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llAnswerCheckBoxes"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/chbAnswer0"
+        style="@style/AnswerCheckBoxStyle.Landscape" />
+
+    <CheckBox
+        android:id="@+id/chbAnswer1"
+        style="@style/AnswerCheckBoxStyle.Landscape"/>
+
+    <CheckBox
+        android:id="@+id/chbAnswer2"
+        style="@style/AnswerCheckBoxStyle.Landscape"/>
+
+    <CheckBox
+        android:id="@+id/chbAnswer3"
+        style="@style/AnswerCheckBoxStyle.Landscape"/>
+
+</LinearLayout>

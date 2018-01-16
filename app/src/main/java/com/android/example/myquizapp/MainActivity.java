@@ -15,7 +15,8 @@ import com.android.example.myquizapp.fragments.FragmentFinish;
 import com.android.example.myquizapp.fragments.FragmentQuestion;
 import com.android.example.myquizapp.fragments.FragmentIntro;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements FragmentQuestion.AnswerListener {
 
     // Views
     private ActionBar actionBar;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         flContent = findViewById(R.id.content_frame);
         btnNext = findViewById(R.id.btn_next);
+
         // Define variables
         animationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
@@ -47,37 +49,27 @@ public class MainActivity extends AppCompatActivity {
             currentQuestion = savedInstanceState.getInt(
                     QuestionHelper.CURRENT_QUESTION, QuestionHelper.Q_INTRO);
         }
+        // ... and show it
         setFragment();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
     /**
-     * Save current state of app
+     * TODO Save current state of app
      * @param outState - current state
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
         Log.d(LOG_TAG, "Save App State");
         Log.d(LOG_TAG, "currentQuestion - " + currentQuestion);
         outState.putInt(QuestionHelper.CURRENT_QUESTION, currentQuestion);
+        super.onSaveInstanceState(outState);
     }
 
     /** TODO
      *
      */
     private void setFragment() {
-        // Hide frame
+        // Hide frame and button
         flContent.setVisibility(View.INVISIBLE);
         // Define Fragment
         Fragment fragment = getFragment();
@@ -98,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         }
         // TODO Remove later
         setTextButtonNext();
-        btnNext.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -131,13 +122,17 @@ public class MainActivity extends AppCompatActivity {
         return arguments;
     }
 
-    // TODO
+    /**
+     * TODO
+     * @param view
+     */
     public void onClickNext(View view) {
-        btnNext.setVisibility(View.INVISIBLE);
-        setTextButtonNext();
+        if (currentQuestion < QuestionHelper.TOTAL_QUESTIONS) {
+            btnNext.setVisibility(View.INVISIBLE);
+            setTextButtonNext();
+        }
         if (currentQuestion <= QuestionHelper.TOTAL_QUESTIONS) {
             currentQuestion++;
-            //flContent.setVisibility(View.INVISIBLE);
             setFragment();
         } else {
             finish();
@@ -156,5 +151,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             btnNext.setText(getString(R.string.nav_next));
         }
+    }
+
+    /**
+     * TODO
+     * @param isRightAnswer
+     */
+    @Override
+    public void hasAnswer(Boolean isRightAnswer) {
+        btnNext.setVisibility(View.VISIBLE);
     }
 }

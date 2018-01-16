@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Фото-викторина</string>
+
+    // Навигация
     <string name="nav_start">Старт</string>
-    <string name="desc_portugal_pena">Дворец Пена</string>
-    <string name="question_image">Изображение для вопроса</string>
-    <string name="error_question">Ошибка приложения. Вопрос не может быть отображён</string>
-    <string name="question_cabo_da_roca">На фото - самая западная точка Евразийского континента. Как называется это место?</string>
-    <string name="question_quinta_da_regaleira">Какой-то вопрос</string>
-    <string name="question_actinia">Эта фотография актинии сделана на мелководье пляжа в городе Лагуна Бич (Калифорния, США). В каких океанах обитают эти многоклеточные животные?</string>
-    <string name="question_general_sherman">Генерал Шерман</string>
     <string name="nav_next">Далее</string>
     <string name="nav_finish">Выйти</string>
+    <string name="nav_submit">Проверить</string>
+
+    // Описание содержимого
+    <string name="desc_portugal_pena">Дворец Пена</string>
+    <string name="question_image">Изображение для вопроса</string>
+
+    // Вопросы
+    <string name="error_question">Ошибка приложения. Вопрос не может быть отображён</string>
+
+    // Аактиния / Морская анемона
+    <string name="question_actinia">Эта фотография сделана на мелководье пляжа в городе Лагуна-Бич (Калифорния, США). Как называется это многоклеточное животное?</string>
+    <string-array name="answers_actinia_text">
+        <item>Морской дьявол</item>
+        <item>Актиния</item>
+        <item>Прибрежная астра</item>
+        <item>Морская анемона</item>
+    </string-array>
+    <string-array name="answers_actinia">
+        <item>Актиния</item>
+        <item>Морская анемона</item>
+    </string-array>
+    //
+    <string name="question_cabo_da_roca">На фото - самая западная точка Евразийского континента. Как называется это место?</string>
+    <string name="question_quinta_da_regaleira">Какой-то вопрос</string>
+    <string name="question_general_sherman">Генерал Шерман</string>
+
+    // Другое
+    <string name="error">Ошибка</string>
 </resources>

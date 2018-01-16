@@ -5,14 +5,30 @@
     <string name="nav_start">Start</string>
     <string name="nav_next">Next</string>
     <string name="nav_finish">Finish</string>
+    <string name="nav_submit">Submit</string>
 
     // Content Descriptions
     <string name="desc_portugal_pena">The Pena Palace</string>
     <string name="question_image">Question image</string>
 
     // Questions
-    <string name="error_question">App error. The question can not be displayed.</string>
-    <string name="question_actinia">This photo of the sea anemone is made in the shallow waters of the beach in Laguna Beach (California, USA). In which oceans do these multicellular animals live?</string>
+    <string name="error_question">App error. The question can not be displayed.</string> <!-- sea anemone -->
+    // Sea anemone / Actinia
+    <string name="question_actinia">This photo is taken in the shallow waters of the beach in Laguna Beach (California, USA). What is the name of this multicellular animal?</string>
+    <string-array name="answers_actinia_text">
+        <item>Sea Devil</item>
+        <item>Actinia</item>
+        <item>Coastal aster</item>
+        <item>Sea anemone</item>
+    </string-array>
+    <string-array name="answers_actinia">
+        <item>Actinia</item>
+        <item>Sea anemone</item>
+    </string-array>
+
+    // Other
+    <string name="error">Error</string>
+
     <string name="question_cabo_da_roca">The photo shows the westernmost point of the Eurasian continent. What\'s the name of this place?</string>
     <string name="question_general_sherman">General Sherman</string>
     <string name="question_quinta_da_regaleira">Some question</string>

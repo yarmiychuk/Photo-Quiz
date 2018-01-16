@@ -19,4 +19,22 @@
         <item name="android:shadowRadius">@dimen/question_text_shadow_radius</item>
     </style>
 
+    <!-- Answers CheckBox style -->
+    <style name="AnswerCheckBoxStyle">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AnswerCheckBoxStyle.Portrait">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AnswerCheckBoxStyle.Landscape">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
