@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.android.example.myquizapp.fragments.FragmentFinish;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     // Views
     private ActionBar actionBar;
     private FrameLayout flContent;
+    private Button btnNext;
 
     // Animations
     private Animation animationIn;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         // Define views
         actionBar = getSupportActionBar();
         flContent = findViewById(R.id.content_frame);
+        btnNext = findViewById(R.id.btn_next);
         // Define variables
         animationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         // Define Fragment
         Fragment fragment = getFragment();
         // Put arguments for question
-        fragment.setArguments(getQuestionArgunents());
+        fragment.setArguments(getQuestionArguments());
         // Replace Fragment
         getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
         // Show fragment
@@ -93,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
             }
             actionBar.setTitle(title);
         }
+        // TODO Remove later
+        setTextButtonNext();
+        btnNext.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -118,15 +124,37 @@ public class MainActivity extends AppCompatActivity {
      * TODO
      * @return
      */
-    private Bundle getQuestionArgunents() {
+    private Bundle getQuestionArguments() {
         Bundle arguments = new Bundle();
         arguments.putInt(QuestionHelper.ARG_QUESTION, currentQuestion);
 
         return arguments;
     }
 
-    public void onClickStart(View view) {
-        currentQuestion++;
-        setFragment();
+    // TODO
+    public void onClickNext(View view) {
+        btnNext.setVisibility(View.INVISIBLE);
+        setTextButtonNext();
+        if (currentQuestion <= QuestionHelper.TOTAL_QUESTIONS) {
+            currentQuestion++;
+            //flContent.setVisibility(View.INVISIBLE);
+            setFragment();
+        } else {
+            finish();
+        }
+    }
+
+    /**
+     * TODO Change "Next" button's text
+     */
+    private void setTextButtonNext() {
+        // Invalidate text
+        if (currentQuestion == QuestionHelper.Q_INTRO) {
+            btnNext.setText(getString(R.string.nav_start));
+        } else if (currentQuestion == QuestionHelper.Q_FINISH) {
+            btnNext.setText(getString(R.string.nav_finish));
+        } else {
+            btnNext.setText(getString(R.string.nav_next));
+        }
     }
 }

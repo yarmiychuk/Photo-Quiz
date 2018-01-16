@@ -3,6 +3,8 @@
 
     // Navigation
     <string name="nav_start">Start</string>
+    <string name="nav_next">Next</string>
+    <string name="nav_finish">Finish</string>
 
     // Content Descriptions
     <string name="desc_portugal_pena">The Pena Palace</string>

@@ -21,6 +21,4 @@ public class FragmentFinish extends Fragment{
         return inflater.inflate(R.layout.fragment_finish, container, false);
     }
 
-
-
 }

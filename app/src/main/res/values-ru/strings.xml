@@ -9,4 +9,6 @@
     <string name="question_quinta_da_regaleira">Какой-то вопрос</string>
     <string name="question_actinia">Эта фотография актинии сделана на мелководье пляжа в городе Лагуна Бич (Калифорния, США). В каких океанах обитают эти многоклеточные животные?</string>
     <string name="question_general_sherman">Генерал Шерман</string>
+    <string name="nav_next">Далее</string>
+    <string name="nav_finish">Выйти</string>
 </resources>
