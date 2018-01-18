@@ -7,10 +7,12 @@
     <string name="nav_next">Далее</string>
     <string name="nav_finish">Выйти</string>
     <string name="nav_submit">Проверить</string>
+    <string name="nav_wiki">Вики</string>
 
     // Описание содержимого
     <string name="desc_portugal_pena">Дворец Пена</string>
     <string name="question_image">Изображение для вопроса</string>
+    <string name="answer_image">Изображение для ответа</string>
 
     // Вопросы
     <string name="error_question">Ошибка приложения. Вопрос не может быть отображён</string>

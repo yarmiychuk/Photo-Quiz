@@ -7,4 +7,7 @@
     <color name="colorDarkGray">#212121</color>
     <color name="colorWhiteTransparent">#BBFFFFFF</color>
     <color name="colorWhiteMoreTransparent">#99FFFFFF</color>
+
+    <color name="colorPrimaryTransparent">#BB9E9E9E</color>
+    <color name="colorPrimaryDarkTransparent">#99616161</color>
 </resources>

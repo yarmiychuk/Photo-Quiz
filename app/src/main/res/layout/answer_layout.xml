@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_answer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:visibility="invisible"
+    android:animateLayoutChanges="true">
+
+    <ImageView
+        android:id="@+id/iv_answer_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/answer_image"/>
+
+    <LinearLayout
+        android:id="@+id/ll_answer_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/navigation_background"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_wiki"
+            style="@style/ButtonStyle"
+            android:text="@string/nav_wiki"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_answer_text"
+        style="@style/TextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_answer_navigation"
+        android:text="@string/test_text"/>
+
+</RelativeLayout>

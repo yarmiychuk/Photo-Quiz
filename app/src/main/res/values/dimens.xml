@@ -2,7 +2,12 @@
 <resources>
 
     <dimen name="wait_text_size">40sp</dimen>
+    <dimen name="button_width">120dp</dimen>
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="button_margin_horizontal">16dp</dimen>
+    <dimen name="button_margin_vertical">8dp</dimen>
     <dimen name="question_text_size">16sp</dimen>
     <dimen name="question_text_shadow_radius">10</dimen>
+    <dimen name="text_padding">8dp</dimen>
 
 </resources>

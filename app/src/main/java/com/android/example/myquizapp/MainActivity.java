@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
 
     // Constants and variables for fragments
     private final String LOG_TAG = "ActivityMain";
-    private int currentQuestion;
+    private int currentQuestion, questionMode, score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +42,24 @@ public class MainActivity extends AppCompatActivity
 
         // Define variables
         animationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        currentQuestion = QuizHelper.Q_INTRO;
+        score = QuizHelper.SCORE_DEFAULT;
 
-        // Define fragment to show
-        currentQuestion = QuestionHelper.Q_INTRO;
-        if (savedInstanceState != null) {
-            currentQuestion = savedInstanceState.getInt(
-                    QuestionHelper.CURRENT_QUESTION, QuestionHelper.Q_INTRO);
+        invalidateState(savedInstanceState);
+    }
+
+    private void invalidateState(Bundle state) {
+        // Check for saved state (current fragment and score)
+        if (state != null) {
+            currentQuestion = state.getInt(QuizHelper.CURRENT_QUESTION, QuizHelper.Q_INTRO);
+            questionMode = state.getInt(QuizHelper.QUESTION_MODE_KEY, QuizHelper.MODE_QUESTION);
+            score = state.getInt(QuizHelper.SCORE_KEY, QuizHelper.SCORE_DEFAULT);
+            invalidateButtonNext();
+        } else {
+            showButtonNext();
+            setFragment();
         }
-        // ... and show it
-        setFragment();
+
     }
 
     /**
@@ -60,8 +69,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         Log.d(LOG_TAG, "Save App State");
-        Log.d(LOG_TAG, "currentQuestion - " + currentQuestion);
-        outState.putInt(QuestionHelper.CURRENT_QUESTION, currentQuestion);
+        outState.putInt(QuizHelper.CURRENT_QUESTION, currentQuestion);
+        outState.putInt(QuizHelper.SCORE_KEY, score);
+        outState.putInt(QuizHelper.QUESTION_MODE_KEY, questionMode);
         super.onSaveInstanceState(outState);
     }
 
@@ -83,13 +93,11 @@ public class MainActivity extends AppCompatActivity
         // Change activity's title
         if (actionBar != null) {
             String title = getString(R.string.app_name);
-            if (currentQuestion > 0 && currentQuestion <= QuestionHelper.TOTAL_QUESTIONS) {
-                title += ": " + currentQuestion + "/" + QuestionHelper.TOTAL_QUESTIONS;
+            if (currentQuestion > 0 && currentQuestion <= QuizHelper.TOTAL_QUESTIONS) {
+                title += ": " + currentQuestion + "/" + QuizHelper.TOTAL_QUESTIONS;
             }
             actionBar.setTitle(title);
         }
-        // TODO Remove later
-        setTextButtonNext();
     }
 
     /**
@@ -99,11 +107,13 @@ public class MainActivity extends AppCompatActivity
     private Fragment getFragment() {
         Fragment fragment;
         switch (currentQuestion) {
-            case QuestionHelper.Q_INTRO:
+            case QuizHelper.Q_INTRO:
                 fragment = new FragmentIntro();
+                showButtonNext();
                 break;
-            case QuestionHelper.Q_FINISH:
+            case QuizHelper.Q_FINISH:
                 fragment = new FragmentFinish();
+                showButtonNext();
                 break;
             default:
                 fragment = new FragmentQuestion();
@@ -112,13 +122,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
+     *
+     */
+    private void showButtonNext() {
+       questionMode = QuizHelper.MODE_ANSWER;
+       invalidateButtonNext();
+    }
+
+    /**
      * TODO
-     * @return
+     * @return arguments for question fragment
      */
     private Bundle getQuestionArguments() {
         Bundle arguments = new Bundle();
-        arguments.putInt(QuestionHelper.ARG_QUESTION, currentQuestion);
-
+        arguments.putInt(QuizHelper.ARG_QUESTION, currentQuestion);
         return arguments;
     }
 
@@ -127,11 +144,11 @@ public class MainActivity extends AppCompatActivity
      * @param view
      */
     public void onClickNext(View view) {
-        if (currentQuestion < QuestionHelper.TOTAL_QUESTIONS) {
-            btnNext.setVisibility(View.INVISIBLE);
-            setTextButtonNext();
+        if (currentQuestion < QuizHelper.TOTAL_QUESTIONS) {
+            questionMode = QuizHelper.MODE_QUESTION;
+            invalidateButtonNext();
         }
-        if (currentQuestion <= QuestionHelper.TOTAL_QUESTIONS) {
+        if (currentQuestion <= QuizHelper.TOTAL_QUESTIONS) {
             currentQuestion++;
             setFragment();
         } else {
@@ -140,25 +157,31 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * TODO Change "Next" button's text
+     * TODO Change "Next" button's text and visibility
      */
-    private void setTextButtonNext() {
-        // Invalidate text
-        if (currentQuestion == QuestionHelper.Q_INTRO) {
-            btnNext.setText(getString(R.string.nav_start));
-        } else if (currentQuestion == QuestionHelper.Q_FINISH) {
-            btnNext.setText(getString(R.string.nav_finish));
+    private void invalidateButtonNext() {
+        if (questionMode == QuizHelper.MODE_QUESTION) {
+            btnNext.setVisibility(View.INVISIBLE);
         } else {
-            btnNext.setText(getString(R.string.nav_next));
+            btnNext.setVisibility(View.VISIBLE);
+            // Invalidate text
+            if (currentQuestion == QuizHelper.Q_INTRO) {
+                btnNext.setText(getString(R.string.nav_start));
+            } else if (currentQuestion == QuizHelper.Q_FINISH) {
+                btnNext.setText(getString(R.string.nav_finish));
+            } else {
+                btnNext.setText(getString(R.string.nav_next));
+            }
         }
     }
 
     /**
      * TODO
-     * @param isRightAnswer
+     * @param scoreForAnswer - value of score to add to total score
      */
     @Override
-    public void hasAnswer(Boolean isRightAnswer) {
-        btnNext.setVisibility(View.VISIBLE);
+    public void hasAnswer(int scoreForAnswer) {
+        score += scoreForAnswer;
+        showButtonNext();
     }
 }

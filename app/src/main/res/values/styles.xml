@@ -8,15 +8,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- Question TextView style -->
-    <style name="QuestionTextViewStyle">
-        <item name="android:padding">16dp</item>
+    <!-- Button style -->
+    <style name="ButtonStyle">
+        <item name="android:layout_width">@dimen/button_width</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_marginLeft">@dimen/button_margin_horizontal</item>
+        <item name="android:layout_marginRight">@dimen/button_margin_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/button_margin_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/button_margin_vertical</item>
+    </style>
+
+    <!-- TextView style -->
+    <style name="TextViewStyle">
+        <item name="android:padding">@dimen/text_padding</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/colorDarkGray</item>
         <item name="android:textSize">@dimen/question_text_size</item>
-        <item name="android:background">@drawable/question_background</item>
-        <item name="android:shadowColor">@android:color/white</item>
         <item name="android:shadowRadius">@dimen/question_text_shadow_radius</item>
+        <item name="android:textColor">@color/colorDarkGray</item>
+        <item name="android:shadowColor">@android:color/white</item>
+        <item name="android:background">@drawable/text_background</item>
     </style>
 
     <!-- Answers CheckBox style -->

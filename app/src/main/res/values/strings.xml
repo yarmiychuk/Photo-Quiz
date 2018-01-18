@@ -6,10 +6,12 @@
     <string name="nav_next">Next</string>
     <string name="nav_finish">Finish</string>
     <string name="nav_submit">Submit</string>
+    <string name="nav_wiki">Wiki</string>
 
     // Content Descriptions
     <string name="desc_portugal_pena">The Pena Palace</string>
     <string name="question_image">Question image</string>
+    <string name="answer_image">Answer image</string>
 
     // Questions
     <string name="error_question">App error. The question can not be displayed.</string> <!-- sea anemone -->
