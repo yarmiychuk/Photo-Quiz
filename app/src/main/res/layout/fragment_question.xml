@@ -1,61 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/colorPrimaryDark">
+
+    <ImageView
+        android:id="@+id/iv_question_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@color/colorPrimaryDark"
+        android:contentDescription="@string/question_image"
+        android:scaleType="fitCenter"
+        android:src="@drawable/yarmiychuk" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/dark_background"
+        android:gravity="bottom"
+        android:orientation="horizontal">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/cl_question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/iv_question_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:background="@color/colorPrimaryDark"
-                android:contentDescription="@string/question_image"
-                android:scaleType="fitCenter"
-                android:src="@drawable/yarmiychuk" />
-
-            <TextView
-                android:id="@+id/tv_question_text"
-                style="@style/TextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/test_text"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-        </android.support.constraint.ConstraintLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_answers"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <TextView
+            android:id="@+id/tv_question_text"
+            style="@style/TextViewStyle.Question"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:text="@string/test_text"
+            android:textColor="@android:color/white" />
 
-            <include layout="@layout/answers_check_boxes" />
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_answers"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                tools:ignore="NestedWeights">
+
+                <include layout="@layout/question_check_boxes" />
+
+                <include layout="@layout/question_radio_buttons" />
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/btn_submit"
                 style="@style/ButtonStyle"
-                android:layout_marginBottom="0dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
-                android:text="@string/nav_submit"/>
+                android:layout_marginTop="0dp"
+                android:text="@string/nav_submit" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Фото-викторина</string>
-
     // Навигация
     <string name="nav_start">Старт</string>
     <string name="nav_next">Далее</string>
     <string name="nav_finish">Выйти</string>
     <string name="nav_submit">Проверить</string>
     <string name="nav_wiki">Вики</string>
-
     // Описание содержимого
     <string name="desc_portugal_pena">Дворец Пена</string>
     <string name="question_image">Изображение для вопроса</string>
     <string name="answer_image">Изображение для ответа</string>
-
-    // Вопросы
+    // Вопросы и ответы
     <string name="error_question">Ошибка приложения. Вопрос не может быть отображён</string>
-
+    <string name="correct_answer">Вы правы!</string>
+    <string name="partially_answer">Вы частично правы.</string>
+    <string name="wrong_answer">Ваш ответ неверен.</string>
     // Аактиния / Морская анемона
     <string name="question_actinia">Эта фотография сделана на мелководье пляжа в городе Лагуна-Бич (Калифорния, США). Как называется это многоклеточное животное?</string>
-    <string-array name="answers_actinia_text">
+    <string-array name="variants_actinia">
         <item>Морской дьявол</item>
         <item>Актиния</item>
         <item>Прибрежная астра</item>
@@ -29,8 +28,21 @@
         <item>Актиния</item>
         <item>Морская анемона</item>
     </string-array>
-    //
+    <string name="description_actinia">Это Актиния или Морская анемона.</string>
+    <string name="link_actinia">https://ru.wikipedia.org/wiki/Актинии</string>
+    // Мыс Рока
     <string name="question_cabo_da_roca">На фото - самая западная точка Евразийского континента. Как называется это место?</string>
+    <string-array name="variants_cabo_da_roca">
+        <item>Край Земли</item>
+        <item>Последний обрыв</item>
+        <item>Мыс Рока</item>
+        <item>Долгая вода</item>
+    </string-array>
+    <string name="answer_cabo_da_roca">Мыс Рока</string>
+    <string name="description_cabo_da_roca">Самая западная точка Евразии - Мыс Рока.</string>
+    <string name="link_cabo_da_roca">https://ru.wikipedia.org/wiki/Рока_(мыс)</string>
+
+
     <string name="question_quinta_da_regaleira">Какой-то вопрос</string>
     <string name="question_general_sherman">Генерал Шерман</string>
 

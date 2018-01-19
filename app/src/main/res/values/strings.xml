@@ -1,23 +1,23 @@
 <resources>
     <string name="app_name">Photo quiz</string>
-
     // Navigation
     <string name="nav_start">Start</string>
     <string name="nav_next">Next</string>
     <string name="nav_finish">Finish</string>
     <string name="nav_submit">Submit</string>
     <string name="nav_wiki">Wiki</string>
-
     // Content Descriptions
     <string name="desc_portugal_pena">The Pena Palace</string>
     <string name="question_image">Question image</string>
     <string name="answer_image">Answer image</string>
-
-    // Questions
-    <string name="error_question">App error. The question can not be displayed.</string> <!-- sea anemone -->
+    // Questions and answers
+    <string name="error_question">App error. The question can not be displayed.</string>
+    <string name="correct_answer">You\'re right!</string>
+    <string name="partially_answer">You are partly right.</string>
+    <string name="wrong_answer">Your answer is incorrect.</string>
     // Sea anemone / Actinia
     <string name="question_actinia">This photo is taken in the shallow waters of the beach in Laguna Beach (California, USA). What is the name of this multicellular animal?</string>
-    <string-array name="answers_actinia_text">
+    <string-array name="variants_actinia">
         <item>Sea Devil</item>
         <item>Actinia</item>
         <item>Coastal aster</item>
@@ -27,11 +27,22 @@
         <item>Actinia</item>
         <item>Sea anemone</item>
     </string-array>
-
+    <string name="description_actinia">It\'s a Actinia or a Sea anemone.</string>
+    <string name="link_actinia">https://en.wikipedia.org/wiki/Sea_anemone</string>
+    // Cabo da Roca
+    <string name="question_cabo_da_roca">The photo shows the westernmost point of the Eurasian continent. What\'s the name of this place?</string>
+    <string-array name="variants_cabo_da_roca">
+        <item>Earth\'s End</item>
+        <item>Last Break</item>
+        <item>Cape Roca</item>
+        <item>Long Water</item>
+    </string-array>
+    <string name="answer_cabo_da_roca">Cape Roca</string>
+    <string name="description_cabo_da_roca">The most western point of Eurasia is Cape Roca.</string>
+    <string name="link_cabo_da_roca">https://en.wikipedia.org/wiki/Cabo_da_Roca</string>
     // Other
     <string name="error">Error</string>
 
-    <string name="question_cabo_da_roca">The photo shows the westernmost point of the Eurasian continent. What\'s the name of this place?</string>
     <string name="question_general_sherman">General Sherman</string>
     <string name="question_quinta_da_regaleira">Some question</string>
 

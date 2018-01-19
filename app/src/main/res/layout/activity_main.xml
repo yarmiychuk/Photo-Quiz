@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/content_frame"
@@ -17,7 +17,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="@string/nav_start"
-        android:onClick="onClickNext"/>
+        android:onClick="onClickNext"
+        android:text="@string/nav_start" />
 
 </RelativeLayout>

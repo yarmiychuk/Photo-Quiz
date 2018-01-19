@@ -1,7 +1,9 @@
 package com.android.example.myquizapp.fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,30 +30,21 @@ import com.android.example.myquizapp.R;
 public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     private final String LOG_TAG = "FragmentQuestion";
-
-    private int questionNumber;
-
-    // Work mode for save state
-    private int questionMode;
     private final String QUESTION_MODE_KEY = "questionMode";
     private final int MODE_QUESTION = 0, MODE_ANSWER = 1;
-
-    // Type of question
-    private int questionType;
     private final String ANSWER_TYPE_KEY = "answerType";
     private final int Q_TYPE_ERROR = 0,
             Q_TYPE_RADIO_GROUP = 1, Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;
-
+    private final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
+    private int questionNumber;
+    // Work mode for save state
+    private int questionMode;
+    // Type of question
+    private int questionType;
     // Type of answer
     private int answerType;
-    private final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 0;
-
     // Interface for connect to activity
     private AnswerListener listener;
-    public interface AnswerListener {
-        void hasAnswer(int scoreForQuestion);
-    }
-
     // Views
     private ImageView ivQuestion, ivAnswer;
     private TextView tvQuestion, tvAnswer;
@@ -87,6 +81,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * Get data from saved state
+     *
      * @param state - saved instance state
      */
     private void getSavedState(Bundle state) {
@@ -98,6 +93,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * TODO Save current state of app
+     *
      * @param outState - current state
      */
     @Override
@@ -111,6 +107,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * Prepare question image and text to show
+     *
      * @param view - Root view of fragment
      */
     private void initializeFragmentView(View view) {
@@ -132,6 +129,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * Define this fragment's views
+     *
      * @param view - root view
      */
     private void invalidateFragmentViews(View view) {
@@ -176,6 +174,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * Set Image, text and other views for question mode
+     *
      * @param view - root view of fragment
      */
     private void setQuestion(View view) {
@@ -191,6 +190,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * TODO Get image for question
+     *
      * @return image for question
      */
     private int getQuestionImage() {
@@ -209,6 +209,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * TODO Get text of questions
+     *
      * @return text for question
      */
     private String getQuestionText() {
@@ -227,40 +228,43 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * TODO
+     *
      * @return type of answer format (single choice, multi choice, input)
      */
     private int getQuestionType() {
         switch (questionNumber) {
             case QuizHelper.Q_ACTINIA:
                 return Q_TYPE_CHECK_BOX;
+            case QuizHelper.Q_CABO_DA_ROCA:
+                return Q_TYPE_RADIO_GROUP;
         }
         return Q_TYPE_ERROR;
     }
 
     /**
      * TODO
+     *
      * @param view - Root view of fragment
      */
     private void addAnswerVariants(View view) {
         if (questionType != Q_TYPE_ERROR) {
-            // Define elements
+            // TODO Define elements
             RelativeLayout rlAnswers = view.findViewById(R.id.rl_answers);
-            LinearLayout llCheckBoxes = rlAnswers.findViewById(R.id.llAnswerCheckBoxes);
+            LinearLayout llCheckBoxes = rlAnswers.findViewById(R.id.ll_answer_check_boxes);
+            rgAnswers = rlAnswers.findViewById(R.id.rg_answer_radio_buttons);
             // TODO Hide elements
             llCheckBoxes.setVisibility(View.INVISIBLE);
+            rgAnswers.setVisibility(View.INVISIBLE);
             switch (questionType) {
                 case Q_TYPE_CHECK_BOX:
                     showCheckBoxes(llCheckBoxes);
                     break;
                 case Q_TYPE_RADIO_GROUP:
-                    // TODO
+                    showRadioButtons();
                     break;
                 case Q_TYPE_INPUT:
                     // TODO
                     break;
-                default:
-                case Q_TYPE_ERROR:
-                    // TODO
             }
         }
     }
@@ -274,11 +278,13 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         // Set image
         ivAnswer.setImageResource(getAnswerImage(orientation));
         // Set text of answer
-        tvAnswer.setText(getAnswerText(orientation));
+        String answer = getStringTypeAnswer() + " " + getAnswerText(orientation);
+        tvAnswer.setText(answer);
     }
 
     /**
-     * TODO Get image for answer's ImageView
+     * Get image for answer's ImageView
+     *
      * @param deviceOrientation - current device orientation
      * @return image for answer
      */
@@ -296,47 +302,102 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * TODO Get image for answer in portrait orientation
+     *
      * @return portrait image for answer
      */
     private int getPortraitAnswerImage() {
         switch (questionNumber) {
             case QuizHelper.Q_ACTINIA:
                 return R.drawable.actinia_portrait;
+            case QuizHelper.Q_CABO_DA_ROCA:
+                return R.drawable.cabo_da_roca_portrait;
         }
         return 0;
     }
 
     /**
      * TODO Get image for answer in portrait orientation
+     *
      * @return landscape image for answer
      */
     private int getLandscapeAnswerImage() {
         switch (questionNumber) {
             case QuizHelper.Q_ACTINIA:
                 return R.drawable.actinia_landscape;
+            case QuizHelper.Q_CABO_DA_ROCA:
+                return R.drawable.cabo_da_roca_landscape;
         }
         return 0;
     }
 
     /**
+     * Get text based on answer
+     *
+     * @return text about correct, wrong or incorrect answer
+     */
+    private String getStringTypeAnswer() {
+        Log.d(LOG_TAG, "Answer type - " + answerType);
+        switch (answerType) {
+            case A_TYPE_CORRECT:
+                return getString(R.string.correct_answer);
+            case A_TYPE_PARTIALLY:
+                return getString(R.string.partially_answer);
+        }
+        return getString(R.string.wrong_answer);
+    }
+
+    /**
      * Get Text for answer
+     *
      * @param deviceOrientation - current device orientation
      * @return text for answer TextView
      */
     private String getAnswerText(int deviceOrientation) {
-        switch (deviceOrientation) {
+        switch (questionNumber) {
+            case QuizHelper.Q_ACTINIA:
+                return getDefaultAnswerText();
+            // TODO
+            default:
+                return getSpecialAnswerText(deviceOrientation);
+        }
+    }
+
+    /**
+     * Get answer text for unknown orientation or for any orientation
+     *
+     * @return default answer text.
+     */
+    private String getDefaultAnswerText() {
+        switch (questionNumber) {
+            case QuizHelper.Q_ACTINIA:
+                return getString(R.string.description_actinia);
+
+            // TODO
+        }
+        return "";
+    }
+
+    /**
+     * Get text based on the device orientstion
+     *
+     * @param orientation of device
+     * @return text based on the device orientation
+     */
+    private String getSpecialAnswerText(int orientation) {
+        switch (orientation) {
             case Configuration.ORIENTATION_PORTRAIT:
                 return getPortraitAnswerText();
             case Configuration.ORIENTATION_LANDSCAPE:
                 return getLandscapeAnswerText();
             default:
                 // Return default text
-                return getSimpleAnswerText();
+                return getDefaultAnswerText();
         }
     }
 
     /**
      * TODO Get answer text for portrait orientation
+     *
      * @return answer text for portrait orientation
      */
     private String getPortraitAnswerText() {
@@ -345,6 +406,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * TODO Get answer text for landscape orientation
+     *
      * @return answer text for landscape orientation
      */
     private String getLandscapeAnswerText() {
@@ -352,23 +414,16 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * TODO Get answer text for unknown orientation
-     * @return default answer text.
-     */
-    private String getSimpleAnswerText() {
-        return "";
-    }
-
-    /**
      * Prepare and show checkBoxes
+     *
      * @param layout - root view for checkBoxes
      */
     private void showCheckBoxes(LinearLayout layout) {
         // Define check boxes
-        chbAnswer0 = layout.findViewById(R.id.chbAnswer0);
-        chbAnswer1 = layout.findViewById(R.id.chbAnswer1);
-        chbAnswer2 = layout.findViewById(R.id.chbAnswer2);
-        chbAnswer3 = layout.findViewById(R.id.chbAnswer3);
+        chbAnswer0 = layout.findViewById(R.id.chb_answer_0);
+        chbAnswer1 = layout.findViewById(R.id.chb_answer_1);
+        chbAnswer2 = layout.findViewById(R.id.chb_answer_2);
+        chbAnswer3 = layout.findViewById(R.id.chb_answer_3);
         // ... and set text to them
         String[] answers = getAnswerVariants();
         if (answers != null) {
@@ -388,13 +443,43 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     }
 
     /**
+     * Prepare and show RadioButtons
+     */
+    private void showRadioButtons() {
+        // Define radio group
+        RadioButton rbAnswer0 = rgAnswers.findViewById(R.id.rb_answer_0);
+        RadioButton rbAnswer1 = rgAnswers.findViewById(R.id.rb_answer_1);
+        RadioButton rbAnswer2 = rgAnswers.findViewById(R.id.rb_answer_2);
+        RadioButton rbAnswer3 = rgAnswers.findViewById(R.id.rb_answer_3);
+        // >>> and set text to it's child elements
+        String[] answers = getAnswerVariants();
+        if (answers != null) {
+            rbAnswer0.setText(answers[0]);
+            rbAnswer1.setText(answers[1]);
+            rbAnswer2.setText(answers[2]);
+            rbAnswer3.setText(answers[3]);
+        } else {
+            String textError = getString(R.string.error);
+            rbAnswer0.setText(textError);
+            rbAnswer1.setText(textError);
+            rbAnswer2.setText(textError);
+            rbAnswer3.setText(textError);
+        }
+        // Show Layout
+        rgAnswers.setVisibility(View.VISIBLE);
+    }
+
+    /**
      * TODO
+     *
      * @return array of answer variants for question
      */
     private String[] getAnswerVariants() {
         switch (questionNumber) {
             case QuizHelper.Q_ACTINIA:
-                return getResources().getStringArray(R.array.answers_actinia_text);
+                return getResources().getStringArray(R.array.variants_actinia);
+            case QuizHelper.Q_CABO_DA_ROCA:
+                return getResources().getStringArray(R.array.variants_cabo_da_roca);
         }
         questionType = Q_TYPE_ERROR;
         return null;
@@ -406,53 +491,86 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_submit:
                 questionMode = MODE_ANSWER;
+                checkCorrectness();
                 if (listener != null) {
-                    listener.hasAnswer(checkAnswer());
+                    listener.hasAnswer(answerType);
                 }
-                showAnswer();
+                showAnswerView();
                 break;
             case R.id.btn_wiki:
-                // TODO
+                String link = getLink();
+                if (link != null) {
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+                    } catch (Exception ex) {
+                        badLink();
+                    }
+                } else {
+                    // No link
+                    badLink();
+                }
                 break;
         }
+    }
+
+    /**
+     * Get link for wiki page
+     *
+     * @return link
+     */
+    private String getLink() {
+        switch (questionNumber) {
+            case QuizHelper.Q_ACTINIA:
+                return getString(R.string.link_actinia);
+            case QuizHelper.Q_CABO_DA_ROCA:
+                return getString(R.string.link_cabo_da_roca);
+            // TODO
+        }
+        return null;
+    }
+
+    /**
+     * TODO
+     */
+    private void badLink() {
+
     }
 
     /**
      * invalidate UI and set Image and show answer's image and text
      */
-    private void showAnswer() {
+    private void showAnswerView() {
         hideUnusedElements();
         setAnswer();
     }
 
     /**
-     * Check answer and calculate points for it
-     * @return score points for any type answer
+     * Check answer and calculate points based on the answer correctness type
      */
-    private int checkAnswer() {
+    private void checkCorrectness() {
+        answerType = A_TYPE_WRONG;
         switch (questionType) {
             case Q_TYPE_CHECK_BOX:
-                return checkCheckBoxAnswer();
+                checkCheckBoxAnswer();
+                break;
             case Q_TYPE_RADIO_GROUP:
-                return checkRadioGroupAnswer();
+                checkRadioGroupAnswer();
+                break;
             case Q_TYPE_INPUT:
-                return checkEditTextAnswer();
+                checkEditTextAnswer();
         }
-        return 0;
     }
 
     /**
      * Define is answer correct and calculate score for checkBox type question
-     * @return points for answer
      */
-    private int checkCheckBoxAnswer() {
+    private void checkCheckBoxAnswer() {
         String[] rightAnswers = getRightAnswers();
         int score = 0;
-        answerType = A_TYPE_WRONG;
         if (rightAnswers != null) {
             for (String answer : rightAnswers) {
-                if (checkCHB(chbAnswer0, answer) || checkCHB(chbAnswer1, answer) ||
-                        checkCHB(chbAnswer2, answer) || checkCHB(chbAnswer3, answer)) {
+                if (checkCheckBox(chbAnswer0, answer) || checkCheckBox(chbAnswer1, answer) ||
+                        checkCheckBox(chbAnswer2, answer) || checkCheckBox(chbAnswer3, answer)) {
                     score++;
                 }
             }
@@ -463,39 +581,42 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
                 answerType = A_TYPE_PARTIALLY;
             }
         }
-        Log.d(LOG_TAG, "Score for answer - " + score);
-        return score;
     }
 
     /**
      * Check for right answer for CheckBox
+     *
      * @param checkBox - to check
-     * @param answer - text value to check
+     * @param answer   - text value to check
      * @return answer is right
      */
-    private boolean checkCHB(CheckBox checkBox, String answer) {
+    private boolean checkCheckBox(CheckBox checkBox, String answer) {
         return checkBox.isChecked() && checkBox.getText().toString().equals(answer);
     }
 
     /**
-     * TODO
-     * @return points for answer
+     * Define is answer correct and calculate score for RadioGroup type question
      */
-    private int checkRadioGroupAnswer() {
-        return 0;
+    private void checkRadioGroupAnswer() {
+        String rightAnswer = getRightAnswer();
+        int radioButtonId = rgAnswers.getCheckedRadioButtonId();
+        String userAnswer = ((RadioButton) rgAnswers.findViewById(radioButtonId)).getText().toString();
+        if (rightAnswer != null && rightAnswer.equals(userAnswer)) {
+            answerType = A_TYPE_CORRECT;
+        }
     }
 
     /**
      * TODO
-     * @return points for answer
      */
-    private int checkEditTextAnswer() {
-        return 0;
+    private void checkEditTextAnswer() {
+
     }
 
     /**
      * TODO
-     * @return list right answers for question
+     *
+     * @return list of right answers for question
      */
     private String[] getRightAnswers() {
         switch (questionNumber) {
@@ -504,5 +625,23 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         }
         questionType = Q_TYPE_ERROR;
         return null;
+    }
+
+    /**
+     * TODO
+     *
+     * @return right answer for single-item choice question
+     */
+    private String getRightAnswer() {
+        switch (questionNumber) {
+            case QuizHelper.Q_CABO_DA_ROCA:
+                return getString(R.string.answer_cabo_da_roca);
+        }
+        questionType = Q_TYPE_ERROR;
+        return null;
+    }
+
+    public interface AnswerListener {
+        void hasAnswer(int scoreForQuestion);
     }
 }
