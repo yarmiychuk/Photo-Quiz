@@ -19,6 +19,7 @@ public final class QuizHelper {
     static final String SCORE_KEY = "score";
     static final int SCORE_DEFAULT = 0;
 
+    static final String QUESTION_LIST_KEY = "questionsList";
     static final String CURRENT_QUESTION = "currentQuestion";
     static final int TOTAL_QUESTIONS = 3;
     public static final int Q_INTRO = 0;
@@ -27,7 +28,7 @@ public final class QuizHelper {
     private static final int Q_VICTORIA = 3;
     private static final int Q_GENERAL_SHERMAN = 4;
     private static final int Q_QUINTA_DA_REGALEIRA = 5;
-    static final int Q_FINISH = 4;
+    static final int Q_FINISH = 100;
 
     public static final int Q_TYPE_ERROR = 0,
             Q_TYPE_RADIO_GROUP = 1, Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;

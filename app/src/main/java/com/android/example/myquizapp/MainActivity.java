@@ -15,6 +15,9 @@ import com.android.example.myquizapp.fragments.FragmentFinish;
 import com.android.example.myquizapp.fragments.FragmentQuestion;
 import com.android.example.myquizapp.fragments.FragmentIntro;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity
         implements FragmentQuestion.AnswerListener {
 
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     // Constants and variables for fragments
     private final String LOG_TAG = "ActivityMain";
     private int currentQuestion, questionMode, score;
+    private ArrayList<Integer> questionsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,26 +48,34 @@ public class MainActivity extends AppCompatActivity
         animationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         currentQuestion = QuizHelper.Q_INTRO;
         score = QuizHelper.SCORE_DEFAULT;
+        questionsList = new ArrayList<>();
 
         invalidateState(savedInstanceState);
     }
 
+    /**
+     * Check for saved state (current fragment and score)
+     * @param state - saved state
+     */
     private void invalidateState(Bundle state) {
-        // Check for saved state (current fragment and score)
         if (state != null) {
             currentQuestion = state.getInt(QuizHelper.CURRENT_QUESTION, QuizHelper.Q_INTRO);
             questionMode = state.getInt(QuizHelper.QUESTION_MODE_KEY, QuizHelper.MODE_QUESTION);
             score = state.getInt(QuizHelper.SCORE_KEY, QuizHelper.SCORE_DEFAULT);
+            questionsList = state.getIntegerArrayList(QuizHelper.QUESTION_LIST_KEY);
+            if (questionsList == null) {
+                questionsList = new ArrayList<>();
+            }
             invalidateButtonNext();
         } else {
             showButtonNext();
             setFragment();
         }
-
+        setQuizTitle();
     }
 
     /**
-     * TODO Save current state of app
+     * Save current state of app
      * @param outState - current state
      */
     @Override
@@ -71,6 +83,7 @@ public class MainActivity extends AppCompatActivity
         outState.putInt(QuizHelper.CURRENT_QUESTION, currentQuestion);
         outState.putInt(QuizHelper.SCORE_KEY, score);
         outState.putInt(QuizHelper.QUESTION_MODE_KEY, questionMode);
+        outState.putIntegerArrayList(QuizHelper.QUESTION_LIST_KEY, questionsList);
         super.onSaveInstanceState(outState);
     }
 
@@ -89,11 +102,17 @@ public class MainActivity extends AppCompatActivity
         // Show fragment
         flContent.setVisibility(View.VISIBLE);
         flContent.startAnimation(animationIn);
-        // Change activity's title
+        setQuizTitle();
+    }
+
+    /**
+     * Change activity's title
+     */
+    private void setQuizTitle() {
         if (actionBar != null) {
             String title = getString(R.string.app_name);
             if (currentQuestion > 0 && currentQuestion <= QuizHelper.TOTAL_QUESTIONS) {
-                title += ": " + currentQuestion + "/" + QuizHelper.TOTAL_QUESTIONS;
+                title += ": " + questionsList.size() + "/" + QuizHelper.TOTAL_QUESTIONS;
             }
             actionBar.setTitle(title);
         }
@@ -121,7 +140,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     *
+     * TODO
      */
     private void showButtonNext() {
        questionMode = QuizHelper.MODE_ANSWER;
@@ -143,20 +162,36 @@ public class MainActivity extends AppCompatActivity
      * @param view
      */
     public void onClickNext(View view) {
-        if (currentQuestion < QuizHelper.TOTAL_QUESTIONS) {
-            questionMode = QuizHelper.MODE_QUESTION;
-            invalidateButtonNext();
-        }
-        if (currentQuestion <= QuizHelper.TOTAL_QUESTIONS) {
-            currentQuestion++;
+        questionMode = QuizHelper.MODE_QUESTION;
+        invalidateButtonNext();
+        if (questionsList.size() < QuizHelper.TOTAL_QUESTIONS) {
+            currentQuestion = getNewQuestion();
+            questionsList.add(currentQuestion);
             setFragment();
-        } else {
-            finish();
+        } else if (questionsList.size() == QuizHelper.TOTAL_QUESTIONS) {
+            if (currentQuestion == QuizHelper.Q_FINISH) {
+                finish();
+            } else {
+                currentQuestion = QuizHelper.Q_FINISH;
+                setFragment();
+            }
         }
     }
 
     /**
-     * TODO Change "Next" button's text and visibility
+     * Define next random question
+     * @return number of next question
+     */
+    private int getNewQuestion() {
+        int question = 0;
+        while (question == 0 || questionsList.contains(question)) {
+            question = new Random().nextInt(QuizHelper.TOTAL_QUESTIONS) + 1;
+        }
+        return question;
+    }
+
+    /**
+     * Change "Next" button's text and visibility
      */
     private void invalidateButtonNext() {
         if (questionMode == QuizHelper.MODE_QUESTION) {

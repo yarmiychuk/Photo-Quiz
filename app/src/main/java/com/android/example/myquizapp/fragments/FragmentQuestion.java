@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -442,10 +443,32 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * Define is answer correct and calculate score for EditText type question
      */
     private void checkEditTextAnswer() {
-        if (mAnswerET.getText().toString().toUpperCase()
-                .equals(QuizHelper.getRightAnswer(getResources(), questionNumber).toUpperCase())) {
+        String userAnswer = convertTextFromEditText();
+        String rightAnswer = QuizHelper.getRightAnswer(getResources(), questionNumber).toUpperCase();
+        if (userAnswer.equals(rightAnswer)) {
             answerType = QuizHelper.A_TYPE_CORRECT;
         }
+    }
+
+    /**
+     * Remove unused space from text in EditText
+     *
+     * @return text without space at begin and end of text
+     */
+    @NonNull
+    private String convertTextFromEditText() {
+        String text = mAnswerET.getText().toString();
+        while (text.length() > 0 && text.substring(0, 1).equals(" ")) {
+            if (text.length() == 1) {
+                text = "";
+            } else {
+                text = text.substring(1, text.length());
+            }
+        }
+        while (text.length() > 0 && text.substring(text.length() - 1, text.length()).equals(" ")) {
+            text = text.substring(0, text.length() - 1);
+        }
+        return text.toUpperCase();
     }
 
     public interface AnswerListener {
