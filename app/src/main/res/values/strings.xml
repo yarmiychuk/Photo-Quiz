@@ -42,6 +42,7 @@
     <string name="link_cabo_da_roca">https://en.wikipedia.org/wiki/Cabo_da_Roca</string>
     // Other
     <string name="error">Error</string>
+    <string name="error_link">Unable to open link!</string>
 
     <string name="question_general_sherman">General Sherman</string>
     <string name="question_quinta_da_regaleira">Some question</string>

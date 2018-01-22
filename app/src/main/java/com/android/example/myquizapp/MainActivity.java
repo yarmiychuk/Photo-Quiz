@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.d(LOG_TAG, "Save App State");
         outState.putInt(QuizHelper.CURRENT_QUESTION, currentQuestion);
         outState.putInt(QuizHelper.SCORE_KEY, score);
         outState.putInt(QuizHelper.QUESTION_MODE_KEY, questionMode);
@@ -180,7 +179,7 @@ public class MainActivity extends AppCompatActivity
      * @param scoreForAnswer - value of score to add to total score
      */
     @Override
-    public void hasAnswer(int scoreForAnswer) {
+    public void answerReceived(int scoreForAnswer) {
         score += scoreForAnswer;
         showButtonNext();
     }

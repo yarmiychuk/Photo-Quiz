@@ -2,10 +2,8 @@ package com.android.example.myquizapp.fragments;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.example.myquizapp.QuizHelper;
 import com.android.example.myquizapp.R;
@@ -30,29 +29,29 @@ import com.android.example.myquizapp.R;
 public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     private final String LOG_TAG = "FragmentQuestion";
-    private final String QUESTION_MODE_KEY = "questionMode";
-    private final int MODE_QUESTION = 0, MODE_ANSWER = 1;
-    private final String ANSWER_TYPE_KEY = "answerType";
-    private final int Q_TYPE_ERROR = 0,
-            Q_TYPE_RADIO_GROUP = 1, Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;
-    private final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
+    // Type of answer
+    private int answerType;
+    // Type of question
+    private int questionType;
+    // Number of current question
     private int questionNumber;
     // Work mode for save state
     private int questionMode;
-    // Type of question
-    private int questionType;
-    // Type of answer
-    private int answerType;
     // Interface for connect to activity
     private AnswerListener listener;
     // Views
-    private ImageView ivQuestion, ivAnswer;
-    private TextView tvQuestion, tvAnswer;
-    private CheckBox chbAnswer0, chbAnswer1, chbAnswer2, chbAnswer3;
-    private RadioGroup rgAnswers;
-    private EditText etAnswer;
-    private Button btnSubmit, btnWiki;
-    private RelativeLayout rlAnswer;
+    private ImageView mQuestionIV, mAnswerIV;
+    private TextView mQuestionTV, mAnswerTV;
+    private LinearLayout mCheckBoxesLL;
+    private CheckBox[] mAnswerCHB = new CheckBox[4];
+    private RadioGroup mAnswerRG;
+    private EditText mAnswerET;
+    private Button mSubmitBTN, mWikiBTN;
+    private RelativeLayout mAnswerRL;
+
+    public interface AnswerListener {
+        void answerReceived(int scoreForAnswer);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,8 +74,8 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     private void defineVariables() {
         listener = (AnswerListener) getActivity();
         questionNumber = getArguments().getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
-        questionMode = MODE_QUESTION;
-        answerType = A_TYPE_WRONG;
+        questionMode = QuizHelper.MODE_QUESTION;
+        answerType = QuizHelper.A_TYPE_WRONG;
     }
 
     /**
@@ -87,8 +86,8 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     private void getSavedState(Bundle state) {
         // TODO
         questionNumber = state.getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
-        questionMode = state.getInt(QUESTION_MODE_KEY, MODE_QUESTION);
-        answerType = state.getInt(ANSWER_TYPE_KEY, A_TYPE_WRONG);
+        questionMode = state.getInt(QuizHelper.QUESTION_MODE_KEY, QuizHelper.MODE_QUESTION);
+        answerType = state.getInt(QuizHelper.ANSWER_TYPE_KEY, QuizHelper.A_TYPE_WRONG);
     }
 
     /**
@@ -98,10 +97,9 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        Log.d(LOG_TAG, "Save question State");
-        outState.putInt(QUESTION_MODE_KEY, questionMode);
+        outState.putInt(QuizHelper.QUESTION_MODE_KEY, questionMode);
         outState.putInt(QuizHelper.ARG_QUESTION, questionNumber);
-        outState.putInt(ANSWER_TYPE_KEY, answerType);
+        outState.putInt(QuizHelper.ANSWER_TYPE_KEY, answerType);
         super.onSaveInstanceState(outState);
     }
 
@@ -119,8 +117,8 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
             // Invalidate fragment's views
             invalidateFragmentViews(view);
             // Set fragment question or answer fragment view
-            if (questionMode == MODE_QUESTION) {
-                setQuestion(view);
+            if (questionMode == QuizHelper.MODE_QUESTION) {
+                setQuestion();
             } else {
                 setAnswer();
             }
@@ -134,135 +132,96 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void invalidateFragmentViews(View view) {
         // TODO
-        ivQuestion = view.findViewById(R.id.iv_question_image);
-        tvQuestion = view.findViewById(R.id.tv_question_text);
-        btnSubmit = view.findViewById(R.id.btn_submit);
-        rlAnswer = view.findViewById(R.id.rl_answer_layout);
-        ivAnswer = view.findViewById(R.id.iv_answer_image);
-        tvAnswer = view.findViewById(R.id.tv_answer_text);
-        btnWiki = view.findViewById(R.id.btn_wiki);
+        mQuestionIV = view.findViewById(R.id.iv_question_image);
+        mQuestionTV = view.findViewById(R.id.tv_question_text);
+        mSubmitBTN = view.findViewById(R.id.btn_submit);
+        // Answer's checkBoxes
+        mCheckBoxesLL = view.findViewById(R.id.ll_answer_check_boxes);
+        for (int i = 0; i < 4; i++) {
+            mAnswerCHB[i] = (CheckBox) mCheckBoxesLL.getChildAt(i);
+        }
+        // Answer's RadioGroup
+        mAnswerRG = view.findViewById(R.id.rg_answer_radio_buttons);
+        mAnswerIV = view.findViewById(R.id.iv_answer_image);
+        mAnswerTV = view.findViewById(R.id.tv_answer_text);
+        mWikiBTN = view.findViewById(R.id.btn_wiki);
+        // Answer Layout
+        mAnswerRL = view.findViewById(R.id.rl_answer_layout);
         // Add listeners
-        btnSubmit.setOnClickListener(this);
-        btnWiki.setOnClickListener(this);
+        mSubmitBTN.setOnClickListener(this);
+        mWikiBTN.setOnClickListener(this);
         // Hide unused elements
-        hideUnusedElements();
+        prepareUI();
     }
 
     /**
-     * Hide unused elements
+     * Prepare UI question and answer elements to display
      */
-    private void hideUnusedElements() {
+    private void prepareUI() {
         switch (questionMode) {
-            case MODE_ANSWER:
-                // TODO
-                btnSubmit.setEnabled(false);
-                ivQuestion.setImageDrawable(null);
-                tvQuestion.setText("");
-                rlAnswer.setVisibility(View.VISIBLE);
-                btnWiki.setEnabled(true);
+            case QuizHelper.MODE_QUESTION:
+                prepareUIForQuestion();
                 break;
-            case MODE_QUESTION:
-                // TODO
-                btnSubmit.setEnabled(true);
-                rlAnswer.setVisibility(View.INVISIBLE);
-                ivAnswer.setImageDrawable(null);
-                tvAnswer.setText("");
-                btnWiki.setEnabled(false);
+            case QuizHelper.MODE_ANSWER:
+                prepareUIForAnswer();
                 break;
         }
+    }
+
+    /**
+     * Prepare UI to show question view
+     */
+    private void prepareUIForQuestion() {
+        // TODO
+        mSubmitBTN.setEnabled(true);
+        mAnswerRL.setVisibility(View.INVISIBLE);
+        mAnswerIV.setImageDrawable(null);
+        mAnswerTV.setText("");
+        mWikiBTN.setEnabled(false);
+    }
+
+    /**
+     * Prepare UI to show answer view
+     */
+    private void prepareUIForAnswer() {
+        // TODO
+        mSubmitBTN.setEnabled(false);
+        mQuestionIV.setImageDrawable(null);
+        mQuestionTV.setText("");
+        mAnswerRL.setVisibility(View.VISIBLE);
+        mWikiBTN.setEnabled(true);
     }
 
     /**
      * Set Image, text and other views for question mode
-     *
-     * @param view - root view of fragment
      */
-    private void setQuestion(View view) {
+    private void setQuestion() {
         // Set image
-        ivQuestion.setImageResource(getQuestionImage());
+        mQuestionIV.setImageResource(QuizHelper.getQuestionImage(questionNumber));
         // Set text of question
-        tvQuestion.setText(getQuestionText());
+        mQuestionTV.setText(QuizHelper.getQuestionText(getResources(), questionNumber));
         // Set type of question
-        questionType = getQuestionType();
+        questionType = QuizHelper.getQuestionType(questionNumber);
         // Add views for different answer's variants
-        addAnswerVariants(view);
-    }
-
-    /**
-     * TODO Get image for question
-     *
-     * @return image for question
-     */
-    private int getQuestionImage() {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return R.drawable.actinia_square;
-            case QuizHelper.Q_CABO_DA_ROCA:
-                return R.drawable.cabo_da_roca_square;
-            case QuizHelper.Q_GENERAL_SHERMAN:
-                return R.drawable.general_sherman_square;
-            case QuizHelper.Q_QUINTA_DA_REGALEIRA:
-                return R.drawable.quinta_da_regaleira_square;
-        }
-        return R.drawable.yarmiychuk;
-    }
-
-    /**
-     * TODO Get text of questions
-     *
-     * @return text for question
-     */
-    private String getQuestionText() {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return getString(R.string.question_actinia);
-            case QuizHelper.Q_CABO_DA_ROCA:
-                return getString(R.string.question_cabo_da_roca);
-            case QuizHelper.Q_GENERAL_SHERMAN:
-                return getString(R.string.question_general_sherman);
-            case QuizHelper.Q_QUINTA_DA_REGALEIRA:
-                return getString(R.string.question_quinta_da_regaleira);
-        }
-        return getString(R.string.error_question);
+        addAnswerVariants();
     }
 
     /**
      * TODO
-     *
-     * @return type of answer format (single choice, multi choice, input)
      */
-    private int getQuestionType() {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return Q_TYPE_CHECK_BOX;
-            case QuizHelper.Q_CABO_DA_ROCA:
-                return Q_TYPE_RADIO_GROUP;
-        }
-        return Q_TYPE_ERROR;
-    }
-
-    /**
-     * TODO
-     *
-     * @param view - Root view of fragment
-     */
-    private void addAnswerVariants(View view) {
-        if (questionType != Q_TYPE_ERROR) {
-            // TODO Define elements
-            RelativeLayout rlAnswers = view.findViewById(R.id.rl_answers);
-            LinearLayout llCheckBoxes = rlAnswers.findViewById(R.id.ll_answer_check_boxes);
-            rgAnswers = rlAnswers.findViewById(R.id.rg_answer_radio_buttons);
+    private void addAnswerVariants() {
+        if (questionType != QuizHelper.Q_TYPE_ERROR) {
             // TODO Hide elements
-            llCheckBoxes.setVisibility(View.INVISIBLE);
-            rgAnswers.setVisibility(View.INVISIBLE);
+            mCheckBoxesLL.setVisibility(View.INVISIBLE);
+            mAnswerRG.setVisibility(View.INVISIBLE);
             switch (questionType) {
-                case Q_TYPE_CHECK_BOX:
-                    showCheckBoxes(llCheckBoxes);
+                case QuizHelper.Q_TYPE_CHECK_BOX:
+                    showCheckBoxes();
                     break;
-                case Q_TYPE_RADIO_GROUP:
+                case QuizHelper.Q_TYPE_RADIO_GROUP:
                     showRadioButtons();
                     break;
-                case Q_TYPE_INPUT:
+                case QuizHelper.Q_TYPE_INPUT:
                     // TODO
                     break;
             }
@@ -276,271 +235,99 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         // Get current device orientation
         int orientation = getResources().getConfiguration().orientation;
         // Set image
-        ivAnswer.setImageResource(getAnswerImage(orientation));
+        mAnswerIV.setImageResource(QuizHelper.getAnswerImage(orientation, questionNumber));
         // Set text of answer
-        String answer = getStringTypeAnswer() + " " + getAnswerText(orientation);
-        tvAnswer.setText(answer);
-    }
-
-    /**
-     * Get image for answer's ImageView
-     *
-     * @param deviceOrientation - current device orientation
-     * @return image for answer
-     */
-    private int getAnswerImage(int deviceOrientation) {
-        switch (deviceOrientation) {
-            case Configuration.ORIENTATION_PORTRAIT:
-                return getPortraitAnswerImage();
-            case Configuration.ORIENTATION_LANDSCAPE:
-                return getLandscapeAnswerImage();
-            default:
-                // Return squared image
-                return getQuestionImage();
-        }
-    }
-
-    /**
-     * TODO Get image for answer in portrait orientation
-     *
-     * @return portrait image for answer
-     */
-    private int getPortraitAnswerImage() {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return R.drawable.actinia_portrait;
-            case QuizHelper.Q_CABO_DA_ROCA:
-                return R.drawable.cabo_da_roca_portrait;
-        }
-        return 0;
-    }
-
-    /**
-     * TODO Get image for answer in portrait orientation
-     *
-     * @return landscape image for answer
-     */
-    private int getLandscapeAnswerImage() {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return R.drawable.actinia_landscape;
-            case QuizHelper.Q_CABO_DA_ROCA:
-                return R.drawable.cabo_da_roca_landscape;
-        }
-        return 0;
-    }
-
-    /**
-     * Get text based on answer
-     *
-     * @return text about correct, wrong or incorrect answer
-     */
-    private String getStringTypeAnswer() {
-        Log.d(LOG_TAG, "Answer type - " + answerType);
-        switch (answerType) {
-            case A_TYPE_CORRECT:
-                return getString(R.string.correct_answer);
-            case A_TYPE_PARTIALLY:
-                return getString(R.string.partially_answer);
-        }
-        return getString(R.string.wrong_answer);
-    }
-
-    /**
-     * Get Text for answer
-     *
-     * @param deviceOrientation - current device orientation
-     * @return text for answer TextView
-     */
-    private String getAnswerText(int deviceOrientation) {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return getDefaultAnswerText();
-            // TODO
-            default:
-                return getSpecialAnswerText(deviceOrientation);
-        }
-    }
-
-    /**
-     * Get answer text for unknown orientation or for any orientation
-     *
-     * @return default answer text.
-     */
-    private String getDefaultAnswerText() {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return getString(R.string.description_actinia);
-
-            // TODO
-        }
-        return "";
-    }
-
-    /**
-     * Get text based on the device orientstion
-     *
-     * @param orientation of device
-     * @return text based on the device orientation
-     */
-    private String getSpecialAnswerText(int orientation) {
-        switch (orientation) {
-            case Configuration.ORIENTATION_PORTRAIT:
-                return getPortraitAnswerText();
-            case Configuration.ORIENTATION_LANDSCAPE:
-                return getLandscapeAnswerText();
-            default:
-                // Return default text
-                return getDefaultAnswerText();
-        }
-    }
-
-    /**
-     * TODO Get answer text for portrait orientation
-     *
-     * @return answer text for portrait orientation
-     */
-    private String getPortraitAnswerText() {
-        return "";
-    }
-
-    /**
-     * TODO Get answer text for landscape orientation
-     *
-     * @return answer text for landscape orientation
-     */
-    private String getLandscapeAnswerText() {
-        return "";
+        String answer = QuizHelper.getStringTypeAnswer(getResources(), answerType) + " " +
+                QuizHelper.getAnswerText(getResources(), orientation, questionNumber);
+        mAnswerTV.setText(answer);
     }
 
     /**
      * Prepare and show checkBoxes
-     *
-     * @param layout - root view for checkBoxes
      */
-    private void showCheckBoxes(LinearLayout layout) {
-        // Define check boxes
-        chbAnswer0 = layout.findViewById(R.id.chb_answer_0);
-        chbAnswer1 = layout.findViewById(R.id.chb_answer_1);
-        chbAnswer2 = layout.findViewById(R.id.chb_answer_2);
-        chbAnswer3 = layout.findViewById(R.id.chb_answer_3);
-        // ... and set text to them
-        String[] answers = getAnswerVariants();
-        if (answers != null) {
-            chbAnswer0.setText(answers[0]);
-            chbAnswer1.setText(answers[1]);
-            chbAnswer2.setText(answers[2]);
-            chbAnswer3.setText(answers[3]);
-        } else {
-            String textError = getString(R.string.error);
-            chbAnswer0.setText(textError);
-            chbAnswer1.setText(textError);
-            chbAnswer2.setText(textError);
-            chbAnswer3.setText(textError);
+    private void showCheckBoxes() {
+        // Get answer text array
+        String[] answers = QuizHelper.getAnswerVariants(getResources(), questionNumber);
+        // And put it to CheckBoxes
+        for (int i = 0; i < 4; i++) {
+            mAnswerCHB[i].setText(answers[i]);
         }
         // Show Layout
-        layout.setVisibility(View.VISIBLE);
+        mCheckBoxesLL.setVisibility(View.VISIBLE);
     }
 
     /**
      * Prepare and show RadioButtons
      */
     private void showRadioButtons() {
-        // Define radio group
-        RadioButton rbAnswer0 = rgAnswers.findViewById(R.id.rb_answer_0);
-        RadioButton rbAnswer1 = rgAnswers.findViewById(R.id.rb_answer_1);
-        RadioButton rbAnswer2 = rgAnswers.findViewById(R.id.rb_answer_2);
-        RadioButton rbAnswer3 = rgAnswers.findViewById(R.id.rb_answer_3);
-        // >>> and set text to it's child elements
-        String[] answers = getAnswerVariants();
-        if (answers != null) {
-            rbAnswer0.setText(answers[0]);
-            rbAnswer1.setText(answers[1]);
-            rbAnswer2.setText(answers[2]);
-            rbAnswer3.setText(answers[3]);
-        } else {
-            String textError = getString(R.string.error);
-            rbAnswer0.setText(textError);
-            rbAnswer1.setText(textError);
-            rbAnswer2.setText(textError);
-            rbAnswer3.setText(textError);
+        String[] answers = QuizHelper.getAnswerVariants(getResources(), questionNumber);
+        for (int i = 0; i < 4; i++) {
+            ((RadioButton) mAnswerRG.getChildAt(i)).setText(answers[i]);
         }
         // Show Layout
-        rgAnswers.setVisibility(View.VISIBLE);
+        mAnswerRG.setVisibility(View.VISIBLE);
     }
 
     /**
-     * TODO
+     * OnClickListener for Fragment's buttons
      *
-     * @return array of answer variants for question
+     * @param v - the view was clicked
      */
-    private String[] getAnswerVariants() {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return getResources().getStringArray(R.array.variants_actinia);
-            case QuizHelper.Q_CABO_DA_ROCA:
-                return getResources().getStringArray(R.array.variants_cabo_da_roca);
-        }
-        questionType = Q_TYPE_ERROR;
-        return null;
-    }
-
-    // TODO
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_submit:
-                questionMode = MODE_ANSWER;
-                checkCorrectness();
-                if (listener != null) {
-                    listener.hasAnswer(answerType);
-                }
-                showAnswerView();
+                onClickSubmit();
                 break;
             case R.id.btn_wiki:
-                String link = getLink();
-                if (link != null) {
-                    try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
-                    } catch (Exception ex) {
-                        badLink();
-                    }
-                } else {
-                    // No link
-                    badLink();
-                }
+                onClickWiki();
                 break;
         }
     }
 
     /**
-     * Get link for wiki page
-     *
-     * @return link
+     * Called when button Submit clicked
      */
-    private String getLink() {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return getString(R.string.link_actinia);
-            case QuizHelper.Q_CABO_DA_ROCA:
-                return getString(R.string.link_cabo_da_roca);
-            // TODO
+    private void onClickSubmit() {
+        questionMode = QuizHelper.MODE_ANSWER;
+        checkCorrectness();
+        if (listener != null) {
+            listener.answerReceived(answerType);
         }
-        return null;
+        showAnswerView();
     }
 
     /**
-     * TODO
+     * Called when button Wiki clicked
+     */
+    private void onClickWiki() {
+        String link = QuizHelper.getLink(getResources(), questionNumber);
+        if (link != null) {
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+            } catch (Exception ex) {
+                // Bad link
+                badLink();
+            }
+        } else {
+            // No link
+            badLink();
+        }
+    }
+
+    /**
+     * Show message about bad link or unable to open it
      */
     private void badLink() {
-
+        mWikiBTN.setVisibility(View.INVISIBLE);
+        Toast.makeText(getActivity(), getString(R.string.error_link), Toast.LENGTH_SHORT).show();
     }
 
     /**
      * invalidate UI and set Image and show answer's image and text
      */
     private void showAnswerView() {
-        hideUnusedElements();
+        prepareUI();
         setAnswer();
     }
 
@@ -548,15 +335,15 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * Check answer and calculate points based on the answer correctness type
      */
     private void checkCorrectness() {
-        answerType = A_TYPE_WRONG;
+        answerType = QuizHelper.A_TYPE_WRONG;
         switch (questionType) {
-            case Q_TYPE_CHECK_BOX:
+            case QuizHelper.Q_TYPE_CHECK_BOX:
                 checkCheckBoxAnswer();
                 break;
-            case Q_TYPE_RADIO_GROUP:
+            case QuizHelper.Q_TYPE_RADIO_GROUP:
                 checkRadioGroupAnswer();
                 break;
-            case Q_TYPE_INPUT:
+            case QuizHelper.Q_TYPE_INPUT:
                 checkEditTextAnswer();
         }
     }
@@ -565,44 +352,75 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * Define is answer correct and calculate score for checkBox type question
      */
     private void checkCheckBoxAnswer() {
-        String[] rightAnswers = getRightAnswers();
-        int score = 0;
-        if (rightAnswers != null) {
-            for (String answer : rightAnswers) {
-                if (checkCheckBox(chbAnswer0, answer) || checkCheckBox(chbAnswer1, answer) ||
-                        checkCheckBox(chbAnswer2, answer) || checkCheckBox(chbAnswer3, answer)) {
-                    score++;
-                }
-            }
-            // Define is answer correct
-            if (score == rightAnswers.length) {
-                answerType = A_TYPE_CORRECT;
-            } else if (score > 0 && score < rightAnswers.length) {
-                answerType = A_TYPE_PARTIALLY;
-            }
+        String[] rightAnswers = QuizHelper.getRightAnswers(getResources(), questionNumber);
+        int rightChoice = getCHBRightChoice(rightAnswers);
+        if (rightChoice == rightAnswers.length && getCHBWrongChoice(rightAnswers) == 0) {
+            // Answer is correct, all CheckBox's in right position
+            answerType = QuizHelper.A_TYPE_CORRECT;
+        } else if (rightChoice > 0) {
+            // Answer is partially correct
+            answerType = QuizHelper.A_TYPE_PARTIALLY;
         }
     }
 
     /**
-     * Check for right answer for CheckBox
-     *
-     * @param checkBox - to check
-     * @param answer   - text value to check
-     * @return answer is right
+     * Calculate number of user's right answers
+     * @param answers - array of question's right answers
+     * @return number of right answers
      */
-    private boolean checkCheckBox(CheckBox checkBox, String answer) {
-        return checkBox.isChecked() && checkBox.getText().toString().equals(answer);
+    private int getCHBRightChoice(String[] answers) {
+        int rightChoice = 0;
+        for (int i = 0; i < 4; i++) {
+            if (mAnswerCHB[i].isChecked() &&
+                    isAnswersContains(answers, mAnswerCHB[i].getText().toString())) {
+                rightChoice++;
+            }
+        }
+        return rightChoice;
+    }
+
+    /**
+     * Calculate number of user's wrong answers
+     * @param answers - array of question's right answers
+     * @return number of wrong answers
+     */
+    private int getCHBWrongChoice(String[] answers) {
+        int wrongChoice = 0;
+        for (int i = 0; i < 4; i++) {
+            CheckBox checkBox = mAnswerCHB[i];
+            String checkBoxText = checkBox.getText().toString();
+            Boolean isAnswerVariant = isAnswersContains(answers, checkBoxText);
+            if (!checkBox.isChecked() && isAnswerVariant || checkBox.isChecked() && !isAnswerVariant) {
+                wrongChoice++;
+            }
+        }
+        return wrongChoice;
+    }
+
+    /**
+     * Compare the correct answers with the text
+     * @param answers - Array of correct answers
+     * @param text - text to compare
+     * @return is answers contain the text
+     */
+    private boolean isAnswersContains(String[] answers, String text) {
+        for (String answer : answers) {
+            if (answer.equals(text)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
      * Define is answer correct and calculate score for RadioGroup type question
      */
     private void checkRadioGroupAnswer() {
-        String rightAnswer = getRightAnswer();
-        int radioButtonId = rgAnswers.getCheckedRadioButtonId();
-        String userAnswer = ((RadioButton) rgAnswers.findViewById(radioButtonId)).getText().toString();
-        if (rightAnswer != null && rightAnswer.equals(userAnswer)) {
-            answerType = A_TYPE_CORRECT;
+        RadioButton button = mAnswerRG.findViewById(mAnswerRG.getCheckedRadioButtonId());
+        if (button != null &&
+                QuizHelper.getRightAnswer(getResources(), questionNumber)
+                        .equals(button.getText().toString())) {
+            answerType = QuizHelper.A_TYPE_CORRECT;
         }
     }
 
@@ -611,37 +429,5 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void checkEditTextAnswer() {
 
-    }
-
-    /**
-     * TODO
-     *
-     * @return list of right answers for question
-     */
-    private String[] getRightAnswers() {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return getResources().getStringArray(R.array.answers_actinia);
-        }
-        questionType = Q_TYPE_ERROR;
-        return null;
-    }
-
-    /**
-     * TODO
-     *
-     * @return right answer for single-item choice question
-     */
-    private String getRightAnswer() {
-        switch (questionNumber) {
-            case QuizHelper.Q_CABO_DA_ROCA:
-                return getString(R.string.answer_cabo_da_roca);
-        }
-        questionType = Q_TYPE_ERROR;
-        return null;
-    }
-
-    public interface AnswerListener {
-        void hasAnswer(int scoreForQuestion);
     }
 }

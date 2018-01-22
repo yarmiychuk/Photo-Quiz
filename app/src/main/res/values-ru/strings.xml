@@ -48,4 +48,5 @@
 
     // Другое
     <string name="error">Ошибка</string>
+    <string name="error_link">Невозможно открыть ссылку!</string>
 </resources>
