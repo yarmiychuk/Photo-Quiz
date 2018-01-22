@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 import com.android.example.myquizapp.QuizHelper;
 import com.android.example.myquizapp.R;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 /**
  * Created by Dmitriy Yarmiychuk on 14.01.2018.
  * Создал Dmitriy Yarmiychuk 14.01.2018
@@ -28,7 +31,6 @@ import com.android.example.myquizapp.R;
 
 public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
-    private final String LOG_TAG = "FragmentQuestion";
     // Type of answer
     private int answerType;
     // Type of question
@@ -42,16 +44,12 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     // Views
     private ImageView mQuestionIV, mAnswerIV;
     private TextView mQuestionTV, mAnswerTV;
-    private LinearLayout mCheckBoxesLL;
+    private LinearLayout mCheckBoxesLL, mEditTextLL;
     private CheckBox[] mAnswerCHB = new CheckBox[4];
     private RadioGroup mAnswerRG;
     private EditText mAnswerET;
     private Button mSubmitBTN, mWikiBTN;
     private RelativeLayout mAnswerRL;
-
-    public interface AnswerListener {
-        void answerReceived(int scoreForAnswer);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,7 +67,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * TODO Define fragment's variables
+     * Define fragment's variables
      */
     private void defineVariables() {
         listener = (AnswerListener) getActivity();
@@ -84,14 +82,13 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * @param state - saved instance state
      */
     private void getSavedState(Bundle state) {
-        // TODO
         questionNumber = state.getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
         questionMode = state.getInt(QuizHelper.QUESTION_MODE_KEY, QuizHelper.MODE_QUESTION);
         answerType = state.getInt(QuizHelper.ANSWER_TYPE_KEY, QuizHelper.A_TYPE_WRONG);
     }
 
     /**
-     * TODO Save current state of app
+     * Save current state of app
      *
      * @param outState - current state
      */
@@ -131,7 +128,6 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * @param view - root view
      */
     private void invalidateFragmentViews(View view) {
-        // TODO
         mQuestionIV = view.findViewById(R.id.iv_question_image);
         mQuestionTV = view.findViewById(R.id.tv_question_text);
         mSubmitBTN = view.findViewById(R.id.btn_submit);
@@ -145,6 +141,9 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         mAnswerIV = view.findViewById(R.id.iv_answer_image);
         mAnswerTV = view.findViewById(R.id.tv_answer_text);
         mWikiBTN = view.findViewById(R.id.btn_wiki);
+        // Answer's EditText
+        mEditTextLL = view.findViewById(R.id.ll_answer_edit_text);
+        mAnswerET = view.findViewById(R.id.et_answer);
         // Answer Layout
         mAnswerRL = view.findViewById(R.id.rl_answer_layout);
         // Add listeners
@@ -166,13 +165,25 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
                 prepareUIForAnswer();
                 break;
         }
+        hideKeyboard();
+    }
+
+    /**
+     * Hide keyboard if it shows
+     */
+    private void hideKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager)
+                getActivity().getSystemService(INPUT_METHOD_SERVICE);
+        if (getActivity().getCurrentFocus() != null && inputMethodManager != null) {
+            inputMethodManager.hideSoftInputFromWindow(
+                    getActivity().getCurrentFocus().getWindowToken(), 0);
+        }
     }
 
     /**
      * Prepare UI to show question view
      */
     private void prepareUIForQuestion() {
-        // TODO
         mSubmitBTN.setEnabled(true);
         mAnswerRL.setVisibility(View.INVISIBLE);
         mAnswerIV.setImageDrawable(null);
@@ -184,7 +195,6 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * Prepare UI to show answer view
      */
     private void prepareUIForAnswer() {
-        // TODO
         mSubmitBTN.setEnabled(false);
         mQuestionIV.setImageDrawable(null);
         mQuestionTV.setText("");
@@ -207,13 +217,13 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * TODO
+     * Preparation of UI depending on the current question type.
      */
     private void addAnswerVariants() {
         if (questionType != QuizHelper.Q_TYPE_ERROR) {
-            // TODO Hide elements
-            mCheckBoxesLL.setVisibility(View.INVISIBLE);
-            mAnswerRG.setVisibility(View.INVISIBLE);
+            mCheckBoxesLL.setVisibility(View.GONE);
+            mAnswerRG.setVisibility(View.GONE);
+            mEditTextLL.setVisibility(View.GONE);
             switch (questionType) {
                 case QuizHelper.Q_TYPE_CHECK_BOX:
                     showCheckBoxes();
@@ -222,7 +232,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
                     showRadioButtons();
                     break;
                 case QuizHelper.Q_TYPE_INPUT:
-                    // TODO
+                    mEditTextLL.setVisibility(View.VISIBLE);
                     break;
             }
         }
@@ -289,6 +299,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * Called when button Submit clicked
      */
     private void onClickSubmit() {
+        hideKeyboard();
         questionMode = QuizHelper.MODE_ANSWER;
         checkCorrectness();
         if (listener != null) {
@@ -365,6 +376,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * Calculate number of user's right answers
+     *
      * @param answers - array of question's right answers
      * @return number of right answers
      */
@@ -381,6 +393,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * Calculate number of user's wrong answers
+     *
      * @param answers - array of question's right answers
      * @return number of wrong answers
      */
@@ -399,8 +412,9 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * Compare the correct answers with the text
+     *
      * @param answers - Array of correct answers
-     * @param text - text to compare
+     * @param text    - text to compare
      * @return is answers contain the text
      */
     private boolean isAnswersContains(String[] answers, String text) {
@@ -425,9 +439,16 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * TODO
+     * Define is answer correct and calculate score for EditText type question
      */
     private void checkEditTextAnswer() {
+        if (mAnswerET.getText().toString().toUpperCase()
+                .equals(QuizHelper.getRightAnswer(getResources(), questionNumber).toUpperCase())) {
+            answerType = QuizHelper.A_TYPE_CORRECT;
+        }
+    }
 
+    public interface AnswerListener {
+        void answerReceived(int scoreForAnswer);
     }
 }

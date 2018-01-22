@@ -41,6 +41,11 @@
     <string name="answer_cabo_da_roca">Мыс Рока</string>
     <string name="description_cabo_da_roca">Самая западная точка Евразии - Мыс Рока.</string>
     <string name="link_cabo_da_roca">https://ru.wikipedia.org/wiki/Рока_(мыс)</string>
+    // Бухта Виктория
+    <string name="question_victoria">Как называется естественная гавань, расположенная между островом Гонконг и Коулуном в Гонконге?</string>
+    <string name="answer_victoria">Виктория</string>
+    <string name="description_victoria">Эта гавань называется Виктория.</string>
+    <string name="link_victoria">https://ru.wikipedia.org/wiki/Виктория_(бухта)</string>
 
 
     <string name="question_quinta_da_regaleira">Какой-то вопрос</string>
@@ -49,4 +54,7 @@
     // Другое
     <string name="error">Ошибка</string>
     <string name="error_link">Невозможно открыть ссылку!</string>
+    <string name="rotate_to_full">Поверните устройство, чтобы увидеть изображение целиком.</string>
+    <string name="rotate_to_another">Поверните устройство, чтобы увидеть другое изображение.</string>
+    <string name="answer_hint">Ответ…</string>
 </resources>

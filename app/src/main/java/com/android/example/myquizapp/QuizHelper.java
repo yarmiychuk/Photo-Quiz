@@ -20,13 +20,14 @@ public final class QuizHelper {
     static final int SCORE_DEFAULT = 0;
 
     static final String CURRENT_QUESTION = "currentQuestion";
-    static final int TOTAL_QUESTIONS = 2;
+    static final int TOTAL_QUESTIONS = 3;
     public static final int Q_INTRO = 0;
     private static final int Q_ACTINIA = 1;
     private static final int Q_CABO_DA_ROCA = 2;
-    private static final int Q_GENERAL_SHERMAN = 3;
-    private static final int Q_QUINTA_DA_REGALEIRA = 4;
-    static final int Q_FINISH = 3;
+    private static final int Q_VICTORIA = 3;
+    private static final int Q_GENERAL_SHERMAN = 4;
+    private static final int Q_QUINTA_DA_REGALEIRA = 5;
+    static final int Q_FINISH = 4;
 
     public static final int Q_TYPE_ERROR = 0,
             Q_TYPE_RADIO_GROUP = 1, Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;
@@ -41,13 +42,15 @@ public final class QuizHelper {
      */
     public static int getQuestionImage(int questionNumber) {
         switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
+            case Q_ACTINIA:
                 return R.drawable.actinia_square;
-            case QuizHelper.Q_CABO_DA_ROCA:
+            case Q_CABO_DA_ROCA:
                 return R.drawable.cabo_da_roca_square;
-            case QuizHelper.Q_GENERAL_SHERMAN:
+            case Q_VICTORIA:
+                return R.drawable.victoria_square;
+            case Q_GENERAL_SHERMAN:
                 return R.drawable.general_sherman_square;
-            case QuizHelper.Q_QUINTA_DA_REGALEIRA:
+            case Q_QUINTA_DA_REGALEIRA:
                 return R.drawable.quinta_da_regaleira_square;
         }
         return R.drawable.yarmiychuk;
@@ -61,13 +64,15 @@ public final class QuizHelper {
      */
     public static String getQuestionText(Resources res, int questionNumber) {
         switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
+            case Q_ACTINIA:
                 return res.getString(R.string.question_actinia);
-            case QuizHelper.Q_CABO_DA_ROCA:
+            case Q_CABO_DA_ROCA:
                 return res.getString(R.string.question_cabo_da_roca);
-            case QuizHelper.Q_GENERAL_SHERMAN:
+            case Q_VICTORIA:
+                return res.getString(R.string.question_victoria);
+            case Q_GENERAL_SHERMAN:
                 return res.getString(R.string.question_general_sherman);
-            case QuizHelper.Q_QUINTA_DA_REGALEIRA:
+            case Q_QUINTA_DA_REGALEIRA:
                 return res.getString(R.string.question_quinta_da_regaleira);
         }
         return res.getString(R.string.error_question);
@@ -80,10 +85,12 @@ public final class QuizHelper {
      */
     public static int getQuestionType(int questionNumber) {
         switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
+            case Q_ACTINIA:
                 return Q_TYPE_CHECK_BOX;
-            case QuizHelper.Q_CABO_DA_ROCA:
+            case Q_CABO_DA_ROCA:
                 return Q_TYPE_RADIO_GROUP;
+            case Q_VICTORIA:
+                return Q_TYPE_INPUT;
         }
         return Q_TYPE_ERROR;
     }
@@ -106,6 +113,20 @@ public final class QuizHelper {
     }
 
     /**
+     * TODO
+     *
+     * @return list of right answers for question
+     */
+    public static String[] getRightAnswers(Resources res, int questionNumber) {
+        switch (questionNumber) {
+            case Q_ACTINIA:
+                return res.getStringArray(R.array.answers_actinia);
+            default:
+                return getErrorArray(res);
+        }
+    }
+
+    /**
      * Make and return array with "Error" words
      * @return "Error" array
      */
@@ -118,26 +139,14 @@ public final class QuizHelper {
     /**
      * TODO
      *
-     * @return list of right answers for question
-     */
-    public static String[] getRightAnswers(Resources res, int questionNumber) {
-        switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return res.getStringArray(R.array.answers_actinia);
-            default:
-                return getErrorArray(res);
-        }
-    }
-
-    /**
-     * TODO
-     *
      * @return right answer for single-item choice question
      */
     public static String getRightAnswer(Resources res, int questionNumber) {
         switch (questionNumber) {
-            case QuizHelper.Q_CABO_DA_ROCA:
+            case Q_CABO_DA_ROCA:
                 return res.getString(R.string.answer_cabo_da_roca);
+            case Q_VICTORIA:
+                return res.getString(R.string.answer_victoria);
         }
         return res.getString(R.string.error);
     }
@@ -167,10 +176,12 @@ public final class QuizHelper {
      */
     private static int getPortraitAnswerImage(int questionNumber) {
         switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return R.drawable.actinia_portrait;
-            case QuizHelper.Q_CABO_DA_ROCA:
+            case Q_ACTINIA:
+                return R.drawable.actinia_landscape;
+            case Q_CABO_DA_ROCA:
                 return R.drawable.cabo_da_roca_portrait;
+            case Q_VICTORIA:
+                return getLandscapeAnswerImage(questionNumber);
         }
         // Return squared image
         return getQuestionImage(questionNumber);
@@ -183,10 +194,12 @@ public final class QuizHelper {
      */
     private static int getLandscapeAnswerImage(int questionNumber) {
         switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
+            case Q_ACTINIA:
                 return R.drawable.actinia_landscape;
-            case QuizHelper.Q_CABO_DA_ROCA:
+            case Q_CABO_DA_ROCA:
                 return R.drawable.cabo_da_roca_landscape;
+            case Q_VICTORIA:
+                return R.drawable.victoria_landscape;
         }
         // Return squared image
         return getQuestionImage(questionNumber);
@@ -200,9 +213,9 @@ public final class QuizHelper {
     @NonNull
     public static String getStringTypeAnswer(Resources res, int answerType) {
         switch (answerType) {
-            case QuizHelper.A_TYPE_CORRECT:
+            case A_TYPE_CORRECT:
                 return res.getString(R.string.correct_answer);
-            case QuizHelper.A_TYPE_PARTIALLY:
+            case A_TYPE_PARTIALLY:
                 return res.getString(R.string.partially_answer);
         }
         return res.getString(R.string.wrong_answer);
@@ -215,10 +228,8 @@ public final class QuizHelper {
      * @return text for answer TextView
      */
     public static String getAnswerText(Resources res, int deviceOrientation, int questionNumber) {
+        // TODO
         switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
-                return getDefaultAnswerText(res, questionNumber);
-            // TODO
             default:
                 return getSpecialAnswerText(res, deviceOrientation, questionNumber);
         }
@@ -231,9 +242,12 @@ public final class QuizHelper {
      */
     private static String getDefaultAnswerText(Resources res, int questionNumber) {
         switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
+            case Q_ACTINIA:
                 return res.getString(R.string.description_actinia);
-
+            case Q_CABO_DA_ROCA:
+                return res.getString(R.string.description_cabo_da_roca);
+            case Q_VICTORIA:
+                return res.getString(R.string.description_victoria);
             // TODO
         }
         return "";
@@ -263,7 +277,17 @@ public final class QuizHelper {
      * @return answer text for portrait orientation
      */
     private static String getPortraitAnswerText(Resources res, int questionNumber) {
-        return "";
+        switch (questionNumber) {
+            case Q_ACTINIA:
+            case Q_VICTORIA:
+                return getDefaultAnswerText(res, questionNumber) + " "
+                        + res.getString(R.string.rotate_to_full);
+            case Q_CABO_DA_ROCA:
+                return getDefaultAnswerText(res, questionNumber) + " "
+                        + res.getString(R.string.rotate_to_another);
+            default:
+                return getDefaultAnswerText(res, questionNumber);
+        }
     }
 
     /**
@@ -272,7 +296,13 @@ public final class QuizHelper {
      * @return answer text for landscape orientation
      */
     private static String getLandscapeAnswerText(Resources res, int questionNumber) {
-        return "";
+        switch (questionNumber) {
+            case Q_CABO_DA_ROCA:
+                return getDefaultAnswerText(res, questionNumber) + " "
+                        + res.getString(R.string.rotate_to_another);
+            default:
+                return getDefaultAnswerText(res, questionNumber);
+        }
     }
 
     /**
@@ -283,10 +313,12 @@ public final class QuizHelper {
      */
     public static String getLink(Resources res, int questionNumber) {
         switch (questionNumber) {
-            case QuizHelper.Q_ACTINIA:
+            case Q_ACTINIA:
                 return res.getString(R.string.link_actinia);
-            case QuizHelper.Q_CABO_DA_ROCA:
+            case Q_CABO_DA_ROCA:
                 return res.getString(R.string.link_cabo_da_roca);
+            case Q_VICTORIA:
+                return res.getString(R.string.link_victoria);
             // TODO
         }
         return null;

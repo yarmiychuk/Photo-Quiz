@@ -40,9 +40,17 @@
     <string name="answer_cabo_da_roca">Cape Roca</string>
     <string name="description_cabo_da_roca">The most western point of Eurasia is Cape Roca.</string>
     <string name="link_cabo_da_roca">https://en.wikipedia.org/wiki/Cabo_da_Roca</string>
+    // Victoria bay
+    <string name="question_victoria">What is the name of this natural landform harbour situated between Hong Kong Island and Kowloon in Hong Kong?</string>
+    <string name="answer_victoria">Victoria</string>
+    <string name="description_victoria">This harbor is called Victoria.</string>
+    <string name="link_victoria">https://en.wikipedia.org/wiki/Victoria_Harbour</string>
     // Other
     <string name="error">Error</string>
     <string name="error_link">Unable to open link!</string>
+    <string name="rotate_to_full">Rotate the device to see the full image.</string>
+    <string name="rotate_to_another">Rotate the device to see another photo.</string>
+    <string name="answer_hint">Answer…</string>
 
     <string name="question_general_sherman">General Sherman</string>
     <string name="question_quinta_da_regaleira">Some question</string>

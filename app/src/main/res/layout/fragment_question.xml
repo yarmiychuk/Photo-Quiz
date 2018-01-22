@@ -59,6 +59,8 @@
 
                 <include layout="@layout/question_radio_buttons" />
 
+                <include layout="@layout/question_edit_text" />
+
             </RelativeLayout>
 
             <Button

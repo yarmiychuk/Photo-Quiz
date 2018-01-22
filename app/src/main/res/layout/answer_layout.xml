@@ -34,7 +34,6 @@
         style="@style/TextViewStyle.Answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ll_answer_navigation"
         android:text="@string/test_text" />
 
 </RelativeLayout>
