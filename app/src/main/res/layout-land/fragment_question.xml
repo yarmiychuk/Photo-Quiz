@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
+    <include layout="@layout/progress_bar" />
+
     <ImageView
         android:id="@+id/iv_question_image"
         android:layout_width="wrap_content"

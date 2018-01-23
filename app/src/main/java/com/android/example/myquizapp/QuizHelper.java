@@ -12,16 +12,17 @@ import android.support.annotation.NonNull;
 public final class QuizHelper {
 
     public static final String ARG_QUESTION = "question";
+    public static final String ARG_RESULT = "result";
 
     public static final String QUESTION_MODE_KEY = "questionMode";
     public static final int MODE_QUESTION = 0, MODE_ANSWER = 1;
 
     static final String SCORE_KEY = "score";
-    static final int SCORE_DEFAULT = 0;
+    public static final int SCORE_DEFAULT = 0;
 
     static final String QUESTION_LIST_KEY = "questionsList";
     static final String CURRENT_QUESTION = "currentQuestion";
-    static final int TOTAL_QUESTIONS = 3;
+    public static final int TOTAL_QUESTIONS = 3;
     public static final int Q_INTRO = 0;
     private static final int Q_ACTINIA = 1;
     private static final int Q_CABO_DA_ROCA = 2;

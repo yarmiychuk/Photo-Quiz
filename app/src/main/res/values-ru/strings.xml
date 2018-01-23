@@ -57,4 +57,13 @@
     <string name="rotate_to_full">Поверните устройство, чтобы увидеть изображение целиком.</string>
     <string name="rotate_to_another">Поверните устройство, чтобы увидеть другое изображение.</string>
     <string name="answer_hint">Ответ…</string>
+    // Результат
+    <string name="total_score">Всего очков:</string>
+    <string name="congratulations">Поздравляем!</string>
+    <string name="no_bad">Неплохо…</string>
+    <string name="incredible">Неверояно!</string>
+    <string name="all_questions">Вы ответили верно на все вопросы!</string>
+    <string name="more_half">Вы ответили верно на большинство вопросов.</string>
+    <string name="less_half">Вы смоли ответить на часть вопросов.</string>
+    <string name="no_one">Вы не ответили верно НИ НА ОДИН вопрос…</string>
 </resources>

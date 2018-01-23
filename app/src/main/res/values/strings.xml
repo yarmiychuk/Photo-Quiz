@@ -51,6 +51,15 @@
     <string name="rotate_to_full">Rotate the device to see the full image.</string>
     <string name="rotate_to_another">Rotate the device to see another photo.</string>
     <string name="answer_hint">Answer…</string>
+    // Quiz result
+    <string name="total_score">Total score:</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="no_bad">Not bad…</string>
+    <string name="incredible">Incredible!</string>
+    <string name="all_questions">You answered correctly all the questions!</string>
+    <string name="more_half">You answered correctly the majority of questions.</string>
+    <string name="less_half">You were able to answer part of the questions.</string>
+    <string name="no_one">You did not answer correctly AT ALL!</string>
 
     <string name="question_general_sherman">General Sherman</string>
     <string name="question_quinta_da_regaleira">Some question</string>

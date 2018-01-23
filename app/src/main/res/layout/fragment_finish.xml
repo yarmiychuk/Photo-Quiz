@@ -1,13 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="ВСЁ"
-        android:textSize="60sp" />
+        android:contentDescription="@string/desc_portugal_pena"
+        android:scaleType="centerCrop"
+        android:src="@drawable/intro" />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_congratulation"
+            style="@style/TextViewStyle.Answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:paddingBottom="0dp"
+            android:text="@string/congratulations"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tv_quiz_result"
+            style="@style/TextViewStyle.Answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:paddingTop="0dp"
+            android:text="@string/all_questions" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_score_result"
+        style="@style/TextViewStyle.Question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/text_padding"
+        android:background="#00FFFFFF"
+        android:text="@string/total_score" />
+
+</RelativeLayout>

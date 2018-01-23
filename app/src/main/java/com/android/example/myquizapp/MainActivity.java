@@ -153,7 +153,11 @@ public class MainActivity extends AppCompatActivity
      */
     private Bundle getQuestionArguments() {
         Bundle arguments = new Bundle();
-        arguments.putInt(QuizHelper.ARG_QUESTION, currentQuestion);
+        if (currentQuestion != QuizHelper.Q_FINISH) {
+            arguments.putInt(QuizHelper.ARG_QUESTION, currentQuestion);
+        } else {
+            arguments.putInt(QuizHelper.ARG_RESULT, score);
+        }
         return arguments;
     }
 
