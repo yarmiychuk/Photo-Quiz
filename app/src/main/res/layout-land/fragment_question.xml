@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
-    <include layout="@layout/progress_bar" />
+    <include layout="@layout/progress_bar"/>
 
     <ImageView
         android:id="@+id/iv_question_image"
@@ -19,11 +19,10 @@
     <TextView
         android:id="@+id/tv_question_text"
         style="@style/TextViewStyle.Question"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:background="@drawable/dark_background"
-        android:text="@string/test_text"
+        android:text="@string/default_question_text"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <RelativeLayout
@@ -31,6 +30,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="8dp"
+        android:background="@drawable/dark_background"
         app:layout_constraintBottom_toTopOf="@id/tv_question_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_question_image"

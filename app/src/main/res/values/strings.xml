@@ -51,6 +51,7 @@
     <string name="rotate_to_full">Rotate the device to see the full image.</string>
     <string name="rotate_to_another">Rotate the device to see another photo.</string>
     <string name="answer_hint">Answer…</string>
+    <string name="default_question_text">Dmitriy Yarmiychuk</string>
     // Quiz result
     <string name="total_score">Total score:</string>
     <string name="congratulations">Congratulations!</string>

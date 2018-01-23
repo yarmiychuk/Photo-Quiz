@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/test_text"
+            android:text="@string/default_question_text"
             android:textColor="@android:color/white" />
 
         <TextView
