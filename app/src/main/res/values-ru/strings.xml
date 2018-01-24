@@ -46,6 +46,17 @@
     <string name="answer_victoria">Виктория</string>
     <string name="description_victoria">Эта гавань называется Виктория.</string>
     <string name="link_victoria">https://ru.wikipedia.org/wiki/Виктория_(бухта)</string>
+    // Звёздное дерево
+    <string name="question_sky_tree">Это самая высокая телебашня в мире, находится в Токио. Как она называется?</string>
+    <string-array name="variants_sky_tree">
+        <item>Стрела Земли</item>
+        <item>Небесное дерево</item>
+        <item>Космичский лифт</item>
+        <item>Miyabi (Мияби)</item>
+    </string-array>
+    <string name="answer_sky_tree">Небесное дерево</string>
+    <string name="description_sky_tree">This tower is called \"Tokyo Sky Tree\".</string>
+    <string name="link_sky_tree">https://ru.wikipedia.org/wiki/Tokyo_Skytree</string>
 
 
     <string name="question_quinta_da_regaleira">Какой-то вопрос</string>

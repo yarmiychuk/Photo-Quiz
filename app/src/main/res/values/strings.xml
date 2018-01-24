@@ -40,11 +40,22 @@
     <string name="answer_cabo_da_roca">Cape Roca</string>
     <string name="description_cabo_da_roca">The most western point of Eurasia is Cape Roca.</string>
     <string name="link_cabo_da_roca">https://en.wikipedia.org/wiki/Cabo_da_Roca</string>
-    // Victoria bay
+    // Victoria harbour
     <string name="question_victoria">What is the name of this natural landform harbour situated between Hong Kong Island and Kowloon in Hong Kong?</string>
     <string name="answer_victoria">Victoria</string>
     <string name="description_victoria">This harbor is called Victoria.</string>
     <string name="link_victoria">https://en.wikipedia.org/wiki/Victoria_Harbour</string>
+    // Звёздное дерево
+    <string name="question_sky_tree">This is the highest TV tower in the world, located in Tokyo. What is it called?</string>
+    <string-array name="variants_sky_tree">
+        <item>Earth's Arrow</item>
+        <item>Sky Tree</item>
+        <item>Space lift</item>
+        <item>Miyabi</item>
+    </string-array>
+    <string name="answer_sky_tree">Sky Tree</string>
+    <string name="description_sky_tree">Токийская телевизионная башня называется \"Sky Tree\" (\"Небесное дерево\")</string>
+    <string name="link_sky_tree">https://en.wikipedia.org/wiki/Tokyo_Skytree</string>
     // Other
     <string name="error">Error</string>
     <string name="error_link">Unable to open link!</string>

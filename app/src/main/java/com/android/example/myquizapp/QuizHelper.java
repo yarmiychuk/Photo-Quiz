@@ -4,6 +4,9 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Created by Dmitriy Yarmiychuk on 15.01.2018.
  * Создал Dmitriy Yarmiychuk 15.01.2018
@@ -22,13 +25,15 @@ public final class QuizHelper {
 
     static final String QUESTION_LIST_KEY = "questionsList";
     static final String CURRENT_QUESTION = "currentQuestion";
-    public static final int TOTAL_QUESTIONS = 3;
+    public static final int TOTAL_QUESTIONS = 4;
     public static final int Q_INTRO = 0;
     private static final int Q_ACTINIA = 1;
     private static final int Q_CABO_DA_ROCA = 2;
     private static final int Q_VICTORIA = 3;
-    private static final int Q_GENERAL_SHERMAN = 4;
-    private static final int Q_QUINTA_DA_REGALEIRA = 5;
+    private static final int Q_SKY_TREE = 4;
+
+    private static final int Q_GENERAL_SHERMAN = 44;
+    private static final int Q_QUINTA_DA_REGALEIRA = 45;
     static final int Q_FINISH = 100;
 
     public static final int Q_TYPE_ERROR = 0,
@@ -44,31 +49,6 @@ public final class QuizHelper {
      * @return image for question
      */
     public static int getQuestionImage(int orientation, int questionNumber) {
-        // TODO
-        switch (questionNumber) {
-            case Q_ACTINIA:
-            case Q_CABO_DA_ROCA:
-            case Q_VICTORIA:
-                return getSpecialImage(orientation, questionNumber);
-
-
-
-            case Q_GENERAL_SHERMAN:
-                return R.drawable.general_sherman_square;
-            case Q_QUINTA_DA_REGALEIRA:
-                return R.drawable.quinta_da_regaleira_square;
-        }
-        return R.drawable.yarmiychuk;
-    }
-
-    /**
-     * Get question image for special orientation
-     * @param orientation - device orientation
-     * @param questionNumber - number of current question
-     * @return image resource id
-     */
-    private static int getSpecialImage(int orientation, int questionNumber) {
-        // TODO
         switch (orientation) {
             case Configuration.ORIENTATION_PORTRAIT:
                 return getPortraitImage(questionNumber);
@@ -93,6 +73,8 @@ public final class QuizHelper {
                 return R.drawable.cabo_da_roca_square;
             case Q_VICTORIA:
                 return R.drawable.victoria_landscape;
+            case Q_SKY_TREE:
+                return R.drawable.sky_tree_portrait;
 
             default:
                 return R.drawable.yarmiychuk;
@@ -113,6 +95,8 @@ public final class QuizHelper {
                 return R.drawable.cabo_da_roca_portrait;
             case Q_VICTORIA:
                 return R.drawable.victoria_square;
+            case Q_SKY_TREE:
+                return R.drawable.sky_tree_portrait;
             default:
                 return R.drawable.yarmiychuk;
         }
@@ -132,6 +116,8 @@ public final class QuizHelper {
                 return R.drawable.cabo_da_roca_landscape;
             case Q_VICTORIA:
                 return R.drawable.victoria_landscape;
+            case Q_SKY_TREE:
+                return R.drawable.sky_tree_portrait;
             default:
                 return R.drawable.yarmiychuk;
         }
@@ -150,6 +136,8 @@ public final class QuizHelper {
                 return res.getString(R.string.question_cabo_da_roca);
             case Q_VICTORIA:
                 return res.getString(R.string.question_victoria);
+            case Q_SKY_TREE:
+                return res.getString(R.string.question_sky_tree);
             case Q_GENERAL_SHERMAN:
                 return res.getString(R.string.question_general_sherman);
             case Q_QUINTA_DA_REGALEIRA:
@@ -168,6 +156,7 @@ public final class QuizHelper {
             case Q_ACTINIA:
                 return Q_TYPE_CHECK_BOX;
             case Q_CABO_DA_ROCA:
+            case Q_SKY_TREE:
                 return Q_TYPE_RADIO_GROUP;
             case Q_VICTORIA:
                 return Q_TYPE_INPUT;
@@ -175,21 +164,32 @@ public final class QuizHelper {
         return Q_TYPE_ERROR;
     }
 
-
     /**
-     * TODO
+     * Get answer variants for a question
      *
+     * @param res - Recources of app
+     * @param questionNumber - Number of question
      * @return array of answer variants for question
      */
     public static String[] getAnswerVariants(Resources res, int questionNumber) {
+        String[] variants;
         switch (questionNumber) {
             case Q_ACTINIA:
-                return res.getStringArray(R.array.variants_actinia);
+                variants = res.getStringArray(R.array.variants_actinia);
+                break;
             case Q_CABO_DA_ROCA:
-                return res.getStringArray(R.array.variants_cabo_da_roca);
+                variants = res.getStringArray(R.array.variants_cabo_da_roca);
+                break;
+            case Q_SKY_TREE:
+                variants = res.getStringArray(R.array.variants_sky_tree);
+                break;
+                // TODO
             default:
-                return getErrorArray(res);
+                variants = getErrorArray(res);
         }
+        // Reorder variants
+        Collections.shuffle(Arrays.asList(variants));
+        return variants;
     }
 
     /**
@@ -227,6 +227,8 @@ public final class QuizHelper {
                 return res.getString(R.string.answer_cabo_da_roca);
             case Q_VICTORIA:
                 return res.getString(R.string.answer_victoria);
+            case Q_SKY_TREE:
+                return res.getString(R.string.answer_sky_tree);
         }
         return res.getString(R.string.error);
     }
@@ -278,6 +280,8 @@ public final class QuizHelper {
                 return res.getString(R.string.description_cabo_da_roca);
             case Q_VICTORIA:
                 return res.getString(R.string.description_victoria);
+            case Q_SKY_TREE:
+                return res.getString(R.string.description_sky_tree);
             // TODO
         }
         return "";
@@ -330,6 +334,8 @@ public final class QuizHelper {
                 return res.getString(R.string.link_cabo_da_roca);
             case Q_VICTORIA:
                 return res.getString(R.string.link_victoria);
+            case Q_SKY_TREE:
+                return res.getString(R.string.link_sky_tree);
             // TODO
         }
         return null;
