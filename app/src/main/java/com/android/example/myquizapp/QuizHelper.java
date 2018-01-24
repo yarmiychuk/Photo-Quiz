@@ -38,18 +38,21 @@ public final class QuizHelper {
     public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
 
     /**
-     * TODO Get image for question
-     *
+     * Get image for question
+     * @param orientation - device orientation
+     * @param questionNumber - number of current question
      * @return image for question
      */
-    public static int getQuestionImage(int questionNumber) {
+    public static int getQuestionImage(int orientation, int questionNumber) {
+        // TODO
         switch (questionNumber) {
             case Q_ACTINIA:
-                return R.drawable.actinia_square;
             case Q_CABO_DA_ROCA:
-                return R.drawable.cabo_da_roca_square;
             case Q_VICTORIA:
-                return R.drawable.victoria_square;
+                return getSpecialImage(orientation, questionNumber);
+
+
+
             case Q_GENERAL_SHERMAN:
                 return R.drawable.general_sherman_square;
             case Q_QUINTA_DA_REGALEIRA:
@@ -58,11 +61,86 @@ public final class QuizHelper {
         return R.drawable.yarmiychuk;
     }
 
+    /**
+     * Get question image for special orientation
+     * @param orientation - device orientation
+     * @param questionNumber - number of current question
+     * @return image resource id
+     */
+    private static int getSpecialImage(int orientation, int questionNumber) {
+        // TODO
+        switch (orientation) {
+            case Configuration.ORIENTATION_PORTRAIT:
+                return getPortraitImage(questionNumber);
+            case Configuration.ORIENTATION_LANDSCAPE:
+                return getLandscapeImage(questionNumber);
+            default:
+                return getDefaultImage(questionNumber);
+        }
+    }
+
+    /**
+     * Get default question's image
+     * @param questionNumber - number of current question
+     * @return image's resource id
+     */
+    private static int getDefaultImage(int questionNumber) {
+        // TODO
+        switch (questionNumber) {
+            case Q_ACTINIA:
+                return R.drawable.actinia_square;
+            case Q_CABO_DA_ROCA:
+                return R.drawable.cabo_da_roca_square;
+            case Q_VICTORIA:
+                return R.drawable.victoria_landscape;
+
+            default:
+                return R.drawable.yarmiychuk;
+        }
+    }
+
+    /**
+     * Get Question image for portrait orientation
+     * @param questionNumber - number of question
+     * @return image resource id
+     */
+    private static int getPortraitImage(int questionNumber) {
+        // TODO
+        switch (questionNumber) {
+            case Q_ACTINIA:
+                return R.drawable.actinia_square;
+            case Q_CABO_DA_ROCA:
+                return R.drawable.cabo_da_roca_portrait;
+            case Q_VICTORIA:
+                return R.drawable.victoria_square;
+            default:
+                return R.drawable.yarmiychuk;
+        }
+    }
+
+    /**
+     * Get Question image for landscape orientation
+     * @param questionNumber - number of question
+     * @return image resource id
+     */
+    private static int getLandscapeImage(int questionNumber) {
+        // TODO
+        switch (questionNumber) {
+            case Q_ACTINIA:
+                return R.drawable.actinia_landscape;
+            case Q_CABO_DA_ROCA:
+                return R.drawable.cabo_da_roca_landscape;
+            case Q_VICTORIA:
+                return R.drawable.victoria_landscape;
+            default:
+                return R.drawable.yarmiychuk;
+        }
+    }
 
     /**
      * TODO Get text of questions
      *
-     * @return text for question
+     * @return Question text
      */
     public static String getQuestionText(Resources res, int questionNumber) {
         switch (questionNumber) {
@@ -154,60 +232,6 @@ public final class QuizHelper {
     }
 
     /**
-     * Get image for answer's ImageView
-     *
-     * @param deviceOrientation - current device orientation
-     * @return image for answer
-     */
-    public static int getAnswerImage(int deviceOrientation, int questionNumber) {
-        switch (deviceOrientation) {
-            case Configuration.ORIENTATION_PORTRAIT:
-                return getPortraitAnswerImage(questionNumber);
-            case Configuration.ORIENTATION_LANDSCAPE:
-                return getLandscapeAnswerImage(questionNumber);
-            default:
-                // Return squared image
-                return getQuestionImage(questionNumber);
-        }
-    }
-
-    /**
-     * TODO Get image for answer in portrait orientation
-     *
-     * @return portrait image for answer
-     */
-    private static int getPortraitAnswerImage(int questionNumber) {
-        switch (questionNumber) {
-            case Q_ACTINIA:
-                return R.drawable.actinia_landscape;
-            case Q_CABO_DA_ROCA:
-                return R.drawable.cabo_da_roca_portrait;
-            case Q_VICTORIA:
-                return getLandscapeAnswerImage(questionNumber);
-        }
-        // Return squared image
-        return getQuestionImage(questionNumber);
-    }
-
-    /**
-     * TODO Get image for answer in portrait orientation
-     *
-     * @return landscape image for answer
-     */
-    private static int getLandscapeAnswerImage(int questionNumber) {
-        switch (questionNumber) {
-            case Q_ACTINIA:
-                return R.drawable.actinia_landscape;
-            case Q_CABO_DA_ROCA:
-                return R.drawable.cabo_da_roca_landscape;
-            case Q_VICTORIA:
-                return R.drawable.victoria_landscape;
-        }
-        // Return squared image
-        return getQuestionImage(questionNumber);
-    }
-
-    /**
      * Get text based on answer
      *
      * @return text about correct, wrong or incorrect answer
@@ -226,14 +250,18 @@ public final class QuizHelper {
     /**
      * Get Text for answer
      *
-     * @param deviceOrientation - current device orientation
+     * @param orientation - current device orientation
      * @return text for answer TextView
      */
-    public static String getAnswerText(Resources res, int deviceOrientation, int questionNumber) {
-        // TODO
-        switch (questionNumber) {
+    public static String getAnswerText(Resources res, int orientation, int questionNumber) {
+        switch (orientation) {
+            case Configuration.ORIENTATION_PORTRAIT:
+                return getPortraitAnswerText(res, questionNumber);
+            case Configuration.ORIENTATION_LANDSCAPE:
+                return getLandscapeAnswerText(res, questionNumber);
             default:
-                return getSpecialAnswerText(res, deviceOrientation, questionNumber);
+                // Return default text
+                return getDefaultAnswerText(res, questionNumber);
         }
     }
 
@@ -256,24 +284,6 @@ public final class QuizHelper {
     }
 
     /**
-     * Get text based on the device orientstion
-     *
-     * @param orientation of device
-     * @return text based on the device orientation
-     */
-    private static String getSpecialAnswerText(Resources res, int orientation, int questionNumber) {
-        switch (orientation) {
-            case Configuration.ORIENTATION_PORTRAIT:
-                return getPortraitAnswerText(res, questionNumber);
-            case Configuration.ORIENTATION_LANDSCAPE:
-                return getLandscapeAnswerText(res, questionNumber);
-            default:
-                // Return default text
-                return getDefaultAnswerText(res, questionNumber);
-        }
-    }
-
-    /**
      * TODO Get answer text for portrait orientation
      *
      * @return answer text for portrait orientation
@@ -284,9 +294,8 @@ public final class QuizHelper {
             case Q_VICTORIA:
                 return getDefaultAnswerText(res, questionNumber) + " "
                         + res.getString(R.string.rotate_to_full);
-            case Q_CABO_DA_ROCA:
-                return getDefaultAnswerText(res, questionNumber) + " "
-                        + res.getString(R.string.rotate_to_another);
+                // TODO return getDefaultAnswerText(res, questionNumber) + " "
+                //        + res.getString(R.string.rotate_to_another);
             default:
                 return getDefaultAnswerText(res, questionNumber);
         }
@@ -299,9 +308,9 @@ public final class QuizHelper {
      */
     private static String getLandscapeAnswerText(Resources res, int questionNumber) {
         switch (questionNumber) {
-            case Q_CABO_DA_ROCA:
-                return getDefaultAnswerText(res, questionNumber) + " "
-                        + res.getString(R.string.rotate_to_another);
+            //case Q_CABO_DA_ROCA:
+            //    return getDefaultAnswerText(res, questionNumber) + " "
+            //            + res.getString(R.string.rotate_to_another);
             default:
                 return getDefaultAnswerText(res, questionNumber);
         }

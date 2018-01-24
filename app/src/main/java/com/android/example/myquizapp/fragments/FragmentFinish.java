@@ -15,7 +15,7 @@ import com.android.example.myquizapp.R;
  * Создал Dmitriy Yarmiychuk 15.01.2018
  */
 
-public class FragmentFinish extends Fragment{
+public class FragmentFinish extends Fragment {
 
     // Final score for quiz
     private int scoreResult;
@@ -34,6 +34,7 @@ public class FragmentFinish extends Fragment{
 
     /**
      * Set congratulation text
+     *
      * @param view - root view of fragment
      */
     private void invalidateUI(View view) {

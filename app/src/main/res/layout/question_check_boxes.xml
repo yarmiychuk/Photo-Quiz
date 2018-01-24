@@ -3,7 +3,7 @@
     android:id="@+id/ll_answer_check_boxes"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
+    android:gravity="center_vertical|start"
     android:orientation="vertical">
 
     <CheckBox

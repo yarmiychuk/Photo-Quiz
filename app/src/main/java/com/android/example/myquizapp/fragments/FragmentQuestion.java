@@ -43,14 +43,14 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     // Interface for connect to activity
     private AnswerListener listener;
     // Views
-    private ImageView mQuestionIV, mAnswerIV;
+    private ImageView mQuestionIV;
     private TextView mQuestionTV, mAnswerTV;
     private LinearLayout mCheckBoxesLL, mEditTextLL;
     private CheckBox[] mAnswerCHB = new CheckBox[4];
     private RadioGroup mAnswerRG;
     private EditText mAnswerET;
     private Button mSubmitBTN, mWikiBTN;
-    private RelativeLayout mAnswerRL;
+    private RelativeLayout mQuestionRL, mAnswerRL;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -129,7 +129,10 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * @param view - root view
      */
     private void invalidateFragmentViews(View view) {
+        // View for question image
         mQuestionIV = view.findViewById(R.id.iv_question_image);
+        // Question layout
+        mQuestionRL = view.findViewById(R.id.rl_question);
         mQuestionTV = view.findViewById(R.id.tv_question_text);
         mSubmitBTN = view.findViewById(R.id.btn_submit);
         // Answer's checkBoxes
@@ -139,14 +142,13 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         }
         // Answer's RadioGroup
         mAnswerRG = view.findViewById(R.id.rg_answer_radio_buttons);
-        mAnswerIV = view.findViewById(R.id.iv_answer_image);
-        mAnswerTV = view.findViewById(R.id.tv_answer_text);
         mWikiBTN = view.findViewById(R.id.btn_wiki);
         // Answer's EditText
         mEditTextLL = view.findViewById(R.id.ll_answer_edit_text);
         mAnswerET = view.findViewById(R.id.et_answer);
         // Answer Layout
         mAnswerRL = view.findViewById(R.id.rl_answer_layout);
+        mAnswerTV = view.findViewById(R.id.tv_answer_text);
         // Add listeners
         mSubmitBTN.setOnClickListener(this);
         mWikiBTN.setOnClickListener(this);
@@ -185,9 +187,9 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * Prepare UI to show question view
      */
     private void prepareUIForQuestion() {
+        mQuestionRL.setVisibility(View.VISIBLE);
         mSubmitBTN.setEnabled(true);
         mAnswerRL.setVisibility(View.INVISIBLE);
-        mAnswerIV.setImageDrawable(null);
         mAnswerTV.setText("");
         mWikiBTN.setEnabled(false);
     }
@@ -196,8 +198,8 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * Prepare UI to show answer view
      */
     private void prepareUIForAnswer() {
+        mQuestionRL.setVisibility(View.INVISIBLE);
         mSubmitBTN.setEnabled(false);
-        mQuestionIV.setImageDrawable(null);
         mQuestionTV.setText("");
         mAnswerRL.setVisibility(View.VISIBLE);
         mWikiBTN.setEnabled(true);
@@ -208,13 +210,21 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void setQuestion() {
         // Set image
-        mQuestionIV.setImageResource(QuizHelper.getQuestionImage(questionNumber));
+        mQuestionIV.setImageResource(QuizHelper.getQuestionImage(getOrientation(), questionNumber));
         // Set text of question
         mQuestionTV.setText(QuizHelper.getQuestionText(getResources(), questionNumber));
         // Set type of question
         questionType = QuizHelper.getQuestionType(questionNumber);
         // Add views for different answer's variants
         addAnswerVariants();
+    }
+
+    /**
+     * Get current device orientation
+     * @return orientation
+     */
+    private int getOrientation() {
+        return getResources().getConfiguration().orientation;
     }
 
     /**
@@ -244,9 +254,9 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void setAnswer() {
         // Get current device orientation
-        int orientation = getResources().getConfiguration().orientation;
+        int orientation = getOrientation();
         // Set image
-        mAnswerIV.setImageResource(QuizHelper.getAnswerImage(orientation, questionNumber));
+        mQuestionIV.setImageResource(QuizHelper.getQuestionImage(orientation, questionNumber));
         // Set text of answer
         String answer = QuizHelper.getStringTypeAnswer(getResources(), answerType) + " " +
                 QuizHelper.getAnswerText(getResources(), orientation, questionNumber);

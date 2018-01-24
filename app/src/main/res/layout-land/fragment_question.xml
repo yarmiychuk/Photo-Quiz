@@ -1,56 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@color/colorPrimaryDark">
 
-    <include layout="@layout/progress_bar"/>
+    <include layout="@layout/progress_bar" />
 
     <ImageView
         android:id="@+id/iv_question_image"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:contentDescription="@string/question_image"
-        android:scaleType="centerInside"
+        android:scaleType="centerCrop"
         android:src="@drawable/yarmiychuk" />
 
-    <TextView
-        android:id="@+id/tv_question_text"
-        style="@style/TextViewStyle.Question"
+    <ImageView
+        android:id="@+id/iv_answer_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dark_background"
-        android:text="@string/default_question_text"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/question_image"
+        android:scaleType="centerCrop" />
 
     <RelativeLayout
-        android:id="@+id/rl_variants"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:padding="8dp"
-        android:background="@drawable/dark_background"
-        app:layout_constraintBottom_toTopOf="@id/tv_question_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/iv_question_image"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/rl_question"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
 
-        <include layout="@layout/question_check_boxes" />
+        <TextView
+            android:id="@+id/tv_question_text"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_question_text"
+            android:layout_alignParentBottom="true"/>
 
-        <include layout="@layout/question_radio_buttons" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@id/tv_question_text"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
 
-        <include layout="@layout/question_edit_text" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom|end"
+                android:orientation="vertical"
+                android:background="@drawable/dark_background_in">
+
+                <RelativeLayout
+                    android:id="@+id/rl_variants"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="8dp">
+
+                    <include layout="@layout/question_check_boxes" />
+
+                    <include layout="@layout/question_radio_buttons" />
+
+                    <include layout="@layout/question_edit_text" />
+
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    style="@style/ButtonStyle"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/nav_submit" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn_submit"
-        style="@style/ButtonStyle"
-        android:text="@string/nav_submit"
-        app:layout_constraintBottom_toTopOf="@id/tv_question_text"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <include layout="@layout/layout_answer" />
 
-    <include layout="@layout/answer_layout" />
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

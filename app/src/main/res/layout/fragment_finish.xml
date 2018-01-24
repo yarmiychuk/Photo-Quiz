@@ -18,19 +18,21 @@
 
         <TextView
             android:id="@+id/tv_congratulation"
-            style="@style/TextViewStyle.Answer"
+            style="@style/TextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00FFFFFF"
             android:paddingBottom="0dp"
+            android:textColor="@color/colorPrimaryDark"
             android:text="@string/congratulations"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tv_quiz_result"
-            style="@style/TextViewStyle.Answer"
+            style="@style/TextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
             android:background="#00FFFFFF"
             android:paddingTop="0dp"
             android:text="@string/all_questions" />
@@ -38,7 +40,7 @@
 
     <TextView
         android:id="@+id/tv_score_result"
-        style="@style/TextViewStyle.Question"
+        style="@style/TextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
