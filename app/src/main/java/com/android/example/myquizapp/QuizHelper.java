@@ -65,7 +65,6 @@ public final class QuizHelper {
      * @return image's resource id
      */
     private static int getDefaultImage(int questionNumber) {
-        // TODO
         switch (questionNumber) {
             case Q_ACTINIA:
                 return R.drawable.actinia_square;
@@ -75,10 +74,9 @@ public final class QuizHelper {
                 return R.drawable.victoria_landscape;
             case Q_SKY_TREE:
                 return R.drawable.sky_tree_portrait;
-
-            default:
-                return R.drawable.yarmiychuk;
+            // TODO
         }
+        return R.drawable.yarmiychuk;
     }
 
     /**
@@ -87,7 +85,6 @@ public final class QuizHelper {
      * @return image resource id
      */
     private static int getPortraitImage(int questionNumber) {
-        // TODO
         switch (questionNumber) {
             case Q_ACTINIA:
                 return R.drawable.actinia_square;
@@ -97,9 +94,9 @@ public final class QuizHelper {
                 return R.drawable.victoria_square;
             case Q_SKY_TREE:
                 return R.drawable.sky_tree_portrait;
-            default:
-                return R.drawable.yarmiychuk;
+            // TODO
         }
+        return R.drawable.yarmiychuk;
     }
 
     /**
@@ -108,7 +105,6 @@ public final class QuizHelper {
      * @return image resource id
      */
     private static int getLandscapeImage(int questionNumber) {
-        // TODO
         switch (questionNumber) {
             case Q_ACTINIA:
                 return R.drawable.actinia_landscape;
@@ -117,15 +113,17 @@ public final class QuizHelper {
             case Q_VICTORIA:
                 return R.drawable.victoria_landscape;
             case Q_SKY_TREE:
-                return R.drawable.sky_tree_portrait;
-            default:
-                return R.drawable.yarmiychuk;
+                return R.drawable.sky_tree_landscape;
+            // TODO
         }
+        return R.drawable.yarmiychuk;
     }
 
     /**
-     * TODO Get text of questions
+     * Get text for a question
      *
+     * @param res - Resources of app
+     * @param questionNumber - Number of question
      * @return Question text
      */
     public static String getQuestionText(Resources res, int questionNumber) {
@@ -142,13 +140,15 @@ public final class QuizHelper {
                 return res.getString(R.string.question_general_sherman);
             case Q_QUINTA_DA_REGALEIRA:
                 return res.getString(R.string.question_quinta_da_regaleira);
+            // TODO
         }
         return res.getString(R.string.error_question);
     }
 
     /**
-     * TODO
+     * Get type of answers
      *
+     * @param questionNumber - Number of question
      * @return type of answer format (single choice, multi choice, input)
      */
     public static int getQuestionType(int questionNumber) {
@@ -160,6 +160,7 @@ public final class QuizHelper {
                 return Q_TYPE_RADIO_GROUP;
             case Q_VICTORIA:
                 return Q_TYPE_INPUT;
+            // TODO
         }
         return Q_TYPE_ERROR;
     }
@@ -167,7 +168,7 @@ public final class QuizHelper {
     /**
      * Get answer variants for a question
      *
-     * @param res - Recources of app
+     * @param res - Resources of app
      * @param questionNumber - Number of question
      * @return array of answer variants for question
      */
@@ -193,14 +194,17 @@ public final class QuizHelper {
     }
 
     /**
-     * TODO
+     * Get list of right answers for a question
      *
+     * @param res - Resources of app
+     * @param questionNumber - Number of question
      * @return list of right answers for question
      */
     public static String[] getRightAnswers(Resources res, int questionNumber) {
         switch (questionNumber) {
             case Q_ACTINIA:
                 return res.getStringArray(R.array.answers_actinia);
+                // TODO
             default:
                 return getErrorArray(res);
         }
@@ -217,9 +221,11 @@ public final class QuizHelper {
     }
 
     /**
-     * TODO
+     * Get right answer for single-item choice question
      *
-     * @return right answer for single-item choice question
+     * @param res - Resources of app
+     * @param questionNumber - Number of question
+     * @return right answer
      */
     public static String getRightAnswer(Resources res, int questionNumber) {
         switch (questionNumber) {
@@ -229,6 +235,7 @@ public final class QuizHelper {
                 return res.getString(R.string.answer_victoria);
             case Q_SKY_TREE:
                 return res.getString(R.string.answer_sky_tree);
+                // TODO
         }
         return res.getString(R.string.error);
     }
@@ -270,6 +277,8 @@ public final class QuizHelper {
     /**
      * Get answer text for unknown orientation or for any orientation
      *
+     * @param res - Resources of app
+     * @param questionNumber - Number of question
      * @return default answer text.
      */
     private static String getDefaultAnswerText(Resources res, int questionNumber) {
@@ -288,8 +297,10 @@ public final class QuizHelper {
     }
 
     /**
-     * TODO Get answer text for portrait orientation
+     * Get answer text for portrait orientation
      *
+     * @param res - Resources of app
+     * @param questionNumber - Number of question
      * @return answer text for portrait orientation
      */
     private static String getPortraitAnswerText(Resources res, int questionNumber) {
@@ -306,8 +317,10 @@ public final class QuizHelper {
     }
 
     /**
-     * TODO Get answer text for landscape orientation
+     * Get answer text for landscape orientation
      *
+     * @param res - Resources of app
+     * @param questionNumber - Number of question
      * @return answer text for landscape orientation
      */
     private static String getLandscapeAnswerText(Resources res, int questionNumber) {
