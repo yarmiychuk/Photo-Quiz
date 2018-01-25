@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Фото-викторина</string>
+    // Intro
+    <string name="welcome"> Добро пожаловать!</string>
+    <string name="quiz_description">Это небольшая викторина, основанная на фотографиях.</string>
+    <string name="photo_by">Фото:\nДмитрий Ярмийчук</string>
     // Навигация
     <string name="nav_start">Старт</string>
     <string name="nav_next">Далее</string>
@@ -51,7 +55,7 @@
     <string-array name="variants_sky_tree">
         <item>Стрела Земли</item>
         <item>Небесное дерево</item>
-        <item>Космичский лифт</item>
+        <item>Космический лифт</item>
         <item>Miyabi (Мияби)</item>
     </string-array>
     <string name="answer_sky_tree">Небесное дерево</string>
@@ -69,6 +73,14 @@
     <string name="rotate_to_another">Поверните устройство, чтобы увидеть другое изображение.</string>
     <string name="answer_hint">Ответ…</string>
     <string name="default_question_text">Дмитрий Ярмийчук</string>
+    <string name="need_answer">Необходим ответ!</string>
+    <string name="too_many_check_box">Выбрано слишком много ответов!</string>
+    // Диалог выхода
+    <string name="dialog_title">Выйти из приложения?</string>
+    <string name="dialog_message">Если вы выйдете из приложения, ваш прогресс будет сброшен.</string>
+    <string name="cancel">Отмена</string>
+    <string name="pause">Пауза</string>
+    <string name="exit">Выйти</string>
     // Результат
     <string name="total_score">Всего очков:</string>
     <string name="congratulations">Поздравляем!</string>

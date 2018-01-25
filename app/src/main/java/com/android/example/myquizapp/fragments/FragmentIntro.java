@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.example.myquizapp.R;
 
@@ -18,6 +19,15 @@ public class FragmentIntro extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_intro, container, false);
+        View view = inflater.inflate(R.layout.fragment_intro_finish, container, false);
+
+        // Set text to views
+        ((TextView) view.findViewById(R.id.tv_quiz_title))
+                .setText(getString(R.string.welcome));
+        ((TextView) view.findViewById(R.id.tv_quiz_message))
+                .setText(getString(R.string.quiz_description));
+        ((TextView) view.findViewById(R.id.tv_quiz_additional))
+                .setText(getString(R.string.photo_by));
+        return view;
     }
 }

@@ -1,10 +1,11 @@
 package com.android.example.myquizapp;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
-import android.support.v7.app.ActionBar;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity
         implements FragmentQuestion.AnswerListener {
 
     // Views
-    private ActionBar actionBar;
+    private Toolbar toolbar;
+    //private ActionBar actionBar;
     private FrameLayout flContent;
     private Button btnNext;
 
@@ -30,7 +32,6 @@ public class MainActivity extends AppCompatActivity
     private Animation animationIn;
 
     // Constants and variables for fragments
-    private final String LOG_TAG = "ActivityMain";
     private int currentQuestion, questionMode, score;
     private ArrayList<Integer> questionsList;
 
@@ -39,8 +40,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Define views
-        actionBar = getSupportActionBar();
+        // TODO Define views
+        // actionBar = getSupportActionBar();
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.app_name));
         flContent = findViewById(R.id.content_frame);
         btnNext = findViewById(R.id.btn_next);
 
@@ -87,8 +90,8 @@ public class MainActivity extends AppCompatActivity
         super.onSaveInstanceState(outState);
     }
 
-    /** TODO
-     *
+    /**
+     * Set some fragment to FrameLayout
      */
     private void setFragment() {
         // Hide frame and button
@@ -102,6 +105,7 @@ public class MainActivity extends AppCompatActivity
         // Show fragment
         flContent.setVisibility(View.VISIBLE);
         flContent.startAnimation(animationIn);
+        // TODO
         setQuizTitle();
     }
 
@@ -109,18 +113,22 @@ public class MainActivity extends AppCompatActivity
      * Change activity's title
      */
     private void setQuizTitle() {
-        if (actionBar != null) {
+        if (toolbar != null) { //actionBar != null) {
             String title = getString(R.string.app_name);
             if (currentQuestion > 0 && currentQuestion <= QuizHelper.TOTAL_QUESTIONS) {
                 title += ": " + questionsList.size() + "/" + QuizHelper.TOTAL_QUESTIONS;
+                // TODO
+                toolbar.setVisibility(View.GONE);
+            } else {
+                toolbar.setVisibility(View.VISIBLE);
             }
-            actionBar.setTitle(title);
+            toolbar.setTitle(title); //actionBar.setTitle(title);
         }
     }
 
     /**
-     * TODO
-     * @return
+     * Fragment getter
+     * @return fragment for current app state
      */
     private Fragment getFragment() {
         Fragment fragment;
@@ -140,7 +148,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * TODO
+     * Just show Next button
      */
     private void showButtonNext() {
        questionMode = QuizHelper.MODE_ANSWER;
@@ -148,22 +156,23 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * TODO
+     * Make arguments for fragment
      * @return arguments for question fragment
      */
     private Bundle getQuestionArguments() {
         Bundle arguments = new Bundle();
-        if (currentQuestion != QuizHelper.Q_FINISH) {
+        if (currentQuestion < QuizHelper.Q_FINISH) {
             arguments.putInt(QuizHelper.ARG_QUESTION, currentQuestion);
-        } else {
+            arguments.putInt(QuizHelper.ARG_QUESTION_NUMBER, questionsList.size());
+        } else if (currentQuestion > QuizHelper.Q_INTRO) {
             arguments.putInt(QuizHelper.ARG_RESULT, score);
         }
         return arguments;
     }
 
     /**
-     * TODO
-     * @param view
+     * OnClick listener
+     * @param view - The View was clicked
      */
     public void onClickNext(View view) {
         questionMode = QuizHelper.MODE_QUESTION;
@@ -214,12 +223,39 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * TODO
+     * Receive answer's points for current question
      * @param scoreForAnswer - value of score to add to total score
      */
     @Override
     public void answerReceived(int scoreForAnswer) {
         score += scoreForAnswer;
         showButtonNext();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currentQuestion > QuizHelper.Q_INTRO && currentQuestion < QuizHelper.Q_FINISH) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+            builder.setIcon(R.mipmap.ic_launcher);
+            builder.setTitle(getString(R.string.dialog_title));
+            builder.setMessage(getString(R.string.dialog_message));
+            builder.setNegativeButton(getString(R.string.pause), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // Hide app (pause)
+                    moveTaskToBack(true);
+                }
+            });
+            builder.setPositiveButton(getString(R.string.cancel), null);
+            builder.setNeutralButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    MainActivity.super.onBackPressed();
+                }
+            });
+            builder.create().show();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

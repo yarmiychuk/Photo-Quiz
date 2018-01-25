@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Photo quiz</string>
+    // Intro
+    <string name="welcome">Welcome!</string>
+    <string name="quiz_description">This is a small quiz based on photos.</string>
+    <string name="photo_by">Photos:\nDmitry Yarmiychuk</string>
     // Navigation
     <string name="nav_start">Start</string>
     <string name="nav_next">Next</string>
@@ -63,6 +67,14 @@
     <string name="rotate_to_another">Rotate the device to see another photo.</string>
     <string name="answer_hint">Answer…</string>
     <string name="default_question_text">Dmitriy Yarmiychuk</string>
+    <string name="need_answer">The answer is required!</string>
+    <string name="too_many_check_box">Too many answers selected!</string>
+    // Exit dialog
+    <string name="dialog_title">Exit app?</string>
+    <string name="dialog_message">If you exit the application, your progress will be reset.</string>
+    <string name="cancel">Cancel</string>
+    <string name="pause">Pause</string>
+    <string name="exit">Exit</string>
     // Quiz result
     <string name="total_score">Total score:</string>
     <string name="congratulations">Congratulations!</string>

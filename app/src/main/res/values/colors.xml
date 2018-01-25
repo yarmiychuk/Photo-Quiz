@@ -11,5 +11,6 @@
 
     <color name="colorPrimaryTransparent">#DD9E9E9E</color>
     <color name="colorPrimaryDarkTransparent">#AA616161</color>
+    <color name="colorPrimaryLight">#BDBDBD</color>
 
 </resources>

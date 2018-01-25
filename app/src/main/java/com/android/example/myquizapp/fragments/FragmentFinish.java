@@ -23,7 +23,7 @@ public class FragmentFinish extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_finish, container, false);
+        View view = inflater.inflate(R.layout.fragment_intro_finish, container, false);
 
         scoreResult = getArguments().getInt(QuizHelper.ARG_RESULT, QuizHelper.SCORE_DEFAULT);
 
@@ -39,7 +39,7 @@ public class FragmentFinish extends Fragment {
      */
     private void invalidateUI(View view) {
         String totalScore = getString(R.string.total_score) + " " + scoreResult;
-        ((TextView) view.findViewById(R.id.tv_score_result)).setText(totalScore);
+        ((TextView) view.findViewById(R.id.tv_quiz_additional)).setText(totalScore);
         int maxPoints = QuizHelper.TOTAL_QUESTIONS * 2;
         String resultCaption = getString(R.string.congratulations);
         String resultMessage;
@@ -58,8 +58,8 @@ public class FragmentFinish extends Fragment {
             resultCaption = getString(R.string.incredible);
             resultMessage = getString(R.string.no_one);
         }
-        ((TextView) view.findViewById(R.id.tv_congratulation)).setText(resultCaption);
-        ((TextView) view.findViewById(R.id.tv_quiz_result)).setText(resultMessage);
+        ((TextView) view.findViewById(R.id.tv_quiz_title)).setText(resultCaption);
+        ((TextView) view.findViewById(R.id.tv_quiz_message)).setText(resultMessage);
     }
 
 }

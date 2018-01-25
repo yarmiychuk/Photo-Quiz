@@ -15,32 +15,29 @@ import java.util.Collections;
 public final class QuizHelper {
 
     public static final String ARG_QUESTION = "question";
+    public static final String ARG_QUESTION_NUMBER = "questionNumber";
     public static final String ARG_RESULT = "result";
 
     public static final String QUESTION_MODE_KEY = "questionMode";
     public static final int MODE_QUESTION = 0, MODE_ANSWER = 1;
-
-    static final String SCORE_KEY = "score";
+    public static final String QUESTION_ANSWERS_KEY = "questionAnswers";
     public static final int SCORE_DEFAULT = 0;
-
-    static final String QUESTION_LIST_KEY = "questionsList";
-    static final String CURRENT_QUESTION = "currentQuestion";
     public static final int TOTAL_QUESTIONS = 4;
     public static final int Q_INTRO = 0;
+    public static final int Q_TYPE_ERROR = 0,
+            Q_TYPE_RADIO_GROUP = 1, Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;
+    public static final String ANSWER_TYPE_KEY = "answerType";
+    public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
+    static final String SCORE_KEY = "score";
+    static final String QUESTION_LIST_KEY = "questionsList";
+    static final String CURRENT_QUESTION = "currentQuestion";
+    static final int Q_FINISH = 100;
     private static final int Q_ACTINIA = 1;
     private static final int Q_CABO_DA_ROCA = 2;
     private static final int Q_VICTORIA = 3;
     private static final int Q_SKY_TREE = 4;
-
     private static final int Q_GENERAL_SHERMAN = 44;
     private static final int Q_QUINTA_DA_REGALEIRA = 45;
-    static final int Q_FINISH = 100;
-
-    public static final int Q_TYPE_ERROR = 0,
-            Q_TYPE_RADIO_GROUP = 1, Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;
-
-    public static final String ANSWER_TYPE_KEY = "answerType";
-    public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
 
     /**
      * Get image for question

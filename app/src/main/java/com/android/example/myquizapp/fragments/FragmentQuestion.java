@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +33,15 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
+    // Toast for error message
+    Toast mToast;
     // Type of answer
     private int answerType;
     // Type of question
     private int questionType;
     // Number of current question
-    private int questionNumber;
+    private String[] answers;
+    private int question, questionNumber;
     // Work mode for save state
     private int questionMode;
     // Interface for connect to activity
@@ -72,7 +76,8 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void defineVariables() {
         listener = (AnswerListener) getActivity();
-        questionNumber = getArguments().getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
+        question = getArguments().getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
+        questionNumber = getArguments().getInt(QuizHelper.ARG_QUESTION_NUMBER, QuizHelper.Q_INTRO);
         questionMode = QuizHelper.MODE_QUESTION;
         answerType = QuizHelper.A_TYPE_WRONG;
     }
@@ -83,9 +88,11 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * @param state - saved instance state
      */
     private void getSavedState(Bundle state) {
-        questionNumber = state.getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
+        question = state.getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
         questionMode = state.getInt(QuizHelper.QUESTION_MODE_KEY, QuizHelper.MODE_QUESTION);
         answerType = state.getInt(QuizHelper.ANSWER_TYPE_KEY, QuizHelper.A_TYPE_WRONG);
+        answers = state.getStringArray(QuizHelper.QUESTION_ANSWERS_KEY);
+        questionNumber = state.getInt(QuizHelper.ARG_QUESTION_NUMBER, QuizHelper.Q_INTRO);
     }
 
     /**
@@ -96,8 +103,10 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(QuizHelper.QUESTION_MODE_KEY, questionMode);
-        outState.putInt(QuizHelper.ARG_QUESTION, questionNumber);
+        outState.putInt(QuizHelper.ARG_QUESTION, question);
         outState.putInt(QuizHelper.ANSWER_TYPE_KEY, answerType);
+        outState.putStringArray(QuizHelper.QUESTION_ANSWERS_KEY, answers);
+        outState.putInt(QuizHelper.ARG_QUESTION_NUMBER, questionNumber);
         super.onSaveInstanceState(outState);
     }
 
@@ -108,7 +117,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void initializeFragmentView(View view) {
         // Check for wrong arguments
-        if (questionNumber == QuizHelper.Q_INTRO) {
+        if (question == QuizHelper.Q_INTRO) {
             // Error mode
             getActivity().finish();
         } else {
@@ -210,11 +219,16 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void setQuestion() {
         // Set image
-        mQuestionIV.setImageResource(QuizHelper.getQuestionImage(getOrientation(), questionNumber));
+        mQuestionIV.setImageResource(QuizHelper.getQuestionImage(getOrientation(), question));
         // Set text of question
-        mQuestionTV.setText(QuizHelper.getQuestionText(getResources(), questionNumber));
+        String questionText = "";
+        if (questionNumber > 0) {
+            questionText = questionNumber + "/" + QuizHelper.TOTAL_QUESTIONS + ". ";
+        }
+        questionText += QuizHelper.getQuestionText(getResources(), question);
+        mQuestionTV.setText(questionText);
         // Set type of question
-        questionType = QuizHelper.getQuestionType(questionNumber);
+        questionType = QuizHelper.getQuestionType(question);
         // Add views for different answer's variants
         addAnswerVariants();
     }
@@ -237,10 +251,10 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
             mEditTextLL.setVisibility(View.GONE);
             switch (questionType) {
                 case QuizHelper.Q_TYPE_CHECK_BOX:
-                    showCheckBoxes();
+                    showAnswersVariants(mCheckBoxesLL);
                     break;
                 case QuizHelper.Q_TYPE_RADIO_GROUP:
-                    showRadioButtons();
+                    showAnswersVariants(mAnswerRG);
                     break;
                 case QuizHelper.Q_TYPE_INPUT:
                     mEditTextLL.setVisibility(View.VISIBLE);
@@ -256,37 +270,30 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         // Get current device orientation
         int orientation = getOrientation();
         // Set image
-        mQuestionIV.setImageResource(QuizHelper.getQuestionImage(orientation, questionNumber));
+        mQuestionIV.setImageResource(QuizHelper.getQuestionImage(orientation, question));
         // Set text of answer
         String answer = QuizHelper.getStringTypeAnswer(getResources(), answerType) + " " +
-                QuizHelper.getAnswerText(getResources(), orientation, questionNumber);
+                QuizHelper.getAnswerText(getResources(), orientation, question);
         mAnswerTV.setText(answer);
     }
 
     /**
-     * Prepare and show checkBoxes
+     * Show answer variants for CheckBox layout and RadioGroup
+     * @param view Parent view
      */
-    private void showCheckBoxes() {
+    private void showAnswersVariants(LinearLayout view) {
         // Get answer text array
-        String[] answers = QuizHelper.getAnswerVariants(getResources(), questionNumber);
-        // And put it to CheckBoxes
+        if (answers == null) {
+            // get new Array because it was not get from saved instance state
+            answers = QuizHelper.getAnswerVariants(getResources(), question);
+        }
+        // And set text to view's child
         for (int i = 0; i < 4; i++) {
+            ((TextView) view.getChildAt(i)).setText(answers[i]);
             mAnswerCHB[i].setText(answers[i]);
         }
         // Show Layout
-        mCheckBoxesLL.setVisibility(View.VISIBLE);
-    }
-
-    /**
-     * Prepare and show RadioButtons
-     */
-    private void showRadioButtons() {
-        String[] answers = QuizHelper.getAnswerVariants(getResources(), questionNumber);
-        for (int i = 0; i < 4; i++) {
-            ((RadioButton) mAnswerRG.getChildAt(i)).setText(answers[i]);
-        }
-        // Show Layout
-        mAnswerRG.setVisibility(View.VISIBLE);
+        view.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -311,19 +318,75 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void onClickSubmit() {
         hideKeyboard();
-        questionMode = QuizHelper.MODE_ANSWER;
-        checkCorrectness();
-        if (listener != null) {
-            listener.answerReceived(answerType);
+        if (isAnswerComplete()) {
+            questionMode = QuizHelper.MODE_ANSWER;
+            checkCorrectness();
+            if (listener != null) {
+                listener.answerReceived(answerType);
+            }
+            showAnswerView();
         }
-        showAnswerView();
+    }
+
+    /**
+     * Check is user submit answer and answers is correct
+     *
+     * @return is answer correct
+     */
+    private boolean isAnswerComplete() {
+        String message = null;
+        switch (questionType) {
+            case QuizHelper.Q_TYPE_CHECK_BOX:
+                message = getMessageForCheckBox();
+                break;
+            case QuizHelper.Q_TYPE_RADIO_GROUP:
+                if (mAnswerRG.getCheckedRadioButtonId() < 0) {
+                    message = getString(R.string.need_answer);
+                }
+                break;
+            case QuizHelper.Q_TYPE_INPUT:
+                if (convertTextFromEditText().equals("")) {
+                    message = getString(R.string.need_answer);
+                }
+                break;
+        }
+        if (message == null) {
+            return true;
+        }
+        // Show error message
+        if (mToast != null) {
+            mToast.cancel();
+        }
+        mToast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
+        mToast.show();
+        return false;
+    }
+
+    /**
+     * Return message for Toast if CheckBoxes checked incorrect
+     *
+     * @return message for Toast
+     */
+    @Nullable
+    private String getMessageForCheckBox() {
+        // Check for all CheckBox is checked
+        if (mAnswerCHB[0].isChecked() && mAnswerCHB[1].isChecked() &&
+                mAnswerCHB[2].isChecked() && mAnswerCHB[3].isChecked()) {
+            return getString(R.string.too_many_check_box);
+        }
+
+        if (!mAnswerCHB[0].isChecked() && !mAnswerCHB[1].isChecked() &&
+                !mAnswerCHB[2].isChecked() && !mAnswerCHB[3].isChecked()) {
+            return getString(R.string.need_answer);
+        }
+        return null;
     }
 
     /**
      * Called when button Wiki clicked
      */
     private void onClickWiki() {
-        String link = QuizHelper.getLink(getResources(), questionNumber);
+        String link = QuizHelper.getLink(getResources(), question);
         if (link != null) {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
@@ -374,7 +437,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * Define is answer correct and calculate score for checkBox type question
      */
     private void checkCheckBoxAnswer() {
-        String[] rightAnswers = QuizHelper.getRightAnswers(getResources(), questionNumber);
+        String[] rightAnswers = QuizHelper.getRightAnswers(getResources(), question);
         int rightChoice = getCHBRightChoice(rightAnswers);
         if (rightChoice == rightAnswers.length && getCHBWrongChoice(rightAnswers) == 0) {
             // Answer is correct, all CheckBox's in right position
@@ -443,7 +506,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     private void checkRadioGroupAnswer() {
         RadioButton button = mAnswerRG.findViewById(mAnswerRG.getCheckedRadioButtonId());
         if (button != null &&
-                QuizHelper.getRightAnswer(getResources(), questionNumber)
+                QuizHelper.getRightAnswer(getResources(), question)
                         .equals(button.getText().toString())) {
             answerType = QuizHelper.A_TYPE_CORRECT;
         }
@@ -454,7 +517,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void checkEditTextAnswer() {
         String userAnswer = convertTextFromEditText();
-        String rightAnswer = QuizHelper.getRightAnswer(getResources(), questionNumber).toUpperCase();
+        String rightAnswer = QuizHelper.getRightAnswer(getResources(), question).toUpperCase();
         if (userAnswer.equals(rightAnswer)) {
             answerType = QuizHelper.A_TYPE_CORRECT;
         }

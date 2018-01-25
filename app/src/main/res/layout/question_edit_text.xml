@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_answer_edit_text"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical">
@@ -9,12 +9,12 @@
     <EditText
         android:id="@+id/et_answer"
         android:layout_width="wrap_content"
-        android:minWidth="120dp"
         android:layout_height="wrap_content"
-        android:inputType="textCapWords"
-        android:textColor="@android:color/white"
         android:hint="@string/answer_hint"
-        android:textColorHint="@color/colorPrimary"
-        android:imeOptions="actionDone" />
+        android:imeOptions="actionDone"
+        android:inputType="textCapWords"
+        android:minWidth="120dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/colorPrimaryLight" />
 
 </LinearLayout>
