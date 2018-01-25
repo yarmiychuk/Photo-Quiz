@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/tv_answer_text"
-        style="@style/TextViewStyle"
+        style="@style/TextViewStyle.Question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/default_question_text" />

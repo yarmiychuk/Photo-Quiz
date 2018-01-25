@@ -11,7 +11,7 @@
     <string name="nav_submit">Submit</string>
     <string name="nav_wiki">Wiki</string>
     // Content Descriptions
-    <string name="desc_portugal_pena">The Pena Palace</string>
+    <string name="description_portugal_pena">The Pena Palace</string>
     <string name="question_image">Question image</string>
     <string name="answer_image">Answer image</string>
     // Questions and answers
@@ -84,9 +84,9 @@
     <string name="more_half">You answered correctly the majority of questions.</string>
     <string name="less_half">You were able to answer part of the questions.</string>
     <string name="no_one">You did not answer correctly AT ALL!</string>
+    <string name="your_score">Your score:</string>
 
     <string name="question_general_sherman">General Sherman</string>
     <string name="question_quinta_da_regaleira">Some question</string>
 
-    <string name="test_text" translatable="false">Текст вопроса, который люди увидят на экране, причём очень длинного вопроса, с краткой исторической справкой, объяснением, что на фотографии и ТД</string>
 </resources>

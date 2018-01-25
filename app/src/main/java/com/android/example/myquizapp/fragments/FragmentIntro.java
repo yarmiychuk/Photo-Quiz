@@ -26,8 +26,6 @@ public class FragmentIntro extends Fragment {
                 .setText(getString(R.string.welcome));
         ((TextView) view.findViewById(R.id.tv_quiz_message))
                 .setText(getString(R.string.quiz_description));
-        ((TextView) view.findViewById(R.id.tv_quiz_additional))
-                .setText(getString(R.string.photo_by));
         return view;
     }
 }

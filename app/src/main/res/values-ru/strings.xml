@@ -12,7 +12,7 @@
     <string name="nav_submit">Проверить</string>
     <string name="nav_wiki">Вики</string>
     // Описание содержимого
-    <string name="desc_portugal_pena">Дворец Пена</string>
+    <string name="description_portugal_pena">Дворец Пена</string>
     <string name="question_image">Изображение для вопроса</string>
     <string name="answer_image">Изображение для ответа</string>
     // Вопросы и ответы
@@ -56,7 +56,7 @@
         <item>Стрела Земли</item>
         <item>Небесное дерево</item>
         <item>Космический лифт</item>
-        <item>Miyabi (Мияби)</item>
+        <item>Мияби (Miyabi)</item>
     </string-array>
     <string name="answer_sky_tree">Небесное дерево</string>
     <string name="description_sky_tree">Эта башня называется \"Tokyo Sky Tree\" (\"Токийское Небесное дерево\").</string>
@@ -90,4 +90,6 @@
     <string name="more_half">Вы ответили верно на большинство вопросов.</string>
     <string name="less_half">Вы смоли ответить на часть вопросов.</string>
     <string name="no_one">Вы не ответили верно НИ НА ОДИН вопрос…</string>
+    <string name="your_score">Ваши очки:</string>
+
 </resources>
