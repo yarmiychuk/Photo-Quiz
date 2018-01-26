@@ -9,11 +9,8 @@
 
     <ImageView
         android:id="@+id/iv_question_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
+        style="@style/ImageViewStyle"
         android:contentDescription="@string/question_image"
-        android:scaleType="centerCrop"
         android:src="@drawable/yarmiychuk" />
 
     <RelativeLayout
@@ -26,7 +23,6 @@
             android:id="@+id/tv_question_text"
             style="@style/TextViewStyle.Question"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/default_question_text" />
 
         <LinearLayout
@@ -42,7 +38,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="12dp">
+                android:padding="@dimen/answers_layout_space">
 
                 <include layout="@layout/question_check_boxes" />
 
@@ -55,7 +51,7 @@
             <Button
                 android:id="@+id/btn_submit"
                 style="@style/ButtonStyle"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="@dimen/small_space"
                 android:layout_marginTop="0dp"
                 android:text="@string/nav_submit" />
 

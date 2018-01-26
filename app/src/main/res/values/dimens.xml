@@ -5,8 +5,14 @@
     <dimen name="button_height">40dp</dimen>
     <dimen name="button_margin_horizontal">16dp</dimen>
     <dimen name="button_margin_vertical">8dp</dimen>
-    <dimen name="question_text_size">16sp</dimen>
-    <dimen name="question_text_shadow_radius">10</dimen>
-    <dimen name="text_padding">8dp</dimen>
+    <dimen name="big_text_size">30sp</dimen>
+    <dimen name="caption_text_size">24sp</dimen>
+    <dimen name="standard_text_size">16sp</dimen>
+    <dimen name="small_text_size">12sp</dimen>
+    <dimen name="small_space">4dp</dimen>
+    <dimen name="standard_space">8dp</dimen>
+    <dimen name="answers_layout_space">12dp</dimen>
+    <dimen name="big_space">16dp</dimen>
+    <dimen name="progress_bar_size">100dp</dimen>
 
 </resources>

@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO Define views
-        // actionBar = getSupportActionBar();
+        // Define views
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
         flContent = findViewById(R.id.content_frame);
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity
             showButtonNext();
             setFragment();
         }
-        setQuizTitle();
+        invalidateToolbar();
     }
 
     /**
@@ -105,24 +104,18 @@ public class MainActivity extends AppCompatActivity
         // Show fragment
         flContent.setVisibility(View.VISIBLE);
         flContent.startAnimation(animationIn);
-        // TODO
-        setQuizTitle();
+        // Show or hide Toolbar
+        invalidateToolbar();
     }
 
     /**
-     * Change activity's title
+     * Show or hide app toolbar
      */
-    private void setQuizTitle() {
-        if (toolbar != null) { //actionBar != null) {
-            String title = getString(R.string.app_name);
-            if (currentQuestion > 0 && currentQuestion <= QuizHelper.TOTAL_QUESTIONS) {
-                title += ": " + questionsList.size() + "/" + QuizHelper.TOTAL_QUESTIONS;
-                // TODO
-                toolbar.setVisibility(View.GONE);
-            } else {
-                toolbar.setVisibility(View.VISIBLE);
-            }
-            toolbar.setTitle(title); //actionBar.setTitle(title);
+    private void invalidateToolbar() {
+        if (currentQuestion > 0 && currentQuestion <= QuizHelper.TOTAL_QUESTIONS) {
+            toolbar.setVisibility(View.GONE);
+        } else {
+            toolbar.setVisibility(View.VISIBLE);
         }
     }
 
