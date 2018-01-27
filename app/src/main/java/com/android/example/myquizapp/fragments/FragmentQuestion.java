@@ -2,13 +2,18 @@ package com.android.example.myquizapp.fragments;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,6 +28,8 @@ import android.widget.Toast;
 
 import com.android.example.myquizapp.QuizHelper;
 import com.android.example.myquizapp.R;
+
+import org.jetbrains.annotations.Contract;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -47,7 +54,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     // Interface for connect to activity
     private AnswerListener listener;
     // Views
-    private ImageView mQuestionIV;
+    private ImageView mQuestionIV, mAnswerIV;
     private TextView mQuestionTV, mAnswerTV;
     private LinearLayout mCheckBoxesLL, mEditTextLL;
     private CheckBox[] mAnswerCHB = new CheckBox[4];
@@ -55,18 +62,20 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     private EditText mAnswerET;
     private Button mSubmitBTN, mWikiBTN;
     private RelativeLayout mQuestionRL, mAnswerRL;
+    // Animation
+    private Animation mAnimOut;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_question, container, false);
         // Variables
-        defineVariables();
-        // Get saved current state
+        initializeVariables();
+        // Get saved state
         if (savedInstanceState != null) {
             getSavedState(savedInstanceState);
         }
-        // Set question view
+        // Set question's view
         initializeFragmentView(view);
         return view;
     }
@@ -74,12 +83,36 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     /**
      * Define fragment's variables
      */
-    private void defineVariables() {
+    private void initializeVariables() {
         listener = (AnswerListener) getActivity();
+        initializeAnimation();
         question = getArguments().getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
         questionNumber = getArguments().getInt(QuizHelper.ARG_QUESTION_NUMBER, QuizHelper.Q_INTRO);
         questionMode = QuizHelper.MODE_QUESTION;
         answerType = QuizHelper.A_TYPE_WRONG;
+    }
+
+    /**
+     * Prepare animation for answer ImageView
+     */
+    private void initializeAnimation() {
+        mAnimOut = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
+        mAnimOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Not used
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                mAnswerIV.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Not used
+            }
+        });
     }
 
     /**
@@ -157,6 +190,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         mAnswerET = view.findViewById(R.id.et_answer);
         // Answer Layout
         mAnswerRL = view.findViewById(R.id.rl_answer_layout);
+        mAnswerIV = view.findViewById(R.id.iv_answer);
         mAnswerTV = view.findViewById(R.id.tv_answer_text);
         // Add listeners
         mSubmitBTN.setOnClickListener(this);
@@ -212,6 +246,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         mQuestionTV.setText("");
         mAnswerRL.setVisibility(View.VISIBLE);
         mWikiBTN.setEnabled(true);
+        showAnswerImage();
     }
 
     /**
@@ -542,6 +577,95 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
             text = text.substring(0, text.length() - 1);
         }
         return text.toUpperCase();
+    }
+
+    /**
+     * Display an image that indicates the correctness of the user's response.
+     */
+    private void showAnswerImage() {
+        mAnswerIV.setVisibility(View.VISIBLE);
+        mAnswerIV.setImageResource(getAnswerImage());
+        mAnswerIV.setBackground(getAnswerBackground());
+        addAnimation();
+    }
+
+    /**
+     * Get image resource for answer ImageView
+     *
+     * @return image resource
+     */
+    @Contract(pure = true)
+    private int getAnswerImage() {
+        switch (answerType) {
+            case QuizHelper.A_TYPE_WRONG:
+                return R.mipmap.ic_close_black_48dp;
+            default:
+                return R.mipmap.ic_done_black_48dp;
+        }
+    }
+
+    /**
+     * Make background drawable with different color
+     *
+     * @return background drawable
+     */
+    private GradientDrawable getAnswerBackground() {
+        // Make drawable
+        GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                new int[]{getDarkAnswerColor(), getAnswerColor()});
+        // Define corners size
+        float corner = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                getResources().getDimension(R.dimen.corners_size), getResources().getDisplayMetrics());
+        float corners[] = new float[]{corner, corner, corner, corner, corner, corner, corner, corner};
+        // Set corners
+        drawable.setCornerRadii(corners);
+        // Return drawable
+        return drawable;
+    }
+
+    /**
+     * Get light color resource for drawable
+     *
+     * @return color
+     */
+    @Contract(pure = true)
+    private int getAnswerColor() {
+        switch (answerType) {
+            case QuizHelper.A_TYPE_CORRECT:
+                return ContextCompat.getColor(getContext(), R.color.colorGreenLight);
+            case QuizHelper.A_TYPE_PARTIALLY:
+                return ContextCompat.getColor(getContext(), R.color.colorYellowLight);
+            default:
+                return ContextCompat.getColor(getContext(), R.color.colorRedLight);
+        }
+    }
+
+    /**
+     * Get main color resource for drawable
+     *
+     * @return color
+     */
+    @Contract(pure = true)
+    private int getDarkAnswerColor() {
+        switch (answerType) {
+            case QuizHelper.A_TYPE_CORRECT:
+                return ContextCompat.getColor(getContext(), R.color.colorGreen);
+            case QuizHelper.A_TYPE_PARTIALLY:
+                return ContextCompat.getColor(getContext(), R.color.colorYellow);
+            default:
+                return ContextCompat.getColor(getContext(), R.color.colorRed);
+        }
+    }
+
+    private void addAnimation() {
+        mAnswerIV.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mAnswerIV != null) {
+                    mAnswerIV.startAnimation(mAnimOut);
+                }
+            }
+        }, 1000);
     }
 
     public interface AnswerListener {

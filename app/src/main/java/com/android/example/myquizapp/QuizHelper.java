@@ -20,11 +20,12 @@ public final class QuizHelper {
     public static final String QUESTION_MODE_KEY = "questionMode";
     public static final String QUESTION_ANSWERS_KEY = "questionAnswers";
     public static final int MODE_QUESTION = 0, MODE_ANSWER = 1;
-    public static final int Q_TYPE_ERROR = 0,
-            Q_TYPE_RADIO_GROUP = 1, Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;
+    public static final int Q_TYPE_ERROR = 0, Q_TYPE_RADIO_GROUP = 1,
+            Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;
     public static final String ANSWER_TYPE_KEY = "answerType";
     public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
     public static final int SCORE_DEFAULT = 0;
+    // Questions
     public static final int TOTAL_QUESTIONS = 4;
     public static final int Q_INTRO = 0;
     static final String CURRENT_QUESTION = "currentQuestion";
@@ -321,7 +322,7 @@ public final class QuizHelper {
      */
     private static String getLandscapeAnswerText(Resources res, int questionNumber) {
         switch (questionNumber) {
-            //case Q_CABO_DA_ROCA:
+            // TODO case Q_CABO_DA_ROCA:
             //    return getDefaultAnswerText(res, questionNumber) + " "
             //            + res.getString(R.string.rotate_to_another);
             default:

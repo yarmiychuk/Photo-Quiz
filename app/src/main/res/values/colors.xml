@@ -13,6 +13,18 @@
     <color name="colorPrimaryDarkTransparent">#AA616161</color>
     <color name="colorPrimaryLight">#BDBDBD</color>
 
+    <color name="colorGray">@color/colorPrimary</color>
+    <color name="colorGrayLight">#E0E0E0</color>
+
+    <color name="colorRed">#DDE53935</color>
+    <color name="colorRedLight">#AAE53935</color>
+
+    <color name="colorGreen">#DD689F38</color>
+    <color name="colorGreenLight">#AA689F38</color>
+
+    <color name="colorYellow">#DDFDD835</color>
+    <color name="colorYellowLight">#AAFDD835</color>
+
     <color name="colorTransparent">#00FFFFFF</color>
 
 </resources>

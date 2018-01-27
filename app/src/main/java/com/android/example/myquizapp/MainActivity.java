@@ -40,19 +40,27 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Define views
+        initializeViews();
+
+        initializeVariables();
+
+        invalidateState(savedInstanceState);
+    }
+
+    // Define views
+    private void initializeViews() {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
         flContent = findViewById(R.id.content_frame);
         btnNext = findViewById(R.id.btn_next);
+    }
 
-        // Define variables
+    // Define variables
+    private void initializeVariables() {
         animationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         currentQuestion = QuizHelper.Q_INTRO;
         score = QuizHelper.SCORE_DEFAULT;
         questionsList = new ArrayList<>();
-
-        invalidateState(savedInstanceState);
     }
 
     /**

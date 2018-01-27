@@ -21,11 +21,12 @@ public class FragmentIntro extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_intro_finish, container, false);
 
-        // Set text to views
+        // Set text to TextViews
         ((TextView) view.findViewById(R.id.tv_quiz_title))
                 .setText(getString(R.string.welcome));
         ((TextView) view.findViewById(R.id.tv_quiz_message))
                 .setText(getString(R.string.quiz_description));
+
         return view;
     }
 }

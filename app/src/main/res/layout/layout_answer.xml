@@ -26,4 +26,12 @@
         android:layout_width="match_parent"
         android:text="@string/default_question_text" />
 
+    <ImageView
+        android:id="@+id/iv_answer"
+        android:layout_width="@dimen/answer_image_size"
+        android:layout_height="@dimen/answer_image_size"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/answer_image"
+        android:scaleType="fitCenter" />
+
 </RelativeLayout>
