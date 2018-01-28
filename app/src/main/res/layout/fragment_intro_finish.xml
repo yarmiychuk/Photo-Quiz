@@ -6,7 +6,7 @@
     <ImageView
         style="@style/ImageViewStyle"
         android:contentDescription="@string/description_portugal_pena"
-        android:src="@drawable/intro" />
+        android:src="@drawable/pena_palace_landscape" />
 
     <LinearLayout
         android:layout_width="match_parent"

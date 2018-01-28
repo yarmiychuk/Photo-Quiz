@@ -84,6 +84,20 @@
     <string name="answer_sagrada_familia">Барселона</string>
     <string name="description_sagrada_familia">Искупительный храм Святого Семейства находится в Барселоне (Испания).</string>
     <string name="link_sagrada_familia">https://ru.wikipedia.org/wiki/Саграда-Фамилия</string>
+    // Дворец Пена
+    <string name="question_pena_palace">Это - Дворец Пена, летняя резиденция португальской королевской семьи в Синтре. Какие архитектурные стили использовались при строительстве этого дворца?</string>
+    <string-array name="variants_pena_palace">
+        <item>Классицизм</item>
+        <item>Модерн</item>
+        <item>Неоготика</item>
+        <item>Неомануэллино</item>
+    </string-array>
+    <string-array name="answers_pena_palace">
+        <item>Неоготика</item>
+        <item>Неомануэллино</item>
+    </string-array>
+    <string name="description_pena_palace">Архитектура дворца весьма эклектична, в ней использованы неоготика, неомануэллино, неоренессанс и неомавританский стиль.</string>
+    <string name="link_pena_palace">https://ru.wikipedia.org/wiki/Дворец_Пена</string>
 
 
     <string name="question_quinta_da_regaleira">Какой-то вопрос</string>

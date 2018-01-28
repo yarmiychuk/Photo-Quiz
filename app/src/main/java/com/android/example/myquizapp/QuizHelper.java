@@ -25,9 +25,10 @@ public final class QuizHelper {
     public static final String ANSWER_TYPE_KEY = "answerType";
     public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
     public static final int SCORE_DEFAULT = 0;
-    // Questions
-    public static final int TOTAL_QUESTIONS = 7;
+    public static final int TOTAL_QUESTIONS = 8;
     public static final int Q_INTRO = 0;
+    // Questions
+    static final int QUESTION_LIMIT = 8;
     static final String CURRENT_QUESTION = "currentQuestion";
     static final String QUESTION_LIST_KEY = "questionsList";
     static final String SCORE_KEY = "score";
@@ -39,6 +40,8 @@ public final class QuizHelper {
     private static final int Q_SKY_TREE = 5;
     private static final int Q_GENERAL_SHERMAN = 6;
     private static final int Q_SAGRADA_FAMILIA = 7;
+    private static final int Q_PENA_PALACE = 8;
+    private static final int Q_PENA_PALACE_BEFORE = 9;
     private static final int Q_QUINTA_DA_REGALEIRA = 66;
 
     /**
@@ -78,8 +81,12 @@ public final class QuizHelper {
                 return R.drawable.general_sherman_square;
             case Q_SAGRADA_FAMILIA:
                 return R.drawable.sagrada_familia_portrait;
+            case Q_PENA_PALACE:
+            case Q_PENA_PALACE_BEFORE:
+                return R.drawable.pena_palace_landscape;
             // TODO
         }
+        // On error will return this image
         return R.drawable.yarmiychuk;
     }
 
@@ -90,19 +97,13 @@ public final class QuizHelper {
      */
     private static int getPortraitImage(int questionNumber) {
         switch (questionNumber) {
-            case Q_ACTINIA:
-            case Q_SKY_TREE:
-            case Q_SAGRADA_FAMILIA:
-            case Q_CABO_DA_ROCA:
-            case Q_CABO_DA_ROCA_NAMES:
-                return getDefaultImage(questionNumber);
             case Q_VICTORIA:
                 return R.drawable.victoria_square;
             case Q_GENERAL_SHERMAN:
                 return R.drawable.general_sherman_portrait;
             // TODO
         }
-        return R.drawable.yarmiychuk;
+        return getDefaultImage(questionNumber);
     }
 
     /**
@@ -112,9 +113,6 @@ public final class QuizHelper {
      */
     private static int getLandscapeImage(int questionNumber) {
         switch (questionNumber) {
-            case Q_VICTORIA:
-            case Q_GENERAL_SHERMAN:
-                return getDefaultImage(questionNumber);
             case Q_ACTINIA:
                 return R.drawable.actinia_landscape;
             case Q_CABO_DA_ROCA:
@@ -126,7 +124,7 @@ public final class QuizHelper {
                 return R.drawable.sagrada_familia_landscape;
             // TODO
         }
-        return R.drawable.yarmiychuk;
+        return getDefaultImage(questionNumber);
     }
 
     /**
@@ -139,10 +137,12 @@ public final class QuizHelper {
         switch (questionNumber) {
             case Q_ACTINIA:
             case Q_CABO_DA_ROCA_NAMES:
+            case Q_PENA_PALACE:
                 return Q_TYPE_CHECK_BOX;
             case Q_CABO_DA_ROCA:
             case Q_SKY_TREE:
             case Q_GENERAL_SHERMAN:
+            case Q_PENA_PALACE_BEFORE:
                 return Q_TYPE_RADIO_GROUP;
             case Q_VICTORIA:
             case Q_SAGRADA_FAMILIA:
@@ -175,6 +175,8 @@ public final class QuizHelper {
                 return res.getString(R.string.question_general_sherman);
             case Q_SAGRADA_FAMILIA:
                 return res.getString(R.string.question_sagrada_familia);
+            case Q_PENA_PALACE:
+                return res.getString(R.string.question_pena_palace);
             // TODO
         }
         return res.getString(R.string.error_question);
@@ -203,6 +205,9 @@ public final class QuizHelper {
             case Q_GENERAL_SHERMAN:
                 variants = res.getStringArray(R.array.variants_general_sherman);
                 break;
+            case Q_PENA_PALACE:
+                variants = res.getStringArray(R.array.variants_pena_palace);
+                break;
                 // TODO
             default:
                 variants = getErrorArray(res);
@@ -225,6 +230,8 @@ public final class QuizHelper {
                 return res.getStringArray(R.array.answers_actinia);
             case Q_CABO_DA_ROCA_NAMES:
                 return res.getStringArray(R.array.answers_cabo_names);
+            case Q_PENA_PALACE:
+                return res.getStringArray(R.array.answers_pena_palace);
                 // TODO
             default:
                 return getErrorArray(res);
@@ -322,6 +329,8 @@ public final class QuizHelper {
                 return res.getString(R.string.description_general_sherman);
             case Q_SAGRADA_FAMILIA:
                 return res.getString(R.string.description_sagrada_familia);
+            case Q_PENA_PALACE:
+                return res.getString(R.string.description_pena_palace);
             // TODO
         }
         return "";
@@ -338,6 +347,7 @@ public final class QuizHelper {
         switch (questionNumber) {
             case Q_ACTINIA:
             case Q_VICTORIA:
+            case Q_PENA_PALACE:
                 return getDefaultAnswerText(res, questionNumber) + " "
                         + res.getString(R.string.rotate_to_full);
             case Q_SAGRADA_FAMILIA:
@@ -389,6 +399,8 @@ public final class QuizHelper {
                 return res.getString(R.string.link_general_sherman);
             case Q_SAGRADA_FAMILIA:
                 return res.getString(R.string.link_sagrada_familia);
+            case Q_PENA_PALACE:
+                return res.getString(R.string.link_pena_palace);
             // TODO
         }
         return null;

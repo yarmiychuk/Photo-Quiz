@@ -39,17 +39,16 @@
         <item>Earth\'s End</item>
         <item>Rock of Lisbon</item>
         <item>Cape Roca</item>
-        <item>Promontorium Magnum</item>
+        <item>Large ledge</item>
     </string-array>
     <string name="answer_cabo_da_roca">Cape Roca</string>
     <string name="description_cabo_da_roca">The most western point of Eurasia is Cape Roca.</string>
     <string name="link_cabo_da_roca">https://en.wikipedia.org/wiki/Cabo_da_Roca</string>
     // Cabo da Roca Names
     <string name="question_cabo_names">How was the westernmost point of the Eurasian continent called before?</string>
-    <string-array name="variants_cabo_names"></string-array>
     <string-array name="answers_cabo_names">
         <item>Rock of Lisbon</item>
-        <item>Promontorium Magnum</item>
+        <item>Large ledge</item>
     </string-array>
     <string name="description_cabo_names">This place was known to the Romans as Promontorium Magnum (Large ledge) and during the Age of Sail as the Rock of Lisbon.</string>
     // Victoria harbour
@@ -60,9 +59,9 @@
     // Sky tree
     <string name="question_sky_tree">This is the highest TV tower in the world, located in Tokyo. What is it called?</string>
     <string-array name="variants_sky_tree">
-        <item>Earth's Arrow</item>
+        <item>Earth\'s Arrow</item>
         <item>Sky Tree</item>
-        <item>Space lift</item>
+        <item>Space Lift</item>
         <item>Miyabi</item>
     </string-array>
     <string name="answer_sky_tree">Sky Tree</string>
@@ -84,6 +83,20 @@
     <string name="answer_sagrada_familia">Barcelona</string>
     <string name="description_sagrada_familia">Basilica and Expiatory Church of the Holy Family is located in Barcelona (Spain).</string>
     <string name="link_sagrada_familia">https://en.wikipedia.org/wiki/Sagrada_Família</string>
+    // Pena Palace
+    <string name="question_pena_palace">It is the Pena Palace, the summer residence of the Portuguese royal family in Sintra. What architectural styles were used in the construction of this palace?</string>
+    <string-array name="variants_pena_palace">
+        <item>Classicism</item>
+        <item>Modernism</item>
+        <item>Neo-Gothic</item>
+        <item>Neo-Manueline</item>
+    </string-array>
+    <string-array name="answers_pena_palace">
+        <item>Neo-Gothic</item>
+        <item>Neo-Manueline</item>
+    </string-array>
+    <string name="description_pena_palace">The architecture of the Pena palace is too eclectic and includes the following styles: Neo-Gothic, Neo-Manueline, Neo-Renaissance and Neo-Moorish.</string>
+    <string name="link_pena_palace">https://en.wikipedia.org/wiki/Pena_Palace</string>
     // Other
     <string name="error">Error</string>
     <string name="error_link">Unable to open link!</string>
