@@ -179,12 +179,10 @@ public class MainActivity extends AppCompatActivity
         questionMode = QuizHelper.MODE_QUESTION;
         invalidateButtonNext();
         if (questionsList.size() < QuizHelper.TOTAL_QUESTIONS) {
-            currentQuestion = getNewQuestion();
-            questionsList.add(currentQuestion);
-            setFragment();
+            getNewQuestion();
         } else if (questionsList.size() == QuizHelper.TOTAL_QUESTIONS) {
             if (currentQuestion == QuizHelper.Q_FINISH) {
-                finish();
+                startAgain();
             } else {
                 currentQuestion = QuizHelper.Q_FINISH;
                 setFragment();
@@ -193,15 +191,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Define next random question
-     * @return number of next question
+     * Start a new quiz
      */
-    private int getNewQuestion() {
+    private void startAgain() {
+        initializeVariables();
+        getNewQuestion();
+    }
+
+    /**
+     * Prepare variables for next random question and show it
+     */
+    private void getNewQuestion() {
         int question = 0;
         while (question == 0 || questionsList.contains(question)) {
             question = new Random().nextInt(QuizHelper.TOTAL_QUESTIONS) + 1;
         }
-        return question;
+        currentQuestion = question;
+        questionsList.add(currentQuestion);
+        setFragment();
     }
 
     /**
@@ -216,7 +223,7 @@ public class MainActivity extends AppCompatActivity
             if (currentQuestion == QuizHelper.Q_INTRO) {
                 btnNext.setText(getString(R.string.nav_start));
             } else if (currentQuestion == QuizHelper.Q_FINISH) {
-                btnNext.setText(getString(R.string.nav_finish));
+                btnNext.setText(getString(R.string.nav_again));
             } else {
                 btnNext.setText(getString(R.string.nav_next));
             }

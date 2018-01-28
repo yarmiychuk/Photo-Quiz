@@ -612,7 +612,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     private GradientDrawable getAnswerBackground() {
         // Make drawable
         GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
-                new int[]{getDarkAnswerColor(), getAnswerColor()});
+                new int[]{getAnswerColor(), getDarkAnswerColor()});
         // Define corners size
         float corner = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 getResources().getDimension(R.dimen.corners_size), getResources().getDisplayMetrics());
@@ -632,11 +632,11 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     private int getAnswerColor() {
         switch (answerType) {
             case QuizHelper.A_TYPE_CORRECT:
-                return ContextCompat.getColor(getContext(), R.color.colorGreenLight);
+                return ContextCompat.getColor(getActivity().getBaseContext(), R.color.colorGreenLight);
             case QuizHelper.A_TYPE_PARTIALLY:
-                return ContextCompat.getColor(getContext(), R.color.colorYellowLight);
+                return ContextCompat.getColor(getActivity().getBaseContext(), R.color.colorYellowLight);
             default:
-                return ContextCompat.getColor(getContext(), R.color.colorRedLight);
+                return ContextCompat.getColor(getActivity().getBaseContext(), R.color.colorRedLight);
         }
     }
 
@@ -649,20 +649,25 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     private int getDarkAnswerColor() {
         switch (answerType) {
             case QuizHelper.A_TYPE_CORRECT:
-                return ContextCompat.getColor(getContext(), R.color.colorGreen);
+                return ContextCompat.getColor(getActivity().getBaseContext(), R.color.colorGreen);
             case QuizHelper.A_TYPE_PARTIALLY:
-                return ContextCompat.getColor(getContext(), R.color.colorYellow);
+                return ContextCompat.getColor(getActivity().getBaseContext(), R.color.colorYellow);
             default:
-                return ContextCompat.getColor(getContext(), R.color.colorRed);
+                return ContextCompat.getColor(getActivity().getBaseContext(), R.color.colorRed);
         }
     }
 
+    /**
+     * Add delayed animation to answer ImageView
+     */
     private void addAnimation() {
         mAnswerIV.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (mAnswerIV != null) {
+                try {
                     mAnswerIV.startAnimation(mAnimOut);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
                 }
             }
         }, 1000);

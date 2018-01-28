@@ -7,7 +7,7 @@
     // Navigation
     <string name="nav_start">Start</string>
     <string name="nav_next">Next</string>
-    <string name="nav_finish">Finish</string>
+    <string name="nav_again">Again</string>
     <string name="nav_submit">Submit</string>
     <string name="nav_wiki">Wiki</string>
     // Content Descriptions
@@ -49,7 +49,7 @@
     <string name="answer_victoria">Victoria</string>
     <string name="description_victoria">This harbor is called Victoria.</string>
     <string name="link_victoria">https://en.wikipedia.org/wiki/Victoria_Harbour</string>
-    // Звёздное дерево
+    // Sky tree
     <string name="question_sky_tree">This is the highest TV tower in the world, located in Tokyo. What is it called?</string>
     <string-array name="variants_sky_tree">
         <item>Earth's Arrow</item>
@@ -60,6 +60,22 @@
     <string name="answer_sky_tree">Sky Tree</string>
     <string name="description_sky_tree">This tower is called \"Tokyo Sky Tree\".</string>
     <string name="link_sky_tree">https://en.wikipedia.org/wiki/Tokyo_Skytree</string>
+    // General Sherman
+    <string name="question_general_sherman">This tree located in Sequoia National Park, USA. By volume, it is the largest known living single stem tree on Earth. What is it called?</string>
+    <string-array name="variants_general_sherman">
+        <item>General Sherman</item>
+        <item>Crannell Creek</item>
+        <item>Hyperion</item>
+        <item>Wawona Tree</item>
+    </string-array>
+    <string name="answer_general_sherman">General Sherman</string>
+    <string name="description_general_sherman">The name of this giant sequoia is General Sherman.</string>
+    <string name="link_general_sherman">https://en.wikipedia.org/wiki/General_Sherman_(tree)</string>
+    // Sagrada Familia
+    <string name="question_sagrada_familia">In this photo is the interior of Basilica and Expiatory Church of the Holy Family designed by Antoni Gaudí. In which city is this church located?</string>
+    <string name="answer_sagrada_familia">Barcelona</string>
+    <string name="description_sagrada_familia">Basilica and Expiatory Church of the Holy Family is located in Barcelona (Spain).</string>
+    <string name="link_sagrada_familia">https://en.wikipedia.org/wiki/Sagrada_Família</string>
     // Other
     <string name="error">Error</string>
     <string name="error_link">Unable to open link!</string>
@@ -86,7 +102,6 @@
     <string name="no_one">You did not answer correctly AT ALL!</string>
     <string name="your_score">Your score:</string>
 
-    <string name="question_general_sherman">General Sherman</string>
     <string name="question_quinta_da_regaleira">Some question</string>
 
 </resources>

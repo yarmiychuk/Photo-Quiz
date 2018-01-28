@@ -26,7 +26,7 @@ public final class QuizHelper {
     public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
     public static final int SCORE_DEFAULT = 0;
     // Questions
-    public static final int TOTAL_QUESTIONS = 4;
+    public static final int TOTAL_QUESTIONS = 6;
     public static final int Q_INTRO = 0;
     static final String CURRENT_QUESTION = "currentQuestion";
     static final String QUESTION_LIST_KEY = "questionsList";
@@ -36,8 +36,9 @@ public final class QuizHelper {
     private static final int Q_CABO_DA_ROCA = 2;
     private static final int Q_VICTORIA = 3;
     private static final int Q_SKY_TREE = 4;
-    private static final int Q_GENERAL_SHERMAN = 44;
-    private static final int Q_QUINTA_DA_REGALEIRA = 45;
+    private static final int Q_GENERAL_SHERMAN = 5;
+    private static final int Q_SAGRADA_FAMILIA = 6;
+    private static final int Q_QUINTA_DA_REGALEIRA = 66;
 
     /**
      * Get image for question
@@ -71,6 +72,10 @@ public final class QuizHelper {
                 return R.drawable.victoria_landscape;
             case Q_SKY_TREE:
                 return R.drawable.sky_tree_portrait;
+            case Q_GENERAL_SHERMAN:
+                return R.drawable.general_sherman_square;
+            case Q_SAGRADA_FAMILIA:
+                return R.drawable.sagrada_familia_portrait;
             // TODO
         }
         return R.drawable.yarmiychuk;
@@ -84,13 +89,15 @@ public final class QuizHelper {
     private static int getPortraitImage(int questionNumber) {
         switch (questionNumber) {
             case Q_ACTINIA:
-                return R.drawable.actinia_square;
+            case Q_SKY_TREE:
+            case Q_SAGRADA_FAMILIA:
+                return getDefaultImage(questionNumber);
             case Q_CABO_DA_ROCA:
                 return R.drawable.cabo_da_roca_portrait;
             case Q_VICTORIA:
                 return R.drawable.victoria_square;
-            case Q_SKY_TREE:
-                return R.drawable.sky_tree_portrait;
+            case Q_GENERAL_SHERMAN:
+                return R.drawable.general_sherman_portrait;
             // TODO
         }
         return R.drawable.yarmiychuk;
@@ -103,17 +110,42 @@ public final class QuizHelper {
      */
     private static int getLandscapeImage(int questionNumber) {
         switch (questionNumber) {
+            case Q_VICTORIA:
+            case Q_GENERAL_SHERMAN:
+                return getDefaultImage(questionNumber);
             case Q_ACTINIA:
                 return R.drawable.actinia_landscape;
             case Q_CABO_DA_ROCA:
                 return R.drawable.cabo_da_roca_landscape;
-            case Q_VICTORIA:
-                return R.drawable.victoria_landscape;
             case Q_SKY_TREE:
                 return R.drawable.sky_tree_landscape;
+            case Q_SAGRADA_FAMILIA:
+                return R.drawable.sagrada_familia_landscape;
             // TODO
         }
         return R.drawable.yarmiychuk;
+    }
+
+    /**
+     * Get type of answers
+     *
+     * @param questionNumber - Number of question
+     * @return type of answer format (single choice, multi choice, input)
+     */
+    public static int getQuestionType(int questionNumber) {
+        switch (questionNumber) {
+            case Q_ACTINIA:
+                return Q_TYPE_CHECK_BOX;
+            case Q_CABO_DA_ROCA:
+            case Q_SKY_TREE:
+            case Q_GENERAL_SHERMAN:
+                return Q_TYPE_RADIO_GROUP;
+            case Q_VICTORIA:
+            case Q_SAGRADA_FAMILIA:
+                return Q_TYPE_INPUT;
+            // TODO
+        }
+        return Q_TYPE_ERROR;
     }
 
     /**
@@ -135,31 +167,11 @@ public final class QuizHelper {
                 return res.getString(R.string.question_sky_tree);
             case Q_GENERAL_SHERMAN:
                 return res.getString(R.string.question_general_sherman);
-            case Q_QUINTA_DA_REGALEIRA:
-                return res.getString(R.string.question_quinta_da_regaleira);
+            case Q_SAGRADA_FAMILIA:
+                return res.getString(R.string.question_sagrada_familia);
             // TODO
         }
         return res.getString(R.string.error_question);
-    }
-
-    /**
-     * Get type of answers
-     *
-     * @param questionNumber - Number of question
-     * @return type of answer format (single choice, multi choice, input)
-     */
-    public static int getQuestionType(int questionNumber) {
-        switch (questionNumber) {
-            case Q_ACTINIA:
-                return Q_TYPE_CHECK_BOX;
-            case Q_CABO_DA_ROCA:
-            case Q_SKY_TREE:
-                return Q_TYPE_RADIO_GROUP;
-            case Q_VICTORIA:
-                return Q_TYPE_INPUT;
-            // TODO
-        }
-        return Q_TYPE_ERROR;
     }
 
     /**
@@ -180,6 +192,9 @@ public final class QuizHelper {
                 break;
             case Q_SKY_TREE:
                 variants = res.getStringArray(R.array.variants_sky_tree);
+                break;
+            case Q_GENERAL_SHERMAN:
+                variants = res.getStringArray(R.array.variants_general_sherman);
                 break;
                 // TODO
             default:
@@ -232,6 +247,10 @@ public final class QuizHelper {
                 return res.getString(R.string.answer_victoria);
             case Q_SKY_TREE:
                 return res.getString(R.string.answer_sky_tree);
+            case Q_GENERAL_SHERMAN:
+                return res.getString(R.string.answer_general_sherman);
+            case Q_SAGRADA_FAMILIA:
+                return res.getString(R.string.answer_sagrada_familia);
                 // TODO
         }
         return res.getString(R.string.error);
@@ -288,6 +307,10 @@ public final class QuizHelper {
                 return res.getString(R.string.description_victoria);
             case Q_SKY_TREE:
                 return res.getString(R.string.description_sky_tree);
+            case Q_GENERAL_SHERMAN:
+                return res.getString(R.string.description_general_sherman);
+            case Q_SAGRADA_FAMILIA:
+                return res.getString(R.string.description_sagrada_familia);
             // TODO
         }
         return "";
@@ -306,8 +329,9 @@ public final class QuizHelper {
             case Q_VICTORIA:
                 return getDefaultAnswerText(res, questionNumber) + " "
                         + res.getString(R.string.rotate_to_full);
-                // TODO return getDefaultAnswerText(res, questionNumber) + " "
-                //        + res.getString(R.string.rotate_to_another);
+            case Q_SAGRADA_FAMILIA:
+                return getDefaultAnswerText(res, questionNumber) + " "
+                        + res.getString(R.string.rotate_to_another);
             default:
                 return getDefaultAnswerText(res, questionNumber);
         }
@@ -322,9 +346,12 @@ public final class QuizHelper {
      */
     private static String getLandscapeAnswerText(Resources res, int questionNumber) {
         switch (questionNumber) {
-            // TODO case Q_CABO_DA_ROCA:
-            //    return getDefaultAnswerText(res, questionNumber) + " "
-            //            + res.getString(R.string.rotate_to_another);
+            case Q_GENERAL_SHERMAN:
+                return getDefaultAnswerText(res, questionNumber) + " " +
+                        res.getString(R.string.rotate_to_full);
+            case Q_SAGRADA_FAMILIA:
+                return getDefaultAnswerText(res, questionNumber) + " "
+                        + res.getString(R.string.rotate_to_another);
             default:
                 return getDefaultAnswerText(res, questionNumber);
         }
@@ -346,6 +373,10 @@ public final class QuizHelper {
                 return res.getString(R.string.link_victoria);
             case Q_SKY_TREE:
                 return res.getString(R.string.link_sky_tree);
+            case Q_GENERAL_SHERMAN:
+                return res.getString(R.string.link_general_sherman);
+            case Q_SAGRADA_FAMILIA:
+                return res.getString(R.string.link_sagrada_familia);
             // TODO
         }
         return null;

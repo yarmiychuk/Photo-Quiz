@@ -8,7 +8,7 @@
     // Навигация
     <string name="nav_start">Старт</string>
     <string name="nav_next">Далее</string>
-    <string name="nav_finish">Выйти</string>
+    <string name="nav_again">Заново</string>
     <string name="nav_submit">Проверить</string>
     <string name="nav_wiki">Вики</string>
     // Описание содержимого
@@ -61,10 +61,25 @@
     <string name="answer_sky_tree">Небесное дерево</string>
     <string name="description_sky_tree">Эта башня называется \"Tokyo Sky Tree\" (\"Токийское Небесное дерево\").</string>
     <string name="link_sky_tree">https://ru.wikipedia.org/wiki/Tokyo_Skytree</string>
+    // Генерал Шерман
+    <string name="question_general_sherman">Это дерево, растущее в Национальном парке \"Секвойя\" (США) - самый большой и самый тяжёлый живой организм на планете. Как оно называется?</string>
+    <string-array name="variants_general_sherman">
+        <item>Генерал Шерман</item>
+        <item>Крэннелл-Крик</item>
+        <item>Гиперион</item>
+        <item>Дерево Уавона</item>
+    </string-array>
+    <string name="answer_general_sherman">Генерал Шерман</string>
+    <string name="description_general_sherman">Имя этой гигантской секвойи - Генера Шерман.</string>
+    <string name="link_general_sherman">https://ru.wikipedia.org/wiki/Генерал_Шерман_(дерево)</string>
+    // Sagrada Familia
+    <string name="question_sagrada_familia">На фото - внутреннее убранство Искупительного храма Святого Семейства, спроектированного Антонио Гауди. В каком городе расположен этот храм?</string>
+    <string name="answer_sagrada_familia">Барселона</string>
+    <string name="description_sagrada_familia">Искупительный храм Святого Семейства находится в Барселоне (Испания).</string>
+    <string name="link_sagrada_familia">https://ru.wikipedia.org/wiki/Саграда-Фамилия</string>
 
 
     <string name="question_quinta_da_regaleira">Какой-то вопрос</string>
-    <string name="question_general_sherman">Генерал Шерман</string>
 
     // Другое
     <string name="error">Ошибка</string>

@@ -16,14 +16,14 @@
     <color name="colorGray">@color/colorPrimary</color>
     <color name="colorGrayLight">#E0E0E0</color>
 
-    <color name="colorRed">#DDE53935</color>
-    <color name="colorRedLight">#AAE53935</color>
+    <color name="colorRed">#E57373</color>
+    <color name="colorRedLight">#E53935</color>
 
-    <color name="colorGreen">#DD689F38</color>
-    <color name="colorGreenLight">#AA689F38</color>
+    <color name="colorGreen">#9CCC65</color>
+    <color name="colorGreenLight">#689F38</color>
 
-    <color name="colorYellow">#DDFDD835</color>
-    <color name="colorYellowLight">#AAFDD835</color>
+    <color name="colorYellow">#FFEE58</color>
+    <color name="colorYellowLight">#FDD835</color>
 
     <color name="colorTransparent">#00FFFFFF</color>
 
