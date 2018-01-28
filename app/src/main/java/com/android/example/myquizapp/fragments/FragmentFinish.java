@@ -40,8 +40,7 @@ public class FragmentFinish extends Fragment {
     private void invalidateUI(View view) {
         int maxPoints = QuizHelper.TOTAL_QUESTIONS * 2;
         view.findViewById(R.id.ll_score).setVisibility(View.VISIBLE);
-        String totalScore = String.valueOf(scoreResult);
-        ((TextView) view.findViewById(R.id.tv_quiz_score)).setText(totalScore);
+        ((TextView) view.findViewById(R.id.tv_quiz_score)).setText(String.valueOf(scoreResult));
         String resultCaption = getString(R.string.congratulations);
         String resultMessage;
         if (scoreResult == maxPoints) {

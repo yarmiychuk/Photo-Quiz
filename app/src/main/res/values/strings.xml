@@ -37,13 +37,21 @@
     <string name="question_cabo_da_roca">The photo shows the westernmost point of the Eurasian continent. What\'s the name of this place?</string>
     <string-array name="variants_cabo_da_roca">
         <item>Earth\'s End</item>
-        <item>Last Break</item>
+        <item>Rock of Lisbon</item>
         <item>Cape Roca</item>
-        <item>Long Water</item>
+        <item>Promontorium Magnum</item>
     </string-array>
     <string name="answer_cabo_da_roca">Cape Roca</string>
     <string name="description_cabo_da_roca">The most western point of Eurasia is Cape Roca.</string>
     <string name="link_cabo_da_roca">https://en.wikipedia.org/wiki/Cabo_da_Roca</string>
+    // Cabo da Roca Names
+    <string name="question_cabo_names">How was the westernmost point of the Eurasian continent called before?</string>
+    <string-array name="variants_cabo_names"></string-array>
+    <string-array name="answers_cabo_names">
+        <item>Rock of Lisbon</item>
+        <item>Promontorium Magnum</item>
+    </string-array>
+    <string name="description_cabo_names">This place was known to the Romans as Promontorium Magnum (Large ledge) and during the Age of Sail as the Rock of Lisbon.</string>
     // Victoria harbour
     <string name="question_victoria">What is the name of this natural landform harbour situated between Hong Kong Island and Kowloon in Hong Kong?</string>
     <string name="answer_victoria">Victoria</string>

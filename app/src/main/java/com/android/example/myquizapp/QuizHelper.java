@@ -26,7 +26,7 @@ public final class QuizHelper {
     public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
     public static final int SCORE_DEFAULT = 0;
     // Questions
-    public static final int TOTAL_QUESTIONS = 6;
+    public static final int TOTAL_QUESTIONS = 7;
     public static final int Q_INTRO = 0;
     static final String CURRENT_QUESTION = "currentQuestion";
     static final String QUESTION_LIST_KEY = "questionsList";
@@ -34,10 +34,11 @@ public final class QuizHelper {
     static final int Q_FINISH = 100;
     private static final int Q_ACTINIA = 1;
     private static final int Q_CABO_DA_ROCA = 2;
-    private static final int Q_VICTORIA = 3;
-    private static final int Q_SKY_TREE = 4;
-    private static final int Q_GENERAL_SHERMAN = 5;
-    private static final int Q_SAGRADA_FAMILIA = 6;
+    private static final int Q_CABO_DA_ROCA_NAMES = 3;
+    private static final int Q_VICTORIA = 4;
+    private static final int Q_SKY_TREE = 5;
+    private static final int Q_GENERAL_SHERMAN = 6;
+    private static final int Q_SAGRADA_FAMILIA = 7;
     private static final int Q_QUINTA_DA_REGALEIRA = 66;
 
     /**
@@ -67,7 +68,8 @@ public final class QuizHelper {
             case Q_ACTINIA:
                 return R.drawable.actinia_square;
             case Q_CABO_DA_ROCA:
-                return R.drawable.cabo_da_roca_square;
+            case Q_CABO_DA_ROCA_NAMES:
+                return R.drawable.cabo_da_roca_portrait;
             case Q_VICTORIA:
                 return R.drawable.victoria_landscape;
             case Q_SKY_TREE:
@@ -91,9 +93,9 @@ public final class QuizHelper {
             case Q_ACTINIA:
             case Q_SKY_TREE:
             case Q_SAGRADA_FAMILIA:
-                return getDefaultImage(questionNumber);
             case Q_CABO_DA_ROCA:
-                return R.drawable.cabo_da_roca_portrait;
+            case Q_CABO_DA_ROCA_NAMES:
+                return getDefaultImage(questionNumber);
             case Q_VICTORIA:
                 return R.drawable.victoria_square;
             case Q_GENERAL_SHERMAN:
@@ -116,6 +118,7 @@ public final class QuizHelper {
             case Q_ACTINIA:
                 return R.drawable.actinia_landscape;
             case Q_CABO_DA_ROCA:
+            case Q_CABO_DA_ROCA_NAMES:
                 return R.drawable.cabo_da_roca_landscape;
             case Q_SKY_TREE:
                 return R.drawable.sky_tree_landscape;
@@ -135,6 +138,7 @@ public final class QuizHelper {
     public static int getQuestionType(int questionNumber) {
         switch (questionNumber) {
             case Q_ACTINIA:
+            case Q_CABO_DA_ROCA_NAMES:
                 return Q_TYPE_CHECK_BOX;
             case Q_CABO_DA_ROCA:
             case Q_SKY_TREE:
@@ -161,6 +165,8 @@ public final class QuizHelper {
                 return res.getString(R.string.question_actinia);
             case Q_CABO_DA_ROCA:
                 return res.getString(R.string.question_cabo_da_roca);
+            case Q_CABO_DA_ROCA_NAMES:
+                return res.getString(R.string.question_cabo_names);
             case Q_VICTORIA:
                 return res.getString(R.string.question_victoria);
             case Q_SKY_TREE:
@@ -188,6 +194,7 @@ public final class QuizHelper {
                 variants = res.getStringArray(R.array.variants_actinia);
                 break;
             case Q_CABO_DA_ROCA:
+            case Q_CABO_DA_ROCA_NAMES:
                 variants = res.getStringArray(R.array.variants_cabo_da_roca);
                 break;
             case Q_SKY_TREE:
@@ -216,6 +223,8 @@ public final class QuizHelper {
         switch (questionNumber) {
             case Q_ACTINIA:
                 return res.getStringArray(R.array.answers_actinia);
+            case Q_CABO_DA_ROCA_NAMES:
+                return res.getStringArray(R.array.answers_cabo_names);
                 // TODO
             default:
                 return getErrorArray(res);
@@ -303,6 +312,8 @@ public final class QuizHelper {
                 return res.getString(R.string.description_actinia);
             case Q_CABO_DA_ROCA:
                 return res.getString(R.string.description_cabo_da_roca);
+            case Q_CABO_DA_ROCA_NAMES:
+                return res.getString(R.string.description_cabo_names);
             case Q_VICTORIA:
                 return res.getString(R.string.description_victoria);
             case Q_SKY_TREE:
@@ -368,6 +379,7 @@ public final class QuizHelper {
             case Q_ACTINIA:
                 return res.getString(R.string.link_actinia);
             case Q_CABO_DA_ROCA:
+            case Q_CABO_DA_ROCA_NAMES:
                 return res.getString(R.string.link_cabo_da_roca);
             case Q_VICTORIA:
                 return res.getString(R.string.link_victoria);

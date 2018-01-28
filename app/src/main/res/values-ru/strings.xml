@@ -35,16 +35,23 @@
     <string name="description_actinia">Это Актиния или Морская анемона.</string>
     <string name="link_actinia">https://ru.wikipedia.org/wiki/Актинии</string>
     // Мыс Рока
-    <string name="question_cabo_da_roca">На фото - самая западная точка Евразийского континента. Как называется это место?</string>
+    <string name="question_cabo_da_roca">На фото - самая западная точка Евразийского континента. Как сейчас называется это место?</string>
     <string-array name="variants_cabo_da_roca">
         <item>Край Земли</item>
-        <item>Последний обрыв</item>
+        <item>Мыс Лиссабона</item>
         <item>Мыс Рока</item>
-        <item>Долгая вода</item>
+        <item>Большой выступ</item>
     </string-array>
     <string name="answer_cabo_da_roca">Мыс Рока</string>
     <string name="description_cabo_da_roca">Самая западная точка Евразии - Мыс Рока.</string>
     <string name="link_cabo_da_roca">https://ru.wikipedia.org/wiki/Рока_(мыс)</string>
+    // Названия Мыса Рока
+    <string name="question_cabo_names">Как раньше называлась самая западная точка Евразии?</string>
+    <string-array name="answers_cabo_names">
+        <item>Мыс Лиссабона</item>
+        <item>Большой выступ</item>
+    </string-array>
+    <string name="description_cabo_names">Древние римляне называли это место Promontorium Magnum (Большой выступ), а в эпоху Великих географических открытий оно называлось Мыс Лиссабона.</string>
     // Бухта Виктория
     <string name="question_victoria">Как называется естественная гавань, расположенная между островом Гонконг и Коулуном в Гонконге?</string>
     <string name="answer_victoria">Виктория</string>
