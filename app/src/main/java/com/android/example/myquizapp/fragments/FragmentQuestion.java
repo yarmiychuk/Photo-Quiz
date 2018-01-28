@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,8 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     private int question, questionNumber;
     // Work mode for save state
     private int questionMode;
+    // UI visibility
+    private boolean isUIHidden;
     // Interface for connect to activity
     private AnswerListener listener;
     // Views
@@ -75,9 +78,33 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         if (savedInstanceState != null) {
             getSavedState(savedInstanceState);
         }
+        // Override Back Button
+        addBackListener(view);
         // Set question's view
         initializeFragmentView(view);
         return view;
+    }
+
+    /**
+     * Override Back Button to show hidden UI
+     *
+     * @param view - root view of Fragment
+     */
+    private void addBackListener(View view) {
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP && isUIHidden) {
+                    // Button back is pressed and UI was hidden. Just show UI.
+                    restoreUI();
+                    return true;
+                }
+                // Usual click on Back button
+                return false;
+            }
+        });
     }
 
     /**
@@ -90,6 +117,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         questionNumber = getArguments().getInt(QuizHelper.ARG_QUESTION_NUMBER, QuizHelper.Q_INTRO);
         questionMode = QuizHelper.MODE_QUESTION;
         answerType = QuizHelper.A_TYPE_WRONG;
+        isUIHidden = false;
     }
 
     /**
@@ -126,6 +154,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         answerType = state.getInt(QuizHelper.ANSWER_TYPE_KEY, QuizHelper.A_TYPE_WRONG);
         answers = state.getStringArray(QuizHelper.QUESTION_ANSWERS_KEY);
         questionNumber = state.getInt(QuizHelper.ARG_QUESTION_NUMBER, QuizHelper.Q_INTRO);
+        isUIHidden = state.getBoolean(QuizHelper.UI_HIDDEN_KEY, false);
     }
 
     /**
@@ -140,6 +169,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         outState.putInt(QuizHelper.ANSWER_TYPE_KEY, answerType);
         outState.putStringArray(QuizHelper.QUESTION_ANSWERS_KEY, answers);
         outState.putInt(QuizHelper.ARG_QUESTION_NUMBER, questionNumber);
+        outState.putBoolean(QuizHelper.UI_HIDDEN_KEY, isUIHidden);
         super.onSaveInstanceState(outState);
     }
 
@@ -193,6 +223,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         mAnswerIV = view.findViewById(R.id.iv_answer);
         mAnswerTV = view.findViewById(R.id.tv_answer_text);
         // Add listeners
+        mQuestionIV.setOnClickListener(this);
         mSubmitBTN.setOnClickListener(this);
         mWikiBTN.setOnClickListener(this);
         // Hide unused elements
@@ -230,7 +261,11 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * Prepare UI to show question view
      */
     private void prepareUIForQuestion() {
-        mQuestionRL.setVisibility(View.VISIBLE);
+        if (isUIHidden) {
+            mQuestionRL.setVisibility(View.INVISIBLE);
+        } else {
+            mQuestionRL.setVisibility(View.VISIBLE);
+        }
         mSubmitBTN.setEnabled(true);
         mAnswerRL.setVisibility(View.INVISIBLE);
         mAnswerTV.setText("");
@@ -244,9 +279,13 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         mQuestionRL.setVisibility(View.INVISIBLE);
         mSubmitBTN.setEnabled(false);
         mQuestionTV.setText("");
-        mAnswerRL.setVisibility(View.VISIBLE);
+        if (isUIHidden) {
+            mAnswerRL.setVisibility(View.INVISIBLE);
+        } else {
+            mAnswerRL.setVisibility(View.VISIBLE);
+            showAnswerImage();
+        }
         mWikiBTN.setEnabled(true);
-        showAnswerImage();
     }
 
     /**
@@ -332,7 +371,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * OnClickListener for Fragment's buttons
+     * OnClickListener for Fragment's views
      *
      * @param v - the view was clicked
      */
@@ -344,6 +383,9 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_wiki:
                 onClickWiki();
+                break;
+            case R.id.iv_question_image:
+                onClickImage();
                 break;
         }
     }
@@ -671,6 +713,35 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
                 }
             }
         }, 1000);
+    }
+
+    /**
+     * Hide or show UI when user clicks question image
+     */
+    private void onClickImage() {
+        hideKeyboard();
+        if (isUIHidden) {
+            restoreUI();
+        } else {
+            isUIHidden = true;
+            mQuestionRL.setVisibility(View.INVISIBLE);
+            mAnswerRL.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * Show UI after it was hidden
+     */
+    private void restoreUI() {
+        isUIHidden = false;
+        switch (questionMode) {
+            case QuizHelper.MODE_ANSWER:
+                mAnswerRL.setVisibility(View.VISIBLE);
+                break;
+            case QuizHelper.MODE_QUESTION:
+                mQuestionRL.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
     public interface AnswerListener {
