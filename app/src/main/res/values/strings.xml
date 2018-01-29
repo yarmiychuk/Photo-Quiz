@@ -97,6 +97,16 @@
     </string-array>
     <string name="description_pena_palace">The architecture of the Pena palace is too eclectic and includes the following styles: Neo-Gothic, Neo-Manueline, Neo-Renaissance and Neo-Moorish.</string>
     <string name="link_pena_palace">https://en.wikipedia.org/wiki/Pena_Palace</string>
+    // Pena Palace Before
+    <string name="question_pena_before">What was on the site of the Pena Palace, the former summer residence of the Portuguese royal family in Sintra?</string>
+    <string-array name="variants_pena_before">
+        <item>Monastery</item>
+        <item>Watch tower</item>
+        <item>Lighthouse</item>
+        <item>(Nothing)</item>
+    </string-array>
+    <string name="answer_pena_before">Monastery</string>
+    <string name="description_pena_before">The palace is located on the site of a small monastery, destroyed by the earthquake of 1755.</string>
     // Other
     <string name="error">Error</string>
     <string name="error_link">Unable to open link!</string>

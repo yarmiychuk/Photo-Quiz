@@ -17,22 +17,22 @@ public final class QuizHelper {
     public static final String ARG_QUESTION = "question";
     public static final String ARG_QUESTION_NUMBER = "questionNumber";
     public static final String ARG_RESULT = "result";
-    public static final String QUESTION_MODE_KEY = "questionMode";
-    public static final String QUESTION_ANSWERS_KEY = "questionAnswers";
-    public static final String UI_HIDDEN_KEY = "isUIHidden";
+    public static final String KEY_ANSWER_TYPE = "answerType";
+    public static final String KEY_QUESTION_ANSWERS = "questionAnswers";
+    public static final String KEY_QUESTION_MODE = "questionMode";
+    public static final String KEY_UI_HIDDEN = "isUIHidden";
     public static final int MODE_QUESTION = 0, MODE_ANSWER = 1;
     public static final int Q_TYPE_ERROR = 0, Q_TYPE_RADIO_GROUP = 1,
             Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;
-    public static final String ANSWER_TYPE_KEY = "answerType";
     public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
     public static final int SCORE_DEFAULT = 0;
-    public static final int TOTAL_QUESTIONS = 8;
     public static final int Q_INTRO = 0;
+    public static final int QUESTIONS_TOTAL = 9;
+    static final String KEY_CURRENT_QUESTION = "currentQuestion";
+    static final String KEY_QUESTION_LIST = "questionsList";
+    static final String KEY_SCORE = "score";
     // Questions
-    static final int QUESTION_LIMIT = 8;
-    static final String CURRENT_QUESTION = "currentQuestion";
-    static final String QUESTION_LIST_KEY = "questionsList";
-    static final String SCORE_KEY = "score";
+    static final int QUESTION_LIMIT = 9;
     static final int Q_FINISH = 100;
     private static final int Q_ACTINIA = 1;
     private static final int Q_CABO_DA_ROCA = 2;
@@ -178,6 +178,8 @@ public final class QuizHelper {
                 return res.getString(R.string.question_sagrada_familia);
             case Q_PENA_PALACE:
                 return res.getString(R.string.question_pena_palace);
+            case Q_PENA_PALACE_BEFORE:
+                return res.getString(R.string.question_pena_before);
             // TODO
         }
         return res.getString(R.string.error_question);
@@ -208,6 +210,9 @@ public final class QuizHelper {
                 break;
             case Q_PENA_PALACE:
                 variants = res.getStringArray(R.array.variants_pena_palace);
+                break;
+            case Q_PENA_PALACE_BEFORE:
+                variants = res.getStringArray(R.array.variants_pena_before);
                 break;
                 // TODO
             default:
@@ -268,6 +273,8 @@ public final class QuizHelper {
                 return res.getString(R.string.answer_general_sherman);
             case Q_SAGRADA_FAMILIA:
                 return res.getString(R.string.answer_sagrada_familia);
+            case Q_PENA_PALACE_BEFORE:
+                return res.getString(R.string.answer_pena_before);
                 // TODO
         }
         return res.getString(R.string.error);
@@ -332,6 +339,8 @@ public final class QuizHelper {
                 return res.getString(R.string.description_sagrada_familia);
             case Q_PENA_PALACE:
                 return res.getString(R.string.description_pena_palace);
+            case Q_PENA_PALACE_BEFORE:
+                return res.getString(R.string.description_pena_before);
             // TODO
         }
         return "";
@@ -401,6 +410,7 @@ public final class QuizHelper {
             case Q_SAGRADA_FAMILIA:
                 return res.getString(R.string.link_sagrada_familia);
             case Q_PENA_PALACE:
+            case Q_PENA_PALACE_BEFORE:
                 return res.getString(R.string.link_pena_palace);
             // TODO
         }

@@ -69,10 +69,10 @@ public class MainActivity extends AppCompatActivity
      */
     private void invalidateState(Bundle state) {
         if (state != null) {
-            currentQuestion = state.getInt(QuizHelper.CURRENT_QUESTION, QuizHelper.Q_INTRO);
-            questionMode = state.getInt(QuizHelper.QUESTION_MODE_KEY, QuizHelper.MODE_QUESTION);
-            score = state.getInt(QuizHelper.SCORE_KEY, QuizHelper.SCORE_DEFAULT);
-            questionsList = state.getIntegerArrayList(QuizHelper.QUESTION_LIST_KEY);
+            currentQuestion = state.getInt(QuizHelper.KEY_CURRENT_QUESTION, QuizHelper.Q_INTRO);
+            questionMode = state.getInt(QuizHelper.KEY_QUESTION_MODE, QuizHelper.MODE_QUESTION);
+            score = state.getInt(QuizHelper.KEY_SCORE, QuizHelper.SCORE_DEFAULT);
+            questionsList = state.getIntegerArrayList(QuizHelper.KEY_QUESTION_LIST);
             if (questionsList == null) {
                 questionsList = new ArrayList<>();
             }
@@ -90,10 +90,10 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(QuizHelper.CURRENT_QUESTION, currentQuestion);
-        outState.putInt(QuizHelper.SCORE_KEY, score);
-        outState.putInt(QuizHelper.QUESTION_MODE_KEY, questionMode);
-        outState.putIntegerArrayList(QuizHelper.QUESTION_LIST_KEY, questionsList);
+        outState.putInt(QuizHelper.KEY_CURRENT_QUESTION, currentQuestion);
+        outState.putInt(QuizHelper.KEY_SCORE, score);
+        outState.putInt(QuizHelper.KEY_QUESTION_MODE, questionMode);
+        outState.putIntegerArrayList(QuizHelper.KEY_QUESTION_LIST, questionsList);
         super.onSaveInstanceState(outState);
     }
 
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity
      * Show or hide app toolbar
      */
     private void invalidateToolbar() {
-        if (currentQuestion > 0 && currentQuestion <= QuizHelper.TOTAL_QUESTIONS) {
+        if (currentQuestion > 0 && currentQuestion <= QuizHelper.QUESTIONS_TOTAL) {
             toolbar.setVisibility(View.GONE);
         } else {
             toolbar.setVisibility(View.VISIBLE);
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity
     private void getNewQuestion() {
         int question = 0;
         while (question == 0 || questionsList.contains(question)) {
-            question = new Random().nextInt(QuizHelper.TOTAL_QUESTIONS) + 1;
+            question = new Random().nextInt(QuizHelper.QUESTIONS_TOTAL) + 1;
         }
         currentQuestion = question;
         questionsList.add(currentQuestion);

@@ -150,11 +150,11 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void getSavedState(Bundle state) {
         question = state.getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
-        questionMode = state.getInt(QuizHelper.QUESTION_MODE_KEY, QuizHelper.MODE_QUESTION);
-        answerType = state.getInt(QuizHelper.ANSWER_TYPE_KEY, QuizHelper.A_TYPE_WRONG);
-        answers = state.getStringArray(QuizHelper.QUESTION_ANSWERS_KEY);
+        questionMode = state.getInt(QuizHelper.KEY_QUESTION_MODE, QuizHelper.MODE_QUESTION);
+        answerType = state.getInt(QuizHelper.KEY_ANSWER_TYPE, QuizHelper.A_TYPE_WRONG);
+        answers = state.getStringArray(QuizHelper.KEY_QUESTION_ANSWERS);
         questionNumber = state.getInt(QuizHelper.ARG_QUESTION_NUMBER, QuizHelper.Q_INTRO);
-        isUIHidden = state.getBoolean(QuizHelper.UI_HIDDEN_KEY, false);
+        isUIHidden = state.getBoolean(QuizHelper.KEY_UI_HIDDEN, false);
     }
 
     /**
@@ -164,12 +164,12 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(QuizHelper.QUESTION_MODE_KEY, questionMode);
+        outState.putInt(QuizHelper.KEY_QUESTION_MODE, questionMode);
         outState.putInt(QuizHelper.ARG_QUESTION, question);
-        outState.putInt(QuizHelper.ANSWER_TYPE_KEY, answerType);
-        outState.putStringArray(QuizHelper.QUESTION_ANSWERS_KEY, answers);
+        outState.putInt(QuizHelper.KEY_ANSWER_TYPE, answerType);
+        outState.putStringArray(QuizHelper.KEY_QUESTION_ANSWERS, answers);
         outState.putInt(QuizHelper.ARG_QUESTION_NUMBER, questionNumber);
-        outState.putBoolean(QuizHelper.UI_HIDDEN_KEY, isUIHidden);
+        outState.putBoolean(QuizHelper.KEY_UI_HIDDEN, isUIHidden);
         super.onSaveInstanceState(outState);
     }
 
@@ -297,7 +297,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         // Set text of question
         String questionText = "";
         if (questionNumber > 0) {
-            questionText = questionNumber + "/" + QuizHelper.TOTAL_QUESTIONS + ". ";
+            questionText = questionNumber + "/" + QuizHelper.QUESTIONS_TOTAL + ". ";
         }
         questionText += QuizHelper.getQuestionText(getResources(), question);
         mQuestionTV.setText(questionText);

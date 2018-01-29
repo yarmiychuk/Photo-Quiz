@@ -98,6 +98,16 @@
     </string-array>
     <string name="description_pena_palace">Архитектура дворца весьма эклектична, в ней использованы неоготика, неомануэллино, неоренессанс и неомавританский стиль.</string>
     <string name="link_pena_palace">https://ru.wikipedia.org/wiki/Дворец_Пена</string>
+    // Дворец Пена прежде
+    <string name="question_pena_before">Что располагалось на месте Дворца Пена, бывшей летней резиденции португальской королевской семьи в Синтре?</string>
+    <string-array name="variants_pena_before">
+        <item>Монастырь</item>
+        <item>Сторожевая башня</item>
+        <item>Маяк</item>
+        <item>(Ничего)</item>
+    </string-array>
+    <string name="answer_pena_before">Монастырь</string>
+    <string name="description_pena_before">Дворец располагается на месте маленького заброшенного монастыря, разрушенного землятресенем 1755 года.</string>
 
 
     <string name="question_quinta_da_regaleira">Какой-то вопрос</string>
