@@ -53,10 +53,23 @@
     </string-array>
     <string name="description_cabo_names">Древние римляне называли это место Promontorium Magnum (Большой выступ), а в эпоху Великих географических открытий оно называлось Мыс Лиссабона.</string>
     // Бухта Виктория
-    <string name="question_victoria">Как называется естественная гавань, расположенная между островом Гонконг и Коулуном в Гонконге?</string>
+    <string name="question_victoria">Какое имя носит естественная гавань, расположенная между островом Гонконг и Коулуном в Гонконге?</string>
     <string name="answer_victoria">Виктория</string>
     <string name="description_victoria">Эта гавань называется Виктория.</string>
     <string name="link_victoria">https://ru.wikipedia.org/wiki/Виктория_(бухта)</string>
+    // Hong Kong
+    <string name="question_hong_kong">Гонконг обрёл полную независимость только в 1997 году. Какие страны управляли этой территорией раньше?</string>
+    <string-array name="variants_hong_kong">
+        <item>Великобритания</item>
+        <item>Япония</item>
+        <item>Испания</item>
+        <item>Индия</item>
+    </string-array>
+    <string-array name="answers_hong_kong">
+        <item>Великобритания</item>
+        <item>Япония</item>
+    </string-array>
+    <string name="description_hong_kong">Гонг Конг был британской колонией с 1842 по 1997 год, и с 1941 по 1945 год находился под японской оккупацией.</string>
     // Звёздное дерево
     <string name="question_sky_tree">Это самая высокая телебашня в мире, находится в Токио. Как она называется?</string>
     <string-array name="variants_sky_tree">

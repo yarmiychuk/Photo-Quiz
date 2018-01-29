@@ -56,6 +56,19 @@
     <string name="answer_victoria">Victoria</string>
     <string name="description_victoria">This harbor is called Victoria.</string>
     <string name="link_victoria">https://en.wikipedia.org/wiki/Victoria_Harbour</string>
+    // Hong Kong
+    <string name="question_hong_kong">Hong Kong gained full independence only in 1997. Which countries ruled this territory before?</string>
+    <string-array name="variants_hong_kong">
+        <item>Great Britain</item>
+        <item>Japan</item>
+        <item>Spain</item>
+        <item>India</item>
+    </string-array>
+    <string-array name="answers_hong_kong">
+        <item>Great Britain</item>
+        <item>Japan</item>
+    </string-array>
+    <string name="description_hong_kong">Hong Kong was a British colony from 1842 to 1997, and from 1941 to 1945 was under Japanese occupation.</string>
     // Sky tree
     <string name="question_sky_tree">This is the highest TV tower in the world, located in Tokyo. What is it called?</string>
     <string-array name="variants_sky_tree">

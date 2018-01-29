@@ -27,22 +27,23 @@ public final class QuizHelper {
     public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
     public static final int SCORE_DEFAULT = 0;
     public static final int Q_INTRO = 0;
-    public static final int QUESTIONS_TOTAL = 9;
+    public static final int QUESTIONS_TOTAL = 10;
     static final String KEY_CURRENT_QUESTION = "currentQuestion";
     static final String KEY_QUESTION_LIST = "questionsList";
     static final String KEY_SCORE = "score";
     // Questions
-    static final int QUESTION_LIMIT = 9;
+    static final int QUESTION_LIMIT = 10;
     static final int Q_FINISH = 100;
     private static final int Q_ACTINIA = 1;
     private static final int Q_CABO_DA_ROCA = 2;
     private static final int Q_CABO_DA_ROCA_NAMES = 3;
     private static final int Q_VICTORIA = 4;
-    private static final int Q_SKY_TREE = 5;
-    private static final int Q_GENERAL_SHERMAN = 6;
-    private static final int Q_SAGRADA_FAMILIA = 7;
-    private static final int Q_PENA_PALACE = 8;
-    private static final int Q_PENA_PALACE_BEFORE = 9;
+    private static final int Q_HONG_KONG = 5;
+    private static final int Q_SKY_TREE = 6;
+    private static final int Q_GENERAL_SHERMAN = 7;
+    private static final int Q_SAGRADA_FAMILIA = 8;
+    private static final int Q_PENA_PALACE = 9;
+    private static final int Q_PENA_PALACE_BEFORE = 10;
     private static final int Q_QUINTA_DA_REGALEIRA = 66;
 
     /**
@@ -75,6 +76,7 @@ public final class QuizHelper {
             case Q_CABO_DA_ROCA_NAMES:
                 return R.drawable.cabo_da_roca_portrait;
             case Q_VICTORIA:
+            case Q_HONG_KONG:
                 return R.drawable.victoria_landscape;
             case Q_SKY_TREE:
                 return R.drawable.sky_tree_portrait;
@@ -99,6 +101,7 @@ public final class QuizHelper {
     private static int getPortraitImage(int questionNumber) {
         switch (questionNumber) {
             case Q_VICTORIA:
+            case Q_HONG_KONG:
                 return R.drawable.victoria_square;
             case Q_GENERAL_SHERMAN:
                 return R.drawable.general_sherman_portrait;
@@ -139,6 +142,7 @@ public final class QuizHelper {
             case Q_ACTINIA:
             case Q_CABO_DA_ROCA_NAMES:
             case Q_PENA_PALACE:
+            case Q_HONG_KONG:
                 return Q_TYPE_CHECK_BOX;
             case Q_CABO_DA_ROCA:
             case Q_SKY_TREE:
@@ -170,6 +174,8 @@ public final class QuizHelper {
                 return res.getString(R.string.question_cabo_names);
             case Q_VICTORIA:
                 return res.getString(R.string.question_victoria);
+            case Q_HONG_KONG:
+                return res.getString(R.string.question_hong_kong);
             case Q_SKY_TREE:
                 return res.getString(R.string.question_sky_tree);
             case Q_GENERAL_SHERMAN:
@@ -201,6 +207,9 @@ public final class QuizHelper {
             case Q_CABO_DA_ROCA:
             case Q_CABO_DA_ROCA_NAMES:
                 variants = res.getStringArray(R.array.variants_cabo_da_roca);
+                break;
+            case Q_HONG_KONG:
+                variants = res.getStringArray(R.array.variants_hong_kong);
                 break;
             case Q_SKY_TREE:
                 variants = res.getStringArray(R.array.variants_sky_tree);
@@ -236,6 +245,8 @@ public final class QuizHelper {
                 return res.getStringArray(R.array.answers_actinia);
             case Q_CABO_DA_ROCA_NAMES:
                 return res.getStringArray(R.array.answers_cabo_names);
+            case Q_HONG_KONG:
+                return res.getStringArray(R.array.answers_hong_kong);
             case Q_PENA_PALACE:
                 return res.getStringArray(R.array.answers_pena_palace);
                 // TODO
@@ -331,6 +342,8 @@ public final class QuizHelper {
                 return res.getString(R.string.description_cabo_names);
             case Q_VICTORIA:
                 return res.getString(R.string.description_victoria);
+            case Q_HONG_KONG:
+                return res.getString(R.string.description_hong_kong);
             case Q_SKY_TREE:
                 return res.getString(R.string.description_sky_tree);
             case Q_GENERAL_SHERMAN:
@@ -357,7 +370,9 @@ public final class QuizHelper {
         switch (questionNumber) {
             case Q_ACTINIA:
             case Q_VICTORIA:
+            case Q_HONG_KONG:
             case Q_PENA_PALACE:
+            case Q_PENA_PALACE_BEFORE:
                 return getDefaultAnswerText(res, questionNumber) + " "
                         + res.getString(R.string.rotate_to_full);
             case Q_SAGRADA_FAMILIA:
@@ -402,6 +417,7 @@ public final class QuizHelper {
             case Q_CABO_DA_ROCA_NAMES:
                 return res.getString(R.string.link_cabo_da_roca);
             case Q_VICTORIA:
+            case Q_HONG_KONG:
                 return res.getString(R.string.link_victoria);
             case Q_SKY_TREE:
                 return res.getString(R.string.link_sky_tree);
