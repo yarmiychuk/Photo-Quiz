@@ -120,6 +120,33 @@
     </string-array>
     <string name="answer_pena_before">Monastery</string>
     <string name="description_pena_before">The palace is located on the site of a small monastery, destroyed by the earthquake of 1755.</string>
+    // Temple of Heaven
+    <string name="question_temple_of_heaven">This is the largest building in the temple complex, called the \"Temple of Heaven\" in Beijing. What did they pray for in this temple?</string>
+    <string-array name="variants_temple_of_heaven">
+        <item>For good harvests</item>
+        <item>For the Emperor</item>
+        <item>For victories</item>
+        <item>For health</item>
+    </string-array>
+    <string name="answer_temple_of_heaven">For good harvests</string>
+    <string name="description_temple_of_heaven">The temple was built for ceremonies, mostly comprising prayers for good harvests.</string>
+    <string name="link_temple_of_heaven">https://en.wikipedia.org/wiki/Temple_of_Heaven</string>
+    // Temple of Heven - Religion
+    <string name="question_temple_religion">This is the Temple of Heaven in Beijing. What religion did this temple belong to?</string>
+    <string-array name="variants_temple_religion">
+        <item>Taoism</item>
+        <item>Qaraism</item>
+        <item>Maturidi</item>
+        <item>Shinto</item>
+    </string-array>
+    <string name="answer_temple_religion">Taoism</string>
+    <string name="description_temple_religion">It has been considered as a Taoism temple.</string>
+    <string name="link_temple_religion">https://en.wikipedia.org/wiki/Taoism</string>
+    // Tokyo / Kyoto
+    <string name="question_tokyo_kyoto">This is the bridge and one of the buildings of the Imperial Palace of Tokyo, the capital of Japan. What is the current name of the city - the former capital of Japan (until 1868)?</string>
+    <string name="answer_tokyo_kyoto">Kyoto</string>
+    <string name="description_tokyo_kyoto">From 794 to 1868, the capital was in Heian-ky\ō, modern-day Kyoto.</string>
+    <string name="link_tokyo_kyoto">https://en.wikipedia.org/wiki/Capital_of_Japan</string>
     // Other
     <string name="error">Error</string>
     <string name="error_link">Unable to open link!</string>
@@ -129,6 +156,8 @@
     <string name="default_question_text">Dmitriy Yarmiychuk</string>
     <string name="need_answer">The answer is required!</string>
     <string name="too_many_check_box">Too many answers selected!</string>
+    <string name="one_point">+1 point</string>
+    <string name="two_points">+2 points</string>
     // Exit dialog
     <string name="dialog_title">Exit app?</string>
     <string name="dialog_message">If you exit the application, your progress will be reset.</string>

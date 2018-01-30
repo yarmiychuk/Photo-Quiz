@@ -283,7 +283,6 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
             mAnswerRL.setVisibility(View.INVISIBLE);
         } else {
             mAnswerRL.setVisibility(View.VISIBLE);
-            showAnswerImage();
         }
         mWikiBTN.setEnabled(true);
     }
@@ -402,6 +401,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
                 listener.answerReceived(answerType);
             }
             showAnswerView();
+            showAnswerResult();
         }
     }
 
@@ -622,13 +622,27 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * Display an image that indicates the correctness of the user's response.
+     * Display an image that indicates the correctness of the user's response and Toast.
      */
-    private void showAnswerImage() {
+    private void showAnswerResult() {
         mAnswerIV.setVisibility(View.VISIBLE);
         mAnswerIV.setImageResource(getAnswerImage());
         mAnswerIV.setBackground(getAnswerBackground());
         addAnimation();
+        showScoreToast();
+    }
+
+    /**
+     * Make text about user's score points for current answer for toast and show it
+     */
+    private void showScoreToast() {
+        String toastMessage = getString(R.string.two_points);
+        if (answerType == QuizHelper.A_TYPE_WRONG) {
+            return;
+        } else if (answerType == QuizHelper.A_TYPE_PARTIALLY) {
+            toastMessage = getString(R.string.one_point);
+        }
+        Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
     }
 
     /**

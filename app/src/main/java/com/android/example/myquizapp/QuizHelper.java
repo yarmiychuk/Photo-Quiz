@@ -27,12 +27,12 @@ public final class QuizHelper {
     public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
     public static final int SCORE_DEFAULT = 0;
     public static final int Q_INTRO = 0;
-    public static final int QUESTIONS_TOTAL = 10;
+    public static final int QUESTIONS_TOTAL = 13; // TODO
     static final String KEY_CURRENT_QUESTION = "currentQuestion";
     static final String KEY_QUESTION_LIST = "questionsList";
     static final String KEY_SCORE = "score";
     // Questions
-    static final int QUESTION_LIMIT = 10;
+    static final int QUESTION_LIMIT = 13; // TODO
     static final int Q_FINISH = 100;
     private static final int Q_ACTINIA = 1;
     private static final int Q_CABO_DA_ROCA = 2;
@@ -44,6 +44,10 @@ public final class QuizHelper {
     private static final int Q_SAGRADA_FAMILIA = 8;
     private static final int Q_PENA_PALACE = 9;
     private static final int Q_PENA_PALACE_BEFORE = 10;
+    private static final int Q_TEMPLE_OF_HEAVEN = 11;
+    private static final int Q_HEAVEN_RELIGION = 12;
+    private static final int Q_TOKYO_KYOTO = 13;
+    // TODO
     private static final int Q_QUINTA_DA_REGALEIRA = 66;
 
     /**
@@ -87,6 +91,11 @@ public final class QuizHelper {
             case Q_PENA_PALACE:
             case Q_PENA_PALACE_BEFORE:
                 return R.drawable.pena_palace_landscape;
+            case Q_TEMPLE_OF_HEAVEN:
+            case Q_HEAVEN_RELIGION:
+                return R.drawable.temple_of_heaven_square;
+            case Q_TOKYO_KYOTO:
+                return R.drawable.tokyo_castle_square;
             // TODO
         }
         // On error will return this image
@@ -126,6 +135,11 @@ public final class QuizHelper {
                 return R.drawable.sky_tree_landscape;
             case Q_SAGRADA_FAMILIA:
                 return R.drawable.sagrada_familia_landscape;
+            case Q_TEMPLE_OF_HEAVEN:
+            case Q_HEAVEN_RELIGION:
+                return R.drawable.temple_of_heaven_landscape;
+            case Q_TOKYO_KYOTO:
+                return R.drawable.tokyo_castle_landscape;
             // TODO
         }
         return getDefaultImage(questionNumber);
@@ -139,18 +153,24 @@ public final class QuizHelper {
      */
     public static int getQuestionType(int questionNumber) {
         switch (questionNumber) {
+            // CheckBox question type
             case Q_ACTINIA:
             case Q_CABO_DA_ROCA_NAMES:
             case Q_PENA_PALACE:
             case Q_HONG_KONG:
                 return Q_TYPE_CHECK_BOX;
+            // RadioGroup question type
             case Q_CABO_DA_ROCA:
             case Q_SKY_TREE:
             case Q_GENERAL_SHERMAN:
             case Q_PENA_PALACE_BEFORE:
+            case Q_TEMPLE_OF_HEAVEN:
+            case Q_HEAVEN_RELIGION:
                 return Q_TYPE_RADIO_GROUP;
+            // EditText question type
             case Q_VICTORIA:
             case Q_SAGRADA_FAMILIA:
+            case Q_TOKYO_KYOTO:
                 return Q_TYPE_INPUT;
             // TODO
         }
@@ -186,6 +206,12 @@ public final class QuizHelper {
                 return res.getString(R.string.question_pena_palace);
             case Q_PENA_PALACE_BEFORE:
                 return res.getString(R.string.question_pena_before);
+            case Q_TEMPLE_OF_HEAVEN:
+                return res.getString(R.string.question_temple_of_heaven);
+            case Q_HEAVEN_RELIGION:
+                return res.getString(R.string.question_temple_religion);
+            case Q_TOKYO_KYOTO:
+                return res.getString(R.string.question_tokyo_kyoto);
             // TODO
         }
         return res.getString(R.string.error_question);
@@ -222,6 +248,12 @@ public final class QuizHelper {
                 break;
             case Q_PENA_PALACE_BEFORE:
                 variants = res.getStringArray(R.array.variants_pena_before);
+                break;
+            case Q_TEMPLE_OF_HEAVEN:
+                variants = res.getStringArray(R.array.variants_temple_of_heaven);
+                break;
+            case Q_HEAVEN_RELIGION:
+                variants = res.getStringArray(R.array.variants_temple_religion);
                 break;
                 // TODO
             default:
@@ -286,6 +318,12 @@ public final class QuizHelper {
                 return res.getString(R.string.answer_sagrada_familia);
             case Q_PENA_PALACE_BEFORE:
                 return res.getString(R.string.answer_pena_before);
+            case Q_TEMPLE_OF_HEAVEN:
+                return res.getString(R.string.answer_temple_of_heaven);
+            case Q_TOKYO_KYOTO:
+                return res.getString(R.string.answer_tokyo_kyoto);
+            case Q_HEAVEN_RELIGION:
+                return res.getString(R.string.answer_temple_religion);
                 // TODO
         }
         return res.getString(R.string.error);
@@ -354,6 +392,12 @@ public final class QuizHelper {
                 return res.getString(R.string.description_pena_palace);
             case Q_PENA_PALACE_BEFORE:
                 return res.getString(R.string.description_pena_before);
+            case Q_TEMPLE_OF_HEAVEN:
+                return res.getString(R.string.description_temple_of_heaven);
+            case Q_HEAVEN_RELIGION:
+                return res.getString(R.string.description_temple_religion);
+            case Q_TOKYO_KYOTO:
+                return res.getString(R.string.description_tokyo_kyoto);
             // TODO
         }
         return "";
@@ -368,18 +412,18 @@ public final class QuizHelper {
      */
     private static String getPortraitAnswerText(Resources res, int questionNumber) {
         switch (questionNumber) {
-            case Q_ACTINIA:
-            case Q_VICTORIA:
-            case Q_HONG_KONG:
-            case Q_PENA_PALACE:
-            case Q_PENA_PALACE_BEFORE:
-                return getDefaultAnswerText(res, questionNumber) + " "
-                        + res.getString(R.string.rotate_to_full);
+            // TODO
+            case Q_CABO_DA_ROCA:
+            case Q_CABO_DA_ROCA_NAMES:
+            case Q_SKY_TREE:
+            case Q_GENERAL_SHERMAN:
+                return getDefaultAnswerText(res, questionNumber);
             case Q_SAGRADA_FAMILIA:
                 return getDefaultAnswerText(res, questionNumber) + " "
                         + res.getString(R.string.rotate_to_another);
             default:
-                return getDefaultAnswerText(res, questionNumber);
+                return getDefaultAnswerText(res, questionNumber) + " "
+                        + res.getString(R.string.rotate_to_full);
         }
     }
 
@@ -391,8 +435,10 @@ public final class QuizHelper {
      * @return answer text for landscape orientation
      */
     private static String getLandscapeAnswerText(Resources res, int questionNumber) {
+        // TODO
         switch (questionNumber) {
             case Q_GENERAL_SHERMAN:
+            case Q_SKY_TREE:
                 return getDefaultAnswerText(res, questionNumber) + " " +
                         res.getString(R.string.rotate_to_full);
             case Q_SAGRADA_FAMILIA:
@@ -410,6 +456,7 @@ public final class QuizHelper {
      * @return link
      */
     public static String getLink(Resources res, int questionNumber) {
+        // TODO
         switch (questionNumber) {
             case Q_ACTINIA:
                 return res.getString(R.string.link_actinia);
@@ -428,6 +475,12 @@ public final class QuizHelper {
             case Q_PENA_PALACE:
             case Q_PENA_PALACE_BEFORE:
                 return res.getString(R.string.link_pena_palace);
+            case Q_TEMPLE_OF_HEAVEN:
+                return res.getString(R.string.link_temple_of_heaven);
+            case Q_HEAVEN_RELIGION:
+                return res.getString(R.string.link_temple_religion);
+            case Q_TOKYO_KYOTO:
+                return res.getString(R.string.link_tokyo_kyoto);
             // TODO
         }
         return null;
