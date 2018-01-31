@@ -296,7 +296,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         // Set text of question
         String questionText = "";
         if (questionNumber > 0) {
-            questionText = questionNumber + "/" + QuizHelper.QUESTIONS_TOTAL + ". ";
+            questionText = questionNumber + "/" + QuizHelper.QUESTIONS_LIMIT + ". ";
         }
         questionText += QuizHelper.getQuestionText(getResources(), question);
         mQuestionTV.setText(questionText);

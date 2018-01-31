@@ -178,9 +178,9 @@ public class MainActivity extends AppCompatActivity
     public void onClickNext(View view) {
         questionMode = QuizHelper.MODE_QUESTION;
         invalidateButtonNext();
-        if (questionsList.size() < QuizHelper.QUESTION_LIMIT) {
+        if (questionsList.size() < QuizHelper.QUESTIONS_LIMIT) {
             getNewQuestion();
-        } else if (questionsList.size() == QuizHelper.QUESTION_LIMIT) {
+        } else if (questionsList.size() == QuizHelper.QUESTIONS_LIMIT) {
             if (currentQuestion == QuizHelper.Q_FINISH) {
                 startAgain();
             } else {

@@ -147,6 +147,76 @@
     <string name="answer_tokyo_kyoto">Kyoto</string>
     <string name="description_tokyo_kyoto">From 794 to 1868, the capital was in Heian-ky\ō, modern-day Kyoto.</string>
     <string name="link_tokyo_kyoto">https://en.wikipedia.org/wiki/Capital_of_Japan</string>
+    // Edo/Chiyoda Castle
+    <string name="question_edo_chiyoda">The Imperial Palace of Tokyo is located on the site of an ancient castle, founded in 1457. What was the name of this castle?</string>
+    <string-array name="variants_edo_chiyoda">
+        <item>Edo Castle</item>
+        <item>Chiyoda Castle</item>
+        <item>Azuchi Castle</item>
+        <item>Matsue Castle</item>
+    </string-array>
+    <string-array name="answers_edo_chiyoda">
+        <item>Edo Castle</item>
+        <item>Chiyoda Castle</item>
+    </string-array>
+    <string name="description_edo_chiyoda">Edo Castle, also known as Chiyoda Castle, is a flatland castle that was built in 1457 by \Ōta D\ōkan.</string>
+    <string name="link_edo_chiyoda">https://en.wikipedia.org/wiki/Edo_Castle</string>
+    // Empire State
+    <string name="question_empire_state">This view opens with one of the observatories of the Empire State Building skyscraper in New York. Which floors of this building contain observatories?</string>
+    <string-array name="variants_empire_state">
+        <item>86</item>
+        <item>102</item>
+        <item>64</item>
+        <item>95</item>
+    </string-array>
+    <string-array name="answers_empire_state">
+        <item>86</item>
+        <item>102</item>
+    </string-array>
+    <string name="description_empire_state">The 86th and 102nd floors contain observatories, which see a combined average of 4 million visitors per year.</string>
+    <string name="link_empire_state">https://en.wikipedia.org/wiki/Empire_State_Building</string>
+    // Times Square
+    <string name="question_times_square">From the observation deck of the Empire State Building skyscraper you can see one of the brightest squares in New York, which is one of the most visited squares in the world. What is this square called?</string>
+    <string-array name="variants_times_square">
+        <item>Times Square</item>
+        <item>Madison Square</item>
+        <item>Union Square</item>
+        <item>Columbus Circle</item>
+    </string-array>
+    <string name="answer_times_square">Times Square</string>
+    <string name="description_times_square">This is Times Square. This area is visited by more than 50 million people annually.</string>
+    <string name="link_times_square">https://en.wikipedia.org/wiki/Times_Square</string>
+    // Quinta da Regaleira
+    <string name="question_quinta_da_regaleira">The park of the Portuguese palace Quinta da Regalera contains a lot of underground tunnels. In the photo - one of the entrances to these tunnels. What is the name of this well?</string>
+    <string-array name="variants_quinta_da_regaleira">
+        <item>Initiation Well</item>
+        <item>Deep fall</item>
+        <item>The path to light</item>
+        <item>Abyss of oblivion</item>
+    </string-array>
+    <string name="answer_quinta_da_regaleira">Initiation Well</string>
+    <string name="description_quinta_da_regaleira">Initiation Well is surrounded by a spiral gallery, which consists of nine spans, symbolizing the nine circles of hell, purgatory and Eden described by Dante.</string>
+    <string name="link_quinta_da_regaleira">https://en.wikipedia.org/wiki/Quinta_da_Regaleira</string>
+    // Saint-Petersburg
+    <string name="question_saint_petersburg">Saints Peter and Paul Cathedral is one of the main symbols of Saint Petersburg. The city was renamed several times. Please specify the previous city names:</string>
+    <string-array name="variants_saint_petersburg">
+        <item>Leningrad</item>
+        <item>Petrograd</item>
+        <item>Petropavlovsk</item>
+        <item>Petergof</item>
+    </string-array>
+    <string-array name="aswers_saint_petersburg">
+        <item>Leningrad</item>
+        <item>Petrograd</item>
+    </string-array>
+    <string name="description_saint_petersburg">Saint Petersburg was founded in 1703. In 1914, the name was changed to Petrograd, in 1924 to Leningrad, and in 1991 back to Saint Petersburg.</string>
+    <string name="link_saint_petersburg">https://en.wikipedia.org/wiki/Saint_Petersburg</string>
+    // Bronze Horseman
+    <string name="question_bronze_horseman">This monument to Peter the Great is one of the main symbols of St. Petersburg. What is it called?</string>
+    <string name="answer_bronze_horseman">The Bronze Horseman</string>
+    <string name="description_bronze_horseman">This is \"the Bronze Horseman\". The inscription on the pedestal reads: \"Catherine the Second to Peter the First, 1782.\"</string>
+    <string name="link_bronze_horseman">https://en.wikipedia.org/wiki/Bronze_Horseman</string>
+    //
     // Other
     <string name="error">Error</string>
     <string name="error_link">Unable to open link!</string>
@@ -174,7 +244,5 @@
     <string name="less_half">You were able to answer part of the questions.</string>
     <string name="no_one">You did not answer correctly AT ALL!</string>
     <string name="your_score">Your score:</string>
-
-    <string name="question_quinta_da_regaleira">Some question</string>
 
 </resources>

@@ -132,11 +132,6 @@
     <string name="answer_temple_of_heaven">О хорошем урожае</string>
     <string name="description_temple_of_heaven">В течение почти 500 лет раз в году императоры прибывали сюда, чтобы попросить Небо о хорошем урожае.</string>
     <string name="link_temple_of_heaven">https://ru.wikipedia.org/wiki/Храм_Неба</string>
-    // Токио / Киото
-    <string name="question_tokyo_kyoto">Это мост и одна из построек Императорского дворца столицы Японии Токио. Каково нынешнее название города - бывшей столицы Японии (до 1868 года)?</string>
-    <string name="answer_tokyo_kyoto">Киото</string>
-    <string name="description_tokyo_kyoto">С 794 по 1868 год столица находилась в Хэйан-кё, современном Киото.</string>
-    <string name="link_tokyo_kyoto">https://ru.wikipedia.org/wiki/Столицы_Японии</string>
     // Храм Неба - Религия
     <string name="question_temple_religion">К какой религии относился Храм Неба в Пекине, который запечатлён на этой фотографии?</string>
     <string-array name="variants_temple_religion">
@@ -148,10 +143,80 @@
     <string name="answer_temple_religion">Даосизм</string>
     <string name="description_temple_religion">Этот храм можно отнести к Даосскому.</string>
     <string name="link_temple_religion">https://ru.wikipedia.org/wiki/Даосизм</string>
-
-
-    <string name="question_quinta_da_regaleira">Какой-то вопрос</string>
-
+    // Токио / Киото
+    <string name="question_tokyo_kyoto">Это мост и одна из построек Императорского дворца столицы Японии Токио. Каково нынешнее название города - бывшей столицы Японии (до 1868 года)?</string>
+    <string name="answer_tokyo_kyoto">Киото</string>
+    <string name="description_tokyo_kyoto">С 794 по 1868 год столица находилась в Хэйан-кё, современном Киото.</string>
+    <string name="link_tokyo_kyoto">https://ru.wikipedia.org/wiki/Столицы_Японии</string>
+    // Edo/Chiyoda Castle
+    <string name="question_edo_chiyoda">Императорский дворец Токио находится на месте древнего замка, основанного в 1457 году. Как назывался этот замок?</string>
+    <string-array name="variants_edo_chiyoda">
+        <item>Замок Эдо</item>
+        <item>Замок Тиёда</item>
+        <item>Замок Адзути</item>
+        <item>Замок Мацуэ</item>
+    </string-array>
+    <string-array name="answers_edo_chiyoda">
+        <item>Замок Эдо</item>
+        <item>Замок Тиёда</item>
+    </string-array>
+    <string name="description_edo_chiyoda">Замок Эдо, также известный под названием \"Замок Тиёда\" — замок равнинного типа, основан в 1457 году феодалом Ота Доканом.</string>
+    <string name="link_edo_chiyoda">https://ru.wikipedia.org/wiki/Эдо_(замок)</string>
+    // Empire State
+    <string name="question_empire_state">Такой вид открывается с одной из смотровых площадок небоскрёба Эмпайр-стейт-билдинг в Нью-Йорке. На каких этажах этого здания расположены смотровые площадки?</string>
+    <string-array name="variants_empire_state">
+        <item>86</item>
+        <item>102</item>
+        <item>64</item>
+        <item>95</item>
+    </string-array>
+    <string-array name="answers_empire_state">
+        <item>86</item>
+        <item>102</item>
+    </string-array>
+    <string name="description_empire_state">Обсерватории (смотровые площадки) расположены на 86-м и 102-м этажах. В среднем, их посещает около 4 миллионов человек в год.</string>
+    <string name="link_empire_state">https://ru.wikipedia.org/wiki/Эмпайр-стейт-билдинг</string>
+    // Times Square
+    <string name="question_times_square">Со смотровой площадки небоскрёба Эмпайр-стейт-билдинг можно увидеть одну из самых ярких площадей Нью-Йорка, также являющейся одной из самых посещаемых площадей в мире. Что это за площадь?</string>
+    <string-array name="variants_times_square">
+        <item>Таймс-сквер</item>
+        <item>Мэдисон-сквер</item>
+        <item>Юнион-сквер</item>
+        <item>Коламбус-Серкл</item>
+    </string-array>
+    <string name="answer_times_square">Таймс-сквер</string>
+    <string name="description_times_square">Это Таймс-сквер. Эту площадь посещают более 50 миллионов человек ежегодно.</string>
+    <string name="link_times_square">https://ru.wikipedia.org/wiki/Таймс-сквер</string>
+    // Кинта да Регалейра
+    <string name="question_quinta_da_regaleira">Парк португальского дворца Кинта да Регалейра содержит множество подземных тоннелей. На фото - один из входов в эти тоннели. Какое имя ноcит этот колодец?</string>
+    <string-array name="variants_quinta_da_regaleira">
+        <item>Колодец посвящения</item>
+        <item>Глубокое падение</item>
+        <item>Путь к свету</item>
+        <item>Пропасть забвения</item>
+    </string-array>
+    <string name="answer_quinta_da_regaleira">Колодец посвящения</string>
+    <string name="description_quinta_da_regaleira">\"Колодец посвящения\" окружает спиральная галерея, которая сотоит из девяти пролётов, символизирующих девять кругов ада, чистилища и рая, описанные Данте.</string>
+    <string name="link_quinta_da_regaleira">https://ru.wikipedia.org/wiki/Кинта_да_Регалейра</string>
+    // Санкт-Петербург
+    <string name="question_saint_petersburg">Собор святых Петра и Павла - один из главных симоволов Санкт-Петербурга. Город переименовывали несколько раз. Укажите предыдущие названия города:</string>
+    <string-array name="variants_saint_petersburg">
+        <item>Ленинград</item>
+        <item>Петроград</item>
+        <item>Петропавловск</item>
+        <item>Петергоф</item>
+    </string-array>
+    <string-array name="aswers_saint_petersburg">
+        <item>Ленинград</item>
+        <item>Петроград</item>
+    </string-array>
+    <string name="description_saint_petersburg">Санкт-Петербург был основан в 1703 году, в 1914 переименован в Петроград, в 1924 - в Ленинград, а в 1991 году городу вернули историческое имя.</string>
+    <string name="link_saint_petersburg">https://ru.wikipedia.org/wiki/Санкт-Петербург</string>
+    // Медный всадник
+    <string name="question_bronze_horseman">Этот памятник Петру I - один из главных символов Санкт-Петербурга. Как он называется?</string>
+    <string name="answer_bronze_horseman">Медный всадник</string>
+    <string name="description_bronze_horseman">Это \"Медный всадник\". Надпись на постаменте гласит: \"ПЕТРУ перьвому ЕКАТЕРИНА вторая лѣта 1782.\"</string>
+    <string name="link_bronze_horseman">https://ru.wikipedia.org/wiki/Медный_всадник</string>
     // Другое
     <string name="error">Ошибка</string>
     <string name="error_link">Невозможно открыть ссылку!</string>
