@@ -595,7 +595,8 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     private void checkEditTextAnswer() {
         String userAnswer = convertTextFromEditText();
         String rightAnswer = QuizHelper.getRightAnswer(getResources(), question).toUpperCase();
-        if (userAnswer.equals(rightAnswer)) {
+        if (userAnswer.equals(rightAnswer) || (userAnswer + getString(R.string.the_article))
+                .equals(rightAnswer)) {
             answerType = QuizHelper.A_TYPE_CORRECT;
         }
     }

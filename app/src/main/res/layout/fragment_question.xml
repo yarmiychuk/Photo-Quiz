@@ -30,6 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@drawable/dark_background_in"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="bottom"
             android:orientation="horizontal">
 

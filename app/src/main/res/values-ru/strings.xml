@@ -236,6 +236,17 @@
     <string name="description_saint_petersburg">Санкт-Петербург был основан в 1703 году, в 1914 переименован в Петроград, в 1924 - в Ленинград, а в 1991 году городу вернули историческое имя.</string>
     <string name="link_saint_petersburg">https://ru.wikipedia.org/wiki/Санкт-Петербург</string>
 
+    // Мосты Санкт-Петербурга
+    <string name="question_petersburg_bridges">Санкт-Петербург часто называют "Северной Венецией": город расположен на 42 островах дельты реки Невы. Какое приблизительное количество мостов находится в черте города?</string>
+    <string-array name="variants_petersburg_bridges">
+        <item>Около 800</item>
+        <item>Около 500</item>
+        <item>Около 300</item>
+        <item>Около 150</item>
+    </string-array>
+    <string name="answer_peterburg_bridges">Около 800</string>
+    <string name="description_petersburg_bridges">Через водные объекты Санкт-Петербурга перекинуто около 800 мостов. Самый длинный мост: Большой Обуховский (вантовый) мост через реку Неву (полная длина мостового перехода 2824 м), самый широкий мост: Синий мост на реке Мойке (99,5 м).</string>
+
     // Медный всадник
     <string name="question_bronze_horseman">Этот памятник Петру I - один из главных символов Санкт-Петербурга. Как он называется?</string>
     <string name="answer_bronze_horseman">Медный всадник</string>

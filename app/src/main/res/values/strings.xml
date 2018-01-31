@@ -241,6 +241,17 @@
     <string name="description_bronze_horseman">This is \"the Bronze Horseman\". The inscription on the pedestal reads: \"Catherine the Second to Peter the First, 1782.\"</string>
     <string name="link_bronze_horseman">https://en.wikipedia.org/wiki/Bronze_Horseman</string>
 
+    // Bridges of St. Petersburg
+    <string name="question_petersburg_bridges">St. Petersburg is often called "Northern Venice": the city is located on 42 islands of the Neva River delta. What is the approximate number of bridges in the city?</string>
+    <string-array name="variants_petersburg_bridges">
+        <item>About 800</item>
+        <item>About 500</item>
+        <item>About 300</item>
+        <item>About 150</item>
+    </string-array>
+    <string name="answer_peterburg_bridges">About 800</string>
+    <string name="description_petersburg_bridges">About 800 bridges are thrown through the water objects of St. Petersburg. The longest bridge: Bolshoy Obukhovsky (cable-stayed) bridge across the Neva River (total length of the bridge is 2824 m), the widest bridge: the Blue Bridge on the Moika River (99.5 m).</string>
+
     // Other
     <string name="error">Error</string>
     <string name="error_link">Unable to open link!</string>
@@ -252,6 +263,7 @@
     <string name="too_many_check_box">Too many answers selected!</string>
     <string name="one_point">+1 point</string>
     <string name="two_points">+2 points</string>
+    <string name="the_article" translatable="false">The&#160;</string>
 
     // Exit dialog
     <string name="dialog_title">Exit app?</string>
