@@ -35,8 +35,8 @@ public final class QuizHelper {
     static final String KEY_CURRENT_QUESTION = "currentQuestion";
     static final String KEY_QUESTION_LIST = "questionsList";
     static final String KEY_SCORE = "score";
-    // Questions
     static final int Q_FINISH = 100;
+    // Questions
     private static final int Q_ACTINIA = 1;
     private static final int Q_CABO_DA_ROCA = 2;
     private static final int Q_CABO_DA_ROCA_NAMES = 3;
