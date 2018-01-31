@@ -29,8 +29,8 @@ public final class QuizHelper {
     public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
     public static final int SCORE_DEFAULT = 0;
     public static final int Q_INTRO = 0;
-    public static final int QUESTIONS_LIMIT = 18; // TODO
-    static final int QUESTIONS_TOTAL = 18; // TODO
+    public static final int QUESTIONS_LIMIT = 19; // TODO
+    static final int QUESTIONS_TOTAL = 19; // TODO
     static final String KEY_CURRENT_QUESTION = "currentQuestion";
     static final String KEY_QUESTION_LIST = "questionsList";
     static final String KEY_SCORE = "score";
@@ -112,6 +112,8 @@ public final class QuizHelper {
                 return R.drawable.quinta_da_regaleira_landscape;
             case Q_SAINT_PETERSBURG:
                 return R.drawable.petersburg_landscape;
+            case Q_BRONZE_HORSEMAN:
+                return R.drawable.bronze_horseman_landscape;
             // TODO
         }
         // On error will return this image
@@ -135,6 +137,8 @@ public final class QuizHelper {
                 return R.drawable.quinta_da_regaleira_portrait;
             case Q_SAINT_PETERSBURG:
                 return R.drawable.petersburg_portrait;
+            case Q_BRONZE_HORSEMAN:
+                return R.drawable.bronze_horseman_portrait;
             // TODO
         }
         return getDefaultImage(questionNumber);
@@ -203,6 +207,7 @@ public final class QuizHelper {
             case Q_VICTORIA:
             case Q_SAGRADA_FAMILIA:
             case Q_TOKYO_KYOTO:
+            case Q_BRONZE_HORSEMAN:
                 return Q_TYPE_INPUT;
             // TODO
         }
@@ -255,6 +260,8 @@ public final class QuizHelper {
                 return res.getString(R.string.question_quinta_da_regaleira);
             case Q_SAINT_PETERSBURG:
                 return res.getString(R.string.question_saint_petersburg);
+            case Q_BRONZE_HORSEMAN:
+                return res.getString(R.string.question_bronze_horseman);
             // TODO
         }
         return res.getString(R.string.error_question);
@@ -392,6 +399,8 @@ public final class QuizHelper {
                 return res.getString(R.string.answer_times_square);
             case Q_QUINTA_DA_REGALEIRA:
                 return res.getString(R.string.answer_quinta_da_regaleira);
+            case Q_BRONZE_HORSEMAN:
+                return res.getString(R.string.answer_bronze_horseman);
                 // TODO
         }
         return res.getString(R.string.error);
@@ -476,6 +485,8 @@ public final class QuizHelper {
                 return res.getString(R.string.description_quinta_da_regaleira);
             case Q_SAINT_PETERSBURG:
                 return res.getString(R.string.description_saint_petersburg);
+            case Q_BRONZE_HORSEMAN:
+                return res.getString(R.string.description_bronze_horseman);
             // TODO
         }
         return "";
@@ -571,6 +582,8 @@ public final class QuizHelper {
                 return res.getString(R.string.link_quinta_da_regaleira);
             case Q_SAINT_PETERSBURG:
                 return res.getString(R.string.link_saint_petersburg);
+            case Q_BRONZE_HORSEMAN:
+                return res.getString(R.string.link_bronze_horseman);
             // TODO
         }
         return null;

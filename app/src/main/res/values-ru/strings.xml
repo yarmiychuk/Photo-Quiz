@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Фото-викторина</string>
+
     // Intro
     <string name="welcome"> Добро пожаловать!</string>
     <string name="quiz_description">Это небольшая викторина, основанная на фотографиях.</string>
     <string name="photo_by">Фото:\nДмитрий Ярмийчук</string>
+
     // Навигация
     <string name="nav_start">Старт</string>
     <string name="nav_next">Далее</string>
     <string name="nav_again">Заново</string>
     <string name="nav_submit">Проверить</string>
     <string name="nav_wiki">Вики</string>
+
     // Описание содержимого
     <string name="description_portugal_pena">Дворец Пена</string>
     <string name="question_image">Изображение для вопроса</string>
     <string name="answer_image">Изображение для ответа</string>
+
     // Вопросы и ответы
     <string name="error_question">Ошибка приложения. Вопрос не может быть отображён</string>
     <string name="correct_answer">Вы правы!</string>
     <string name="partially_answer">Вы частично правы.</string>
     <string name="wrong_answer">Ваш ответ неверен.</string>
+
     // Аактиния / Морская анемона
     <string name="question_actinia">Эта фотография сделана на мелководье пляжа в городе Лагуна-Бич (Калифорния, США). Как называется это многоклеточное животное?</string>
     <string-array name="variants_actinia">
@@ -34,6 +40,7 @@
     </string-array>
     <string name="description_actinia">Это Актиния или Морская анемона.</string>
     <string name="link_actinia">https://ru.wikipedia.org/wiki/Актинии</string>
+
     // Мыс Рока
     <string name="question_cabo_da_roca">На фото - самая западная точка Евразийского континента. Как сейчас называется это место?</string>
     <string-array name="variants_cabo_da_roca">
@@ -45,6 +52,7 @@
     <string name="answer_cabo_da_roca">Мыс Рока</string>
     <string name="description_cabo_da_roca">Самая западная точка Евразии - Мыс Рока.</string>
     <string name="link_cabo_da_roca">https://ru.wikipedia.org/wiki/Рока_(мыс)</string>
+
     // Названия Мыса Рока
     <string name="question_cabo_names">Как раньше называлась самая западная точка Евразии?</string>
     <string-array name="answers_cabo_names">
@@ -52,11 +60,13 @@
         <item>Большой выступ</item>
     </string-array>
     <string name="description_cabo_names">Древние римляне называли это место Promontorium Magnum (Большой выступ), а в эпоху Великих географических открытий оно называлось Мыс Лиссабона.</string>
+
     // Бухта Виктория
     <string name="question_victoria">Какое имя носит естественная гавань, расположенная между островом Гонконг и Коулуном в Гонконге?</string>
     <string name="answer_victoria">Виктория</string>
     <string name="description_victoria">Эта гавань называется Виктория.</string>
     <string name="link_victoria">https://ru.wikipedia.org/wiki/Виктория_(бухта)</string>
+
     // Hong Kong
     <string name="question_hong_kong">Гонконг обрёл полную независимость только в 1997 году. Какие страны управляли этой территорией раньше?</string>
     <string-array name="variants_hong_kong">
@@ -70,6 +80,7 @@
         <item>Япония</item>
     </string-array>
     <string name="description_hong_kong">Гонг Конг был британской колонией с 1842 по 1997 год, и с 1941 по 1945 год находился под японской оккупацией.</string>
+
     // Звёздное дерево
     <string name="question_sky_tree">Это самая высокая телебашня в мире, находится в Токио. Как она называется?</string>
     <string-array name="variants_sky_tree">
@@ -81,6 +92,7 @@
     <string name="answer_sky_tree">Небесное дерево</string>
     <string name="description_sky_tree">Эта башня называется \"Tokyo Sky Tree\" (\"Токийское Небесное дерево\").</string>
     <string name="link_sky_tree">https://ru.wikipedia.org/wiki/Tokyo_Skytree</string>
+
     // Генерал Шерман
     <string name="question_general_sherman">Это дерево, растущее в Национальном парке \"Секвойя\" (США) - самый большой и самый тяжёлый живой организм на планете. Как оно называется?</string>
     <string-array name="variants_general_sherman">
@@ -92,11 +104,13 @@
     <string name="answer_general_sherman">Генерал Шерман</string>
     <string name="description_general_sherman">Имя этой гигантской секвойи - Генера Шерман.</string>
     <string name="link_general_sherman">https://ru.wikipedia.org/wiki/Генерал_Шерман_(дерево)</string>
+
     // Sagrada Familia
     <string name="question_sagrada_familia">На фото - внутреннее убранство Искупительного храма Святого Семейства, спроектированного Антонио Гауди. В каком городе расположен этот храм?</string>
     <string name="answer_sagrada_familia">Барселона</string>
     <string name="description_sagrada_familia">Искупительный храм Святого Семейства находится в Барселоне (Испания).</string>
     <string name="link_sagrada_familia">https://ru.wikipedia.org/wiki/Саграда-Фамилия</string>
+
     // Дворец Пена
     <string name="question_pena_palace">Это - Дворец Пена, летняя резиденция португальской королевской семьи в Синтре. Какие архитектурные стили использовались при строительстве этого дворца?</string>
     <string-array name="variants_pena_palace">
@@ -111,6 +125,7 @@
     </string-array>
     <string name="description_pena_palace">Архитектура дворца весьма эклектична, в ней использованы неоготика, неомануэллино, неоренессанс и неомавританский стиль.</string>
     <string name="link_pena_palace">https://ru.wikipedia.org/wiki/Дворец_Пена</string>
+
     // Дворец Пена прежде
     <string name="question_pena_before">Что располагалось на месте Дворца Пена, бывшей летней резиденции португальской королевской семьи в Синтре?</string>
     <string-array name="variants_pena_before">
@@ -121,6 +136,7 @@
     </string-array>
     <string name="answer_pena_before">Монастырь</string>
     <string name="description_pena_before">Дворец располагается на месте маленького заброшенного монастыря, разрушенного землятресенем 1755 года.</string>
+
     // Храм Неба
     <string name="question_temple_of_heaven">Это самая крупная постройка в храмовом комплексе, именуемом \"Храм Неба\" в Пекине. О чём молились в этом храме?</string>
     <string-array name="variants_temple_of_heaven">
@@ -132,6 +148,7 @@
     <string name="answer_temple_of_heaven">О хорошем урожае</string>
     <string name="description_temple_of_heaven">В течение почти 500 лет раз в году императоры прибывали сюда, чтобы попросить Небо о хорошем урожае.</string>
     <string name="link_temple_of_heaven">https://ru.wikipedia.org/wiki/Храм_Неба</string>
+
     // Храм Неба - Религия
     <string name="question_temple_religion">К какой религии относился Храм Неба в Пекине, который запечатлён на этой фотографии?</string>
     <string-array name="variants_temple_religion">
@@ -143,11 +160,13 @@
     <string name="answer_temple_religion">Даосизм</string>
     <string name="description_temple_religion">Этот храм можно отнести к Даосскому.</string>
     <string name="link_temple_religion">https://ru.wikipedia.org/wiki/Даосизм</string>
+
     // Токио / Киото
     <string name="question_tokyo_kyoto">Это мост и одна из построек Императорского дворца столицы Японии Токио. Каково нынешнее название города - бывшей столицы Японии (до 1868 года)?</string>
     <string name="answer_tokyo_kyoto">Киото</string>
     <string name="description_tokyo_kyoto">С 794 по 1868 год столица находилась в Хэйан-кё, современном Киото.</string>
     <string name="link_tokyo_kyoto">https://ru.wikipedia.org/wiki/Столицы_Японии</string>
+
     // Edo/Chiyoda Castle
     <string name="question_edo_chiyoda">Императорский дворец Токио находится на месте древнего замка, основанного в 1457 году. Как назывался этот замок?</string>
     <string-array name="variants_edo_chiyoda">
@@ -162,6 +181,7 @@
     </string-array>
     <string name="description_edo_chiyoda">Замок Эдо, также известный под названием \"Замок Тиёда\" — замок равнинного типа, основан в 1457 году феодалом Ота Доканом.</string>
     <string name="link_edo_chiyoda">https://ru.wikipedia.org/wiki/Эдо_(замок)</string>
+
     // Empire State
     <string name="question_empire_state">Такой вид открывается с одной из смотровых площадок небоскрёба Эмпайр-стейт-билдинг в Нью-Йорке. На каких этажах этого здания расположены смотровые площадки?</string>
     <string-array name="variants_empire_state">
@@ -176,6 +196,7 @@
     </string-array>
     <string name="description_empire_state">Обсерватории (смотровые площадки) расположены на 86-м и 102-м этажах. В среднем, их посещает около 4 миллионов человек в год.</string>
     <string name="link_empire_state">https://ru.wikipedia.org/wiki/Эмпайр-стейт-билдинг</string>
+
     // Times Square
     <string name="question_times_square">Со смотровой площадки небоскрёба Эмпайр-стейт-билдинг можно увидеть одну из самых ярких площадей Нью-Йорка, также являющейся одной из самых посещаемых площадей в мире. Что это за площадь?</string>
     <string-array name="variants_times_square">
@@ -187,6 +208,7 @@
     <string name="answer_times_square">Таймс-сквер</string>
     <string name="description_times_square">Это Таймс-сквер. Эту площадь посещают более 50 миллионов человек ежегодно.</string>
     <string name="link_times_square">https://ru.wikipedia.org/wiki/Таймс-сквер</string>
+
     // Кинта да Регалейра
     <string name="question_quinta_da_regaleira">Парк португальского дворца Кинта да Регалейра содержит множество подземных тоннелей. На фото - один из входов в эти тоннели. Какое имя ноcит этот колодец?</string>
     <string-array name="variants_quinta_da_regaleira">
@@ -198,6 +220,7 @@
     <string name="answer_quinta_da_regaleira">Колодец посвящения</string>
     <string name="description_quinta_da_regaleira">\"Колодец посвящения\" окружает спиральная галерея, которая сотоит из девяти пролётов, символизирующих девять кругов ада, чистилища и рая, описанные Данте.</string>
     <string name="link_quinta_da_regaleira">https://ru.wikipedia.org/wiki/Кинта_да_Регалейра</string>
+
     // Санкт-Петербург
     <string name="question_saint_petersburg">Собор святых Петра и Павла - один из главных симоволов Санкт-Петербурга. Город переименовывали несколько раз. Укажите предыдущие названия города:</string>
     <string-array name="variants_saint_petersburg">
@@ -212,11 +235,13 @@
     </string-array>
     <string name="description_saint_petersburg">Санкт-Петербург был основан в 1703 году, в 1914 переименован в Петроград, в 1924 - в Ленинград, а в 1991 году городу вернули историческое имя.</string>
     <string name="link_saint_petersburg">https://ru.wikipedia.org/wiki/Санкт-Петербург</string>
+
     // Медный всадник
     <string name="question_bronze_horseman">Этот памятник Петру I - один из главных символов Санкт-Петербурга. Как он называется?</string>
     <string name="answer_bronze_horseman">Медный всадник</string>
     <string name="description_bronze_horseman">Это \"Медный всадник\". Надпись на постаменте гласит: \"ПЕТРУ перьвому ЕКАТЕРИНА вторая лѣта 1782.\"</string>
     <string name="link_bronze_horseman">https://ru.wikipedia.org/wiki/Медный_всадник</string>
+
     // Другое
     <string name="error">Ошибка</string>
     <string name="error_link">Невозможно открыть ссылку!</string>
@@ -228,12 +253,14 @@
     <string name="too_many_check_box">Выбрано слишком много ответов!</string>
     <string name="one_point">+1 очко</string>
     <string name="two_points">+2 очка</string>
+
     // Диалог выхода
     <string name="dialog_title">Выйти из приложения?</string>
     <string name="dialog_message">Если вы выйдете из приложения, ваш прогресс будет сброшен.</string>
     <string name="cancel">Отмена</string>
     <string name="pause">Пауза</string>
     <string name="exit">Выйти</string>
+
     // Результат
     <string name="total_score">Всего очков:</string>
     <string name="congratulations">Поздравляем!</string>
