@@ -186,7 +186,7 @@
     <string-array name="variants_empire_state">
         <item>86</item>
         <item>102</item>
-        <item>64</item>
+        <item>69</item>
         <item>95</item>
     </string-array>
     <string-array name="answers_empire_state">
@@ -235,12 +235,6 @@
     <string name="description_saint_petersburg">Saint Petersburg was founded in 1703. In 1914, the name was changed to Petrograd, in 1924 to Leningrad, and in 1991 back to Saint Petersburg.</string>
     <string name="link_saint_petersburg">https://en.wikipedia.org/wiki/Saint_Petersburg</string>
 
-    // Bronze Horseman
-    <string name="question_bronze_horseman">This monument to Peter the Great is one of the main symbols of St. Petersburg. What is it called?</string>
-    <string name="answer_bronze_horseman">The Bronze Horseman</string>
-    <string name="description_bronze_horseman">This is \"the Bronze Horseman\". The inscription on the pedestal reads: \"Catherine the Second to Peter the First, 1782.\"</string>
-    <string name="link_bronze_horseman">https://en.wikipedia.org/wiki/Bronze_Horseman</string>
-
     // Bridges of St. Petersburg
     <string name="question_petersburg_bridges">St. Petersburg is often called "Northern Venice": the city is located on 42 islands of the Neva River delta. What is the approximate number of bridges in the city?</string>
     <string-array name="variants_petersburg_bridges">
@@ -251,6 +245,12 @@
     </string-array>
     <string name="answer_peterburg_bridges">About 800</string>
     <string name="description_petersburg_bridges">About 800 bridges are thrown through the water objects of St. Petersburg. The longest bridge: Bolshoy Obukhovsky (cable-stayed) bridge across the Neva River (total length of the bridge is 2824 m), the widest bridge: the Blue Bridge on the Moika River (99.5 m).</string>
+
+    // Bronze Horseman
+    <string name="question_bronze_horseman">This monument to Peter the Great is one of the main symbols of St. Petersburg. What is it called?</string>
+    <string name="answer_bronze_horseman">The Bronze Horseman</string>
+    <string name="description_bronze_horseman">This is \"the Bronze Horseman\". The inscription on the pedestal reads: \"Catherine the Second to Peter the First, 1782.\"</string>
+    <string name="link_bronze_horseman">https://en.wikipedia.org/wiki/Bronze_Horseman</string>
 
     // Other
     <string name="error">Error</string>
@@ -263,7 +263,7 @@
     <string name="too_many_check_box">Too many answers selected!</string>
     <string name="one_point">+1 point</string>
     <string name="two_points">+2 points</string>
-    <string name="the_article" translatable="false">The&#160;</string>
+    <string name="the_article" translatable="false">THE</string>
 
     // Exit dialog
     <string name="dialog_title">Exit app?</string>
