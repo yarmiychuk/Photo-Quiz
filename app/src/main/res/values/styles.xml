@@ -44,6 +44,11 @@
         <item name="android:background">@drawable/dark_background_out</item>
     </style>
 
+    <style name="TextViewStyle.Result">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
     <!-- Answers Items style -->
     <style name="AnswerItemStyle">
         <item name="android:layout_width">wrap_content</item>
@@ -56,6 +61,27 @@
     <!-- AlertDialogTheme -->
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@android:color/black</item>
+    </style>
+
+    <!-- Result layout style -->
+    <style name="MyResultLayoutStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:background">@drawable/background_score</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/standard_space</item>
+        <item name="android:paddingRight">@dimen/standard_space</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <!-- Divider style -->
+    <style name="MyDividerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/divider_thickness</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:layout_marginRight">@dimen/standard_space</item>
+        <item name="android:layout_marginLeft">@dimen/standard_space</item>
     </style>
 
 </resources>

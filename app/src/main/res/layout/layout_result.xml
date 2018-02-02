@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_result"
+    style="@style/MyResultLayoutStyle"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_score" />
+
+    <View style="@style/MyDividerStyle" />
+
+    <include layout="@layout/layout_detailed_result" />
+
+</LinearLayout>

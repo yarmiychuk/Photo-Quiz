@@ -21,6 +21,9 @@ public class FragmentIntro extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_intro_finish, container, false);
 
+        // Hide Result Layout
+        view.findViewById(R.id.ll_result).setVisibility(View.INVISIBLE);
+
         // Set text to TextViews
         ((TextView) view.findViewById(R.id.tv_quiz_title))
                 .setText(getString(R.string.welcome));

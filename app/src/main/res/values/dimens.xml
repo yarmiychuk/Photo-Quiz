@@ -16,5 +16,6 @@
     <dimen name="progress_bar_size">100dp</dimen>
     <dimen name="answer_image_size">100dp</dimen>
     <dimen name="corners_size">8dp</dimen>
+    <dimen name="divider_thickness">1dp</dimen>
 
 </resources>

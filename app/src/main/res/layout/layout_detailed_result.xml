@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/TextViewStyle.Result"
+            android:text="@string/correct_answers_result" />
+
+        <TextView
+            android:id="@+id/tv_right_count"
+            style="@style/TextViewStyle.Result"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+
+    <View style="@style/MyDividerStyle" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextViewStyle.Result"
+            android:text="@string/partially_correct_answers_result" />
+
+        <TextView
+            android:id="@+id/tv_partially_count"
+            style="@style/TextViewStyle.Result" />
+
+    </LinearLayout>
+
+</LinearLayout>

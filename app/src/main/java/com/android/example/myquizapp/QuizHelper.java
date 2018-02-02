@@ -17,10 +17,11 @@ import java.util.Collections;
 
 public final class QuizHelper {
 
-    public static final String ARG_QUESTION = "question";
-    public static final String ARG_QUESTION_NUMBER = "questionNumber";
-    public static final String ARG_RESULT = "result";
+    public static final String KEY_QUESTION = "question";
+    public static final String KEY_QUESTION_NUMBER = "questionNumber";
     public static final String KEY_ANSWER_TYPE = "answerType";
+    public static final String KEY_COUNT_RIGHT_ANSWERS = "rightAnswersCount";
+    public static final String KEY_COUNT_PARTIALLY_ANSWERS = "partiallyAnswers";
     public static final String KEY_QUESTION_ANSWERS = "questionAnswers";
     public static final String KEY_QUESTION_MODE = "questionMode";
     public static final String KEY_UI_HIDDEN = "isUIHidden";
@@ -28,13 +29,12 @@ public final class QuizHelper {
     public static final int Q_TYPE_ERROR = 0, Q_TYPE_RADIO_GROUP = 1,
             Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;
     public static final int A_TYPE_WRONG = 0, A_TYPE_PARTIALLY = 1, A_TYPE_CORRECT = 2;
-    public static final int SCORE_DEFAULT = 0;
+    public static final int DEFAULT_POINTS_VALUE = 0;
     public static final int Q_INTRO = 0;
     public static final int QUESTIONS_LIMIT = 10;
-    static final int QUESTIONS_TOTAL = 20;
     static final String KEY_CURRENT_QUESTION = "currentQuestion";
     static final String KEY_QUESTION_LIST = "questionsList";
-    static final String KEY_SCORE = "score";
+    static final int QUESTIONS_TOTAL = 20;
     static final int Q_FINISH = 100;
     // Questions
     private static final int Q_ACTINIA = 1;

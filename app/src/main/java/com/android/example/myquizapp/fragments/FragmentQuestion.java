@@ -113,8 +113,8 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     private void initializeVariables() {
         listener = (AnswerListener) getActivity();
         initializeAnimation();
-        question = getArguments().getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
-        questionNumber = getArguments().getInt(QuizHelper.ARG_QUESTION_NUMBER, QuizHelper.Q_INTRO);
+        question = getArguments().getInt(QuizHelper.KEY_QUESTION, QuizHelper.Q_INTRO);
+        questionNumber = getArguments().getInt(QuizHelper.KEY_QUESTION_NUMBER, QuizHelper.Q_INTRO);
         questionMode = QuizHelper.MODE_QUESTION;
         answerType = QuizHelper.A_TYPE_WRONG;
         isUIHidden = false;
@@ -149,11 +149,11 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      * @param state - saved instance state
      */
     private void getSavedState(Bundle state) {
-        question = state.getInt(QuizHelper.ARG_QUESTION, QuizHelper.Q_INTRO);
+        question = state.getInt(QuizHelper.KEY_QUESTION, QuizHelper.Q_INTRO);
         questionMode = state.getInt(QuizHelper.KEY_QUESTION_MODE, QuizHelper.MODE_QUESTION);
         answerType = state.getInt(QuizHelper.KEY_ANSWER_TYPE, QuizHelper.A_TYPE_WRONG);
         answers = state.getStringArray(QuizHelper.KEY_QUESTION_ANSWERS);
-        questionNumber = state.getInt(QuizHelper.ARG_QUESTION_NUMBER, QuizHelper.Q_INTRO);
+        questionNumber = state.getInt(QuizHelper.KEY_QUESTION_NUMBER, QuizHelper.Q_INTRO);
         isUIHidden = state.getBoolean(QuizHelper.KEY_UI_HIDDEN, false);
     }
 
@@ -165,10 +165,10 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(QuizHelper.KEY_QUESTION_MODE, questionMode);
-        outState.putInt(QuizHelper.ARG_QUESTION, question);
+        outState.putInt(QuizHelper.KEY_QUESTION, question);
         outState.putInt(QuizHelper.KEY_ANSWER_TYPE, answerType);
         outState.putStringArray(QuizHelper.KEY_QUESTION_ANSWERS, answers);
-        outState.putInt(QuizHelper.ARG_QUESTION_NUMBER, questionNumber);
+        outState.putInt(QuizHelper.KEY_QUESTION_NUMBER, questionNumber);
         outState.putBoolean(QuizHelper.KEY_UI_HIDDEN, isUIHidden);
         super.onSaveInstanceState(outState);
     }

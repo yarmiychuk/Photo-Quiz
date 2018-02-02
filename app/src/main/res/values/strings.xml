@@ -282,5 +282,7 @@
     <string name="less_half">You were able to answer part of the questions.</string>
     <string name="no_one">You did not answer correctly AT ALL!</string>
     <string name="your_score">Your score:</string>
+    <string name="correct_answers_result">Correct answers:</string>
+    <string name="partially_correct_answers_result">Partially correct answers:</string>
 
 </resources>

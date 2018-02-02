@@ -29,30 +29,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/background_score"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/standard_space"
-        android:paddingRight="@dimen/standard_space"
-        android:visibility="invisible">
-
-        <TextView
-            style="@style/TextViewStyle"
-            android:layout_width="wrap_content"
-            android:text="@string/your_score" />
-
-        <TextView
-            android:id="@+id/tv_quiz_score"
-            style="@style/TextViewStyle"
-            android:layout_width="wrap_content"
-            android:textSize="@dimen/big_text_size" />
-
-    </LinearLayout>
+    <include layout="@layout/layout_result" />
 
     <TextView
         style="@style/TextViewStyle"

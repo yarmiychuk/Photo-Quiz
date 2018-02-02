@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     private Animation animationIn;
 
     // Constants and variables for fragments
-    private int currentQuestion, questionMode, score;
+    private int currentQuestion, questionMode, rightAnswersCount, partiallyAnswersCount;
     private ArrayList<Integer> questionsList;
 
     @Override
@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity
     private void initializeVariables() {
         animationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         currentQuestion = QuizHelper.Q_INTRO;
-        score = QuizHelper.SCORE_DEFAULT;
+        rightAnswersCount = QuizHelper.DEFAULT_POINTS_VALUE;
+        partiallyAnswersCount = QuizHelper.DEFAULT_POINTS_VALUE;
         questionsList = new ArrayList<>();
     }
 
@@ -71,7 +72,10 @@ public class MainActivity extends AppCompatActivity
         if (state != null) {
             currentQuestion = state.getInt(QuizHelper.KEY_CURRENT_QUESTION, QuizHelper.Q_INTRO);
             questionMode = state.getInt(QuizHelper.KEY_QUESTION_MODE, QuizHelper.MODE_QUESTION);
-            score = state.getInt(QuizHelper.KEY_SCORE, QuizHelper.SCORE_DEFAULT);
+            rightAnswersCount = state.getInt(QuizHelper.KEY_COUNT_RIGHT_ANSWERS,
+                    QuizHelper.DEFAULT_POINTS_VALUE);
+            partiallyAnswersCount = state.getInt(QuizHelper.KEY_COUNT_PARTIALLY_ANSWERS,
+                    QuizHelper.DEFAULT_POINTS_VALUE);
             questionsList = state.getIntegerArrayList(QuizHelper.KEY_QUESTION_LIST);
             if (questionsList == null) {
                 questionsList = new ArrayList<>();
@@ -91,7 +95,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(QuizHelper.KEY_CURRENT_QUESTION, currentQuestion);
-        outState.putInt(QuizHelper.KEY_SCORE, score);
+        outState.putInt(QuizHelper.KEY_COUNT_RIGHT_ANSWERS, rightAnswersCount);
+        outState.putInt(QuizHelper.KEY_COUNT_PARTIALLY_ANSWERS, partiallyAnswersCount);
         outState.putInt(QuizHelper.KEY_QUESTION_MODE, questionMode);
         outState.putIntegerArrayList(QuizHelper.KEY_QUESTION_LIST, questionsList);
         super.onSaveInstanceState(outState);
@@ -163,10 +168,11 @@ public class MainActivity extends AppCompatActivity
     private Bundle getQuestionArguments() {
         Bundle arguments = new Bundle();
         if (currentQuestion < QuizHelper.Q_FINISH) {
-            arguments.putInt(QuizHelper.ARG_QUESTION, currentQuestion);
-            arguments.putInt(QuizHelper.ARG_QUESTION_NUMBER, questionsList.size());
+            arguments.putInt(QuizHelper.KEY_QUESTION, currentQuestion);
+            arguments.putInt(QuizHelper.KEY_QUESTION_NUMBER, questionsList.size());
         } else if (currentQuestion > QuizHelper.Q_INTRO) {
-            arguments.putInt(QuizHelper.ARG_RESULT, score);
+            arguments.putInt(QuizHelper.KEY_COUNT_RIGHT_ANSWERS, rightAnswersCount);
+            arguments.putInt(QuizHelper.KEY_COUNT_PARTIALLY_ANSWERS, partiallyAnswersCount);
         }
         return arguments;
     }
@@ -232,11 +238,18 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Receive answer's points for current question
-     * @param scoreForAnswer - value of score to add to total score
+     * @param typeOfAnswer - type of user answer (correct, partially, wrong)
      */
     @Override
-    public void answerReceived(int scoreForAnswer) {
-        score += scoreForAnswer;
+    public void answerReceived(int typeOfAnswer) {
+        switch (typeOfAnswer) {
+            case QuizHelper.A_TYPE_CORRECT:
+                rightAnswersCount++;
+                break;
+            case QuizHelper.A_TYPE_PARTIALLY:
+                partiallyAnswersCount++;
+                break;
+        }
         showButtonNext();
     }
 
