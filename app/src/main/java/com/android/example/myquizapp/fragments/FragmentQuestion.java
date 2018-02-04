@@ -42,7 +42,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     // Toast for error message
-    Toast mToast;
+    private Toast mToast;
     // Type of answer
     private int answerType;
     // Type of question
@@ -431,11 +431,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
             return true;
         }
         // Show error message
-        if (mToast != null) {
-            mToast.cancel();
-        }
-        mToast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
-        mToast.show();
+        showToast(message);
         return false;
     }
 
@@ -482,7 +478,20 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
      */
     private void badLink() {
         mWikiBTN.setVisibility(View.INVISIBLE);
-        Toast.makeText(getActivity(), getString(R.string.error_link), Toast.LENGTH_SHORT).show();
+        showToast(getString(R.string.error_link));
+    }
+
+    /**
+     * Cancel previous toast (if it is) and show next one
+     *
+     * @param text - text of toast
+     */
+    private void showToast(String text) {
+        if (mToast != null) {
+            mToast.cancel();
+        }
+        mToast = Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
+        mToast.show();
     }
 
     /**
@@ -643,7 +652,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
         } else if (answerType == QuizHelper.A_TYPE_PARTIALLY) {
             toastMessage = getString(R.string.one_point);
         }
-        Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
+        showToast(toastMessage);
     }
 
     /**

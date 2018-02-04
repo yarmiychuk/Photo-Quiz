@@ -26,14 +26,14 @@ public class MainActivity extends AppCompatActivity
         implements FragmentQuestion.AnswerListener {
 
     // Views
-    private Toolbar toolbar;
-    private FrameLayout flContent;
-    private Button btnNext;
+    private Toolbar mToolbar;
+    private FrameLayout mContentFrame;
+    private Button mNextButton;
 
-    private Toast toast;
+    private Toast mToast;
 
-    // Animations
-    private Animation animationIn;
+    // Animation
+    private Animation mAnimationIn;
 
     // Constants and variables for fragments
     private int currentQuestion, questionMode, rightAnswersCount, partiallyAnswersCount;
@@ -53,15 +53,15 @@ public class MainActivity extends AppCompatActivity
 
     // Define views
     private void initializeViews() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
-        flContent = findViewById(R.id.content_frame);
-        btnNext = findViewById(R.id.btn_next);
+        mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setTitle(getString(R.string.app_name));
+        mContentFrame = findViewById(R.id.content_frame);
+        mNextButton = findViewById(R.id.btn_next);
     }
 
     // Define variables
     private void initializeVariables() {
-        animationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        mAnimationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         currentQuestion = QuizHelper.Q_INTRO;
         rightAnswersCount = QuizHelper.DEFAULT_POINTS_VALUE;
         partiallyAnswersCount = QuizHelper.DEFAULT_POINTS_VALUE;
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity
      */
     private void setFragment() {
         // Hide frame and button
-        flContent.setVisibility(View.INVISIBLE);
+        mContentFrame.setVisibility(View.INVISIBLE);
         // Define Fragment
         Fragment fragment = getFragment();
         // Put arguments for question
@@ -119,8 +119,8 @@ public class MainActivity extends AppCompatActivity
         // Replace Fragment
         getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
         // Show fragment
-        flContent.setVisibility(View.VISIBLE);
-        flContent.startAnimation(animationIn);
+        mContentFrame.setVisibility(View.VISIBLE);
+        mContentFrame.startAnimation(mAnimationIn);
         // Show or hide Toolbar
         invalidateToolbar();
     }
@@ -130,9 +130,9 @@ public class MainActivity extends AppCompatActivity
      */
     private void invalidateToolbar() {
         if (currentQuestion > 0 && currentQuestion <= QuizHelper.QUESTIONS_TOTAL) {
-            toolbar.setVisibility(View.GONE);
+            mToolbar.setVisibility(View.GONE);
         } else {
-            toolbar.setVisibility(View.VISIBLE);
+            mToolbar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -226,16 +226,16 @@ public class MainActivity extends AppCompatActivity
      */
     private void invalidateButtonNext() {
         if (questionMode == QuizHelper.MODE_QUESTION) {
-            btnNext.setVisibility(View.INVISIBLE);
+            mNextButton.setVisibility(View.INVISIBLE);
         } else {
-            btnNext.setVisibility(View.VISIBLE);
+            mNextButton.setVisibility(View.VISIBLE);
             // Invalidate text
             if (currentQuestion == QuizHelper.Q_INTRO) {
-                btnNext.setText(getString(R.string.nav_start));
+                mNextButton.setText(getString(R.string.nav_start));
             } else if (currentQuestion == QuizHelper.Q_FINISH) {
-                btnNext.setText(getString(R.string.nav_again));
+                mNextButton.setText(getString(R.string.nav_again));
             } else {
-                btnNext.setText(getString(R.string.nav_next));
+                mNextButton.setText(getString(R.string.nav_next));
             }
         }
     }
@@ -258,13 +258,13 @@ public class MainActivity extends AppCompatActivity
             startActivity(Intent.createChooser(shareIntent, getString(R.string.chooser_title)));
         } else {
             // Show toast
-            if (toast != null) {
-                toast.cancel();
+            if (mToast != null) {
+                mToast.cancel();
             }
-            toast = Toast.makeText(MainActivity.this,
+            mToast = Toast.makeText(MainActivity.this,
                     getString(R.string.share_impossible),
                     Toast.LENGTH_SHORT);
-            toast.show();
+            mToast.show();
         }
     }
 
