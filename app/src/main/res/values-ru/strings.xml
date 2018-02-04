@@ -135,7 +135,7 @@
         <item>(Ничего)</item>
     </string-array>
     <string name="answer_pena_before">Монастырь</string>
-    <string name="description_pena_before">Дворец располагается на месте маленького заброшенного монастыря, разрушенного землятресенем 1755 года.</string>
+    <string name="description_pena_before">Дворец располагается на месте маленького заброшенного монастыря, разрушенного землетрясением 1755 года.</string>
 
     // Храм Неба
     <string name="question_temple_of_heaven">Это самая крупная постройка в храмовом комплексе, именуемом \"Храм Неба\" в Пекине. О чём молились в этом храме?</string>
