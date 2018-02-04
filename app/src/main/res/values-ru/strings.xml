@@ -102,7 +102,7 @@
         <item>Дерево Уавона</item>
     </string-array>
     <string name="answer_general_sherman">Генерал Шерман</string>
-    <string name="description_general_sherman">Имя этой гигантской секвойи - Генера Шерман.</string>
+    <string name="description_general_sherman">Имя этой гигантской секвойи - Генерал Шерман.</string>
     <string name="link_general_sherman">https://ru.wikipedia.org/wiki/Генерал_Шерман_(дерево)</string>
 
     // Sagrada Familia
@@ -218,7 +218,7 @@
         <item>Пропасть забвения</item>
     </string-array>
     <string name="answer_quinta_da_regaleira">Колодец посвящения</string>
-    <string name="description_quinta_da_regaleira">\"Колодец посвящения\" окружает спиральная галерея, которая сотоит из девяти пролётов, символизирующих девять кругов ада, чистилища и рая, описанные Данте.</string>
+    <string name="description_quinta_da_regaleira">\"Колодец посвящения\" окружает спиральная галерея, которая состоит из девяти пролётов, символизирующих девять кругов ада, чистилища и рая, описанные Данте.</string>
     <string name="link_quinta_da_regaleira">https://ru.wikipedia.org/wiki/Кинта_да_Регалейра</string>
 
     // Санкт-Петербург
