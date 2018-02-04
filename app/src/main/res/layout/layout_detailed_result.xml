@@ -9,12 +9,12 @@
         android:layout_height="wrap_content">
 
         <TextView
-            style="@style/TextViewStyle.Result"
+            style="@style/MyTextViewStyle.Result"
             android:text="@string/correct_answers_result" />
 
         <TextView
             android:id="@+id/tv_right_count"
-            style="@style/TextViewStyle.Result"
+            style="@style/MyTextViewStyle.Result"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true" />
 
@@ -28,12 +28,12 @@
         android:orientation="horizontal">
 
         <TextView
-            style="@style/TextViewStyle.Result"
+            style="@style/MyTextViewStyle.Result"
             android:text="@string/partially_correct_answers_result" />
 
         <TextView
             android:id="@+id/tv_partially_count"
-            style="@style/TextViewStyle.Result" />
+            style="@style/MyTextViewStyle.Result" />
 
     </LinearLayout>
 

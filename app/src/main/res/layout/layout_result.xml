@@ -10,4 +10,10 @@
 
     <include layout="@layout/layout_detailed_result" />
 
+    <View
+        android:layout_width="@dimen/small_space"
+        android:layout_height="@dimen/standard_space" />
+
+    <include layout="@layout/button_share" />
+
 </LinearLayout>

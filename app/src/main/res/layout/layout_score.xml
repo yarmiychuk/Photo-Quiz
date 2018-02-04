@@ -6,13 +6,13 @@
     android:orientation="horizontal">
 
     <TextView
-        style="@style/TextViewStyle"
+        style="@style/MyTextViewStyle"
         android:layout_width="wrap_content"
         android:text="@string/your_score" />
 
     <TextView
         android:id="@+id/tv_quiz_score"
-        style="@style/TextViewStyle"
+        style="@style/MyTextViewStyle"
         android:layout_width="wrap_content"
         android:textSize="@dimen/big_text_size" />
 

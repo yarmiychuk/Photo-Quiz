@@ -8,18 +8,18 @@
 
     <CheckBox
         android:id="@+id/chb_answer_0"
-        style="@style/AnswerItemStyle" />
+        style="@style/MyAnswerItemStyle" />
 
     <CheckBox
         android:id="@+id/chb_answer_1"
-        style="@style/AnswerItemStyle" />
+        style="@style/MyAnswerItemStyle" />
 
     <CheckBox
         android:id="@+id/chb_answer_2"
-        style="@style/AnswerItemStyle" />
+        style="@style/MyAnswerItemStyle" />
 
     <CheckBox
         android:id="@+id/chb_answer_3"
-        style="@style/AnswerItemStyle" />
+        style="@style/MyAnswerItemStyle" />
 
 </LinearLayout>

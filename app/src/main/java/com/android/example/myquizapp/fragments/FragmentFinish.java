@@ -19,7 +19,6 @@ import org.jetbrains.annotations.Contract;
 
 public class FragmentFinish extends Fragment {
 
-    private final int POINTS_FOR_RIGHT = 2, POINTS_FOR_PARTIALLY = 1;
     // Final results for quiz
     private int rightAnswersCount, partiallyAnswersCount;
 
@@ -54,7 +53,7 @@ public class FragmentFinish extends Fragment {
      */
     private void invalidateUI(View view) {
         // Define and calculate variables
-        int maxPoints = QuizHelper.QUESTIONS_LIMIT * POINTS_FOR_RIGHT;
+        int maxPoints = QuizHelper.QUESTIONS_LIMIT * QuizHelper.POINTS_FOR_RIGHT;
         int scorePoints = getScorePoints();
         String resultCaption = getString(R.string.congratulations);
         String resultMessage;
@@ -94,7 +93,8 @@ public class FragmentFinish extends Fragment {
      */
     @Contract(pure = true)
     private int getScorePoints() {
-        return rightAnswersCount * POINTS_FOR_RIGHT + partiallyAnswersCount * POINTS_FOR_PARTIALLY;
+        return rightAnswersCount * QuizHelper.POINTS_FOR_RIGHT
+                + partiallyAnswersCount * QuizHelper.POINTS_FOR_PARTIALLY;
     }
 
 }

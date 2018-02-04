@@ -285,4 +285,14 @@
     <string name="correct_answers_result">Верных ответов:</string>
     <string name="partially_correct_answers_result">Частично верных ответов:</string>
 
+    // Поделиться
+    <string name="share">Поделиться</string>
+    <string name="chooser_title">Поделиться с помощью:</string>
+    <string name="share_title">Я прошёл фото-викторину!</string>
+    <string name="share_result">Мой результат:</string>
+    <string name="share_points">очков!</string>
+    <string name="share_points_one">очко!</string>
+    <string name="share_points_two_three_four">очка!</string>
+    <string name="share_impossible">У вас нет приложений, чтобы поделиться результатом!</string>
+
 </resources>

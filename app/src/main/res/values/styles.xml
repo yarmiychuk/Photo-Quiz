@@ -9,14 +9,14 @@
     </style>
 
     <!-- Background ImageView style -->
-    <style name="ImageViewStyle">
+    <style name="MyImageViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
 
     <!-- Button style -->
-    <style name="ButtonStyle">
+    <style name="MyButtonStyle">
         <item name="android:layout_width">@dimen/button_width</item>
         <item name="android:layout_height">@dimen/button_height</item>
         <item name="android:layout_marginLeft">@dimen/button_margin_horizontal</item>
@@ -27,7 +27,7 @@
     </style>
 
     <!-- TextView style -->
-    <style name="TextViewStyle">
+    <style name="MyTextViewStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/standard_space</item>
         <item name="android:gravity">center</item>
@@ -35,22 +35,22 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="TextViewStyle.Intro">
+    <style name="MyTextViewStyle.Intro">
         <item name="android:layout_width">match_parent</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="TextViewStyle.Question">
+    <style name="MyTextViewStyle.Question">
         <item name="android:background">@drawable/dark_background_out</item>
     </style>
 
-    <style name="TextViewStyle.Result">
+    <style name="MyTextViewStyle.Result">
         <item name="android:textSize">@dimen/small_text_size</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
 
     <!-- Answers Items style -->
-    <style name="AnswerItemStyle">
+    <style name="MyAnswerItemStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>

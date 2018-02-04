@@ -285,4 +285,14 @@
     <string name="correct_answers_result">Correct answers:</string>
     <string name="partially_correct_answers_result">Partially correct answers:</string>
 
+    // Share
+    <string name="share">Share</string>
+    <string name="chooser_title">Share with</string>
+    <string name="share_title">I won in the photo quiz!</string>
+    <string name="share_result">My result:</string>
+    <string name="share_points">points!</string>
+    <string name="share_points_one">point!</string>
+    <string name="share_points_two_three_four">points!</string>
+    <string name="share_impossible">You do not have any apps to share the result!</string>
+
 </resources>

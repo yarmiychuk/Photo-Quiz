@@ -3,6 +3,8 @@ package com.android.example.myquizapp;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.android.example.myquizapp.fragments.FragmentFinish;
 import com.android.example.myquizapp.fragments.FragmentQuestion;
@@ -24,9 +27,10 @@ public class MainActivity extends AppCompatActivity
 
     // Views
     private Toolbar toolbar;
-    //private ActionBar actionBar;
     private FrameLayout flContent;
     private Button btnNext;
+
+    private Toast toast;
 
     // Animations
     private Animation animationIn;
@@ -234,6 +238,66 @@ public class MainActivity extends AppCompatActivity
                 btnNext.setText(getString(R.string.nav_next));
             }
         }
+    }
+
+    /**
+     * Share quiz result
+     *
+     * @param view - Share button
+     */
+    public void shareResult(View view) {
+        // Make share intent
+        Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_title));
+        shareIntent.putExtra(Intent.EXTRA_TEXT, getShareMessage());
+
+        // Verify that the intent will resolve to an activity
+        if (shareIntent.resolveActivity(getPackageManager()) != null) {
+            // Start chooser
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.chooser_title)));
+        } else {
+            // Show toast
+            if (toast != null) {
+                toast.cancel();
+            }
+            toast = Toast.makeText(MainActivity.this,
+                    getString(R.string.share_impossible),
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    /**
+     * Make text for share message
+     *
+     * @return text for message
+     */
+    @NonNull
+    private String getShareMessage() {
+        int totalScore = rightAnswersCount * QuizHelper.POINTS_FOR_RIGHT
+                + partiallyAnswersCount * QuizHelper.POINTS_FOR_PARTIALLY;
+        // Total score result
+        String message = getString(R.string.share_title) + "\n"
+                + getString(R.string.share_result) + " " + totalScore + " ";
+        switch (totalScore) {
+            case 1:
+                message += getString(R.string.share_points_one);
+                break;
+            case 2:
+            case 3:
+            case 4:
+                message += getString(R.string.share_points_two_three_four);
+                break;
+            default:
+                message += getString(R.string.share_points);
+        }
+        // Right answers
+        message += "\n" + getString(R.string.correct_answers_result) + " " + rightAnswersCount;
+        // Partially answers
+        message += "\n" + getString(R.string.partially_correct_answers_result)
+                + " " + partiallyAnswersCount;
+        return message;
     }
 
     /**

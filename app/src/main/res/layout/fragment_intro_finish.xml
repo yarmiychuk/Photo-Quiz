@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        style="@style/ImageViewStyle"
+        style="@style/MyImageViewStyle"
         android:contentDescription="@string/description_portugal_pena"
         android:src="@drawable/pena_palace_landscape" />
 
@@ -16,14 +16,14 @@
 
         <TextView
             android:id="@+id/tv_quiz_title"
-            style="@style/TextViewStyle.Intro"
+            style="@style/MyTextViewStyle.Intro"
             android:paddingBottom="0dp"
             android:text="@string/congratulations"
             android:textSize="@dimen/caption_text_size" />
 
         <TextView
             android:id="@+id/tv_quiz_message"
-            style="@style/TextViewStyle.Intro"
+            style="@style/MyTextViewStyle.Intro"
             android:paddingTop="0dp"
             android:text="@string/all_questions" />
 
@@ -32,7 +32,7 @@
     <include layout="@layout/layout_result" />
 
     <TextView
-        style="@style/TextViewStyle"
+        style="@style/MyTextViewStyle"
         android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/standard_space"

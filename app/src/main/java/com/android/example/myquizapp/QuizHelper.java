@@ -25,6 +25,7 @@ public final class QuizHelper {
     public static final String KEY_QUESTION_ANSWERS = "questionAnswers";
     public static final String KEY_QUESTION_MODE = "questionMode";
     public static final String KEY_UI_HIDDEN = "isUIHidden";
+    public static final int POINTS_FOR_RIGHT = 2, POINTS_FOR_PARTIALLY = 1;
     public static final int MODE_QUESTION = 0, MODE_ANSWER = 1;
     public static final int Q_TYPE_ERROR = 0, Q_TYPE_RADIO_GROUP = 1,
             Q_TYPE_CHECK_BOX = 2, Q_TYPE_INPUT = 3;
