@@ -222,7 +222,7 @@
     <string name="link_quinta_da_regaleira">https://ru.wikipedia.org/wiki/Кинта_да_Регалейра</string>
 
     // Санкт-Петербург
-    <string name="question_saint_petersburg">Собор святых Петра и Павла - один из главных симоволов Санкт-Петербурга. Город переименовывали несколько раз. Укажите предыдущие названия города:</string>
+    <string name="question_saint_petersburg">Собор святых Петра и Павла - один из главных символов Санкт-Петербурга. Город переименовывали несколько раз. Укажите предыдущие названия города:</string>
     <string-array name="variants_saint_petersburg">
         <item>Ленинград</item>
         <item>Петроград</item>
