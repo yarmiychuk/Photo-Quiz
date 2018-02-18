@@ -61,7 +61,8 @@ public final class QuizHelper {
 
     /**
      * Get image for question
-     * @param orientation - device orientation
+     *
+     * @param orientation    - device orientation
      * @param questionNumber - number of current question
      * @return image for question
      */
@@ -78,6 +79,7 @@ public final class QuizHelper {
 
     /**
      * Get default question's image
+     *
      * @param questionNumber - number of current question
      * @return image's resource id
      */
@@ -124,6 +126,7 @@ public final class QuizHelper {
 
     /**
      * Get Question image for portrait orientation
+     *
      * @param questionNumber - number of question
      * @return image resource id
      */
@@ -148,6 +151,7 @@ public final class QuizHelper {
 
     /**
      * Get Question image for landscape orientation
+     *
      * @param questionNumber - number of question
      * @return image resource id
      */
@@ -218,7 +222,7 @@ public final class QuizHelper {
     /**
      * Get text for a question
      *
-     * @param res - Resources of app
+     * @param res            - Resources of app
      * @param questionNumber - Number of question
      * @return Question text
      */
@@ -272,7 +276,7 @@ public final class QuizHelper {
     /**
      * Get answer variants for a question
      *
-     * @param res - Resources of app
+     * @param res            - Resources of app
      * @param questionNumber - Number of question
      * @return array of answer variants for question
      */
@@ -336,7 +340,7 @@ public final class QuizHelper {
     /**
      * Get list of right answers for a question
      *
-     * @param res - Resources of app
+     * @param res            - Resources of app
      * @param questionNumber - Number of question
      * @return list of right answers for question
      */
@@ -363,18 +367,19 @@ public final class QuizHelper {
 
     /**
      * Make and return array with "Error" words
+     *
      * @return "Error" array
      */
     @NonNull
     private static String[] getErrorArray(Resources res) {
         String error = res.getString(R.string.error);
-        return new String[] {error, error, error, error};
+        return new String[]{error, error, error, error};
     }
 
     /**
      * Get right answer for single-item choice question
      *
-     * @param res - Resources of app
+     * @param res            - Resources of app
      * @param questionNumber - Number of question
      * @return right answer
      */
@@ -448,7 +453,7 @@ public final class QuizHelper {
     /**
      * Get answer text for unknown orientation or for any orientation
      *
-     * @param res - Resources of app
+     * @param res            - Resources of app
      * @param questionNumber - Number of question
      * @return default answer text.
      */
@@ -502,7 +507,7 @@ public final class QuizHelper {
     /**
      * Get answer text for portrait orientation
      *
-     * @param res - Resources of app
+     * @param res            - Resources of app
      * @param questionNumber - Number of question
      * @return answer text for portrait orientation
      */
@@ -527,7 +532,7 @@ public final class QuizHelper {
     /**
      * Get answer text for landscape orientation
      *
-     * @param res - Resources of app
+     * @param res            - Resources of app
      * @param questionNumber - Number of question
      * @return answer text for landscape orientation
      */
@@ -549,7 +554,8 @@ public final class QuizHelper {
 
     /**
      * Get link for wiki page
-     * @param res - Resources of app
+     *
+     * @param res            - Resources of app
      * @param questionNumber - number of question
      * @return link
      */

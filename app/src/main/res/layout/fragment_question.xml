@@ -52,7 +52,7 @@
 
             <Button
                 android:id="@+id/btn_submit"
-                style="@style/ButtonStyle"
+                style="@style/MyButtonStyle"
                 android:layout_marginBottom="@dimen/standard_space"
                 android:layout_marginTop="0dp"
                 android:text="@string/nav_submit" />

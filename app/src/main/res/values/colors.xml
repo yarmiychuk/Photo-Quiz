@@ -5,10 +5,6 @@
     <color name="colorPrimaryDark">#616161</color>
     <color name="colorAccent">@android:color/white</color>
 
-    <color name="colorDarkGray">#212121</color>
-    <color name="colorWhiteTransparent">#BBFFFFFF</color>
-    <color name="colorWhiteMoreTransparent">#99FFFFFF</color>
-
     <color name="colorPrimaryTransparent">#DD9E9E9E</color>
     <color name="colorPrimaryDarkTransparent">#AA616161</color>
     <color name="colorPrimaryLight">#BDBDBD</color>
@@ -24,7 +20,5 @@
 
     <color name="colorYellow">#FFEE58</color>
     <color name="colorYellowLight">#FDD835</color>
-
-    <color name="colorTransparent">#00FFFFFF</color>
 
 </resources>

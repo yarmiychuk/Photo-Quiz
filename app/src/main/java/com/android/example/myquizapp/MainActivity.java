@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Check for saved state (current fragment and score)
+     *
      * @param state - saved state
      */
     private void invalidateState(Bundle state) {
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Save current state of app
+     *
      * @param outState - current state
      */
     @Override
@@ -138,6 +140,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Fragment getter
+     *
      * @return fragment for current app state
      */
     private Fragment getFragment() {
@@ -161,12 +164,13 @@ public class MainActivity extends AppCompatActivity
      * Just show Next button
      */
     private void showButtonNext() {
-       questionMode = QuizHelper.MODE_ANSWER;
-       invalidateButtonNext();
+        questionMode = QuizHelper.MODE_ANSWER;
+        invalidateButtonNext();
     }
 
     /**
      * Make arguments for fragment
+     *
      * @return arguments for question fragment
      */
     private Bundle getQuestionArguments() {
@@ -183,6 +187,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * OnClick listener
+     *
      * @param view - The View was clicked
      */
     public void onClickNext(View view) {
@@ -302,6 +307,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Receive answer's points for current question
+     *
      * @param typeOfAnswer - type of user answer (correct, partially, wrong)
      */
     @Override

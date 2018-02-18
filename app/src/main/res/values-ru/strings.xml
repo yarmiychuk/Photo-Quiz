@@ -273,7 +273,6 @@
     <string name="exit">Выйти</string>
 
     // Результат
-    <string name="total_score">Всего очков:</string>
     <string name="congratulations">Поздравляем!</string>
     <string name="no_bad">Неплохо…</string>
     <string name="incredible">Невероятно!</string>

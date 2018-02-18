@@ -308,6 +308,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * Get current device orientation
+     *
      * @return orientation
      */
     private int getOrientation() {
@@ -352,6 +353,7 @@ public class FragmentQuestion extends Fragment implements View.OnClickListener {
 
     /**
      * Show answer variants for CheckBox layout and RadioGroup
+     *
      * @param view Parent view
      */
     private void showAnswersVariants(LinearLayout view) {

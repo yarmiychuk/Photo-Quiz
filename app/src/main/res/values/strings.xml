@@ -273,7 +273,6 @@
     <string name="exit">Exit</string>
 
     // Quiz result
-    <string name="total_score">Total score:</string>
     <string name="congratulations">Congratulations!</string>
     <string name="no_bad">Not bad…</string>
     <string name="incredible">Incredible!</string>
