@@ -59,6 +59,9 @@ public final class QuizHelper {
     private static final int Q_PETERSBURG_BRIDGES = 19;
     private static final int Q_BRONZE_HORSEMAN = 20;
 
+    private QuizHelper() {
+    }
+
     /**
      * Get image for question
      *

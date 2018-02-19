@@ -1,31 +1,31 @@
 <resources>
     <string name="app_name">Photo quiz</string>
 
-    // Intro
+    <!-- Intro -->
     <string name="welcome">Welcome!</string>
     <string name="quiz_description">This is a small quiz based on photos.</string>
     <string name="photo_by">Photos:\nDmitry Yarmiychuk</string>
 
-    // Navigation
+    <!-- Navigation -->
     <string name="nav_start">Start</string>
     <string name="nav_next">Next</string>
     <string name="nav_again">Again</string>
     <string name="nav_submit">Submit</string>
     <string name="nav_wiki">Wiki</string>
 
-    // Content Descriptions
+    <!-- Content Descriptions -->
     <string name="description_portugal_pena">The Pena Palace</string>
     <string name="question_image">Question image</string>
     <string name="answer_image">Answer image</string>
 
-    // Questions and answers
+    <!-- Questions and answers -->
     <string name="error_question">App error. The question can not be displayed.</string>
     <string name="correct_answer">You\'re right!</string>
     <string name="partially_answer">You are partly right.</string>
     <string name="wrong_answer">Your answer is incorrect.</string>
 
-    // QUESTIONS
-    // Sea anemone / Actinia
+    <!-- QUESTIONS
+    Sea anemone / Actinia -->
     <string name="question_actinia">This photo is taken in the shallow waters of the beach in Laguna Beach (California, USA). What is the name of this multicellular animal?</string>
     <string-array name="variants_actinia">
         <item>Sea Devil</item>
@@ -40,7 +40,7 @@
     <string name="description_actinia">It\'s a Actinia or a Sea anemone.</string>
     <string name="link_actinia">https://en.wikipedia.org/wiki/Sea_anemone</string>
 
-    // Cabo da Roca
+    <!-- Cabo da Roca -->
     <string name="question_cabo_da_roca">The photo shows the westernmost point of the Eurasian continent. What\'s the name of this place?</string>
     <string-array name="variants_cabo_da_roca">
         <item>Earth\'s End</item>
@@ -52,7 +52,7 @@
     <string name="description_cabo_da_roca">The most western point of Eurasia is Cape Roca.</string>
     <string name="link_cabo_da_roca">https://en.wikipedia.org/wiki/Cabo_da_Roca</string>
 
-    // Cabo da Roca Names
+    <!-- Cabo da Roca Names -->
     <string name="question_cabo_names">How was the westernmost point of the Eurasian continent called before?</string>
     <string-array name="answers_cabo_names">
         <item>Rock of Lisbon</item>
@@ -60,13 +60,13 @@
     </string-array>
     <string name="description_cabo_names">This place was known to the Romans as Promontorium Magnum (Large ledge) and during the Age of Sail as the Rock of Lisbon.</string>
 
-    // Victoria harbour
+    <!-- Victoria harbour -->
     <string name="question_victoria">What is the name of this natural landform harbour situated between Hong Kong Island and Kowloon in Hong Kong?</string>
     <string name="answer_victoria">Victoria</string>
     <string name="description_victoria">This harbor is called Victoria.</string>
     <string name="link_victoria">https://en.wikipedia.org/wiki/Victoria_Harbour</string>
 
-    // Hong Kong
+    <!-- Hong Kong -->
     <string name="question_hong_kong">Hong Kong gained full independence only in 1997. Which countries ruled this territory before?</string>
     <string-array name="variants_hong_kong">
         <item>Great Britain</item>
@@ -80,7 +80,7 @@
     </string-array>
     <string name="description_hong_kong">Hong Kong was a British colony from 1842 to 1997, and from 1941 to 1945 was under Japanese occupation.</string>
 
-    // Sky tree
+    <!-- Sky tree -->
     <string name="question_sky_tree">This is the highest TV tower in the world, located in Tokyo. What is it called?</string>
     <string-array name="variants_sky_tree">
         <item>Earth\'s Arrow</item>
@@ -92,7 +92,7 @@
     <string name="description_sky_tree">This tower is called \"Tokyo Sky Tree\".</string>
     <string name="link_sky_tree">https://en.wikipedia.org/wiki/Tokyo_Skytree</string>
 
-    // General Sherman
+    <!-- General Sherman -->
     <string name="question_general_sherman">This tree located in Sequoia National Park, USA. By volume, it is the largest known living single stem tree on Earth. What is it called?</string>
     <string-array name="variants_general_sherman">
         <item>General Sherman</item>
@@ -104,13 +104,13 @@
     <string name="description_general_sherman">The name of this giant sequoia is General Sherman.</string>
     <string name="link_general_sherman">https://en.wikipedia.org/wiki/General_Sherman_(tree)</string>
 
-    // Sagrada Familia
+    <!-- Sagrada Familia -->
     <string name="question_sagrada_familia">In this photo is the interior of Basilica and Expiatory Church of the Holy Family designed by Antoni Gaudí. In which city is this church located?</string>
     <string name="answer_sagrada_familia">Barcelona</string>
     <string name="description_sagrada_familia">Basilica and Expiatory Church of the Holy Family is located in Barcelona (Spain).</string>
     <string name="link_sagrada_familia">https://en.wikipedia.org/wiki/Sagrada_Família</string>
 
-    // Pena Palace
+    <!-- Pena Palace -->
     <string name="question_pena_palace">It is the Pena Palace, the summer residence of the Portuguese royal family in Sintra. What architectural styles were used in the construction of this palace?</string>
     <string-array name="variants_pena_palace">
         <item>Classicism</item>
@@ -125,7 +125,7 @@
     <string name="description_pena_palace">The architecture of the Pena palace is too eclectic and includes the following styles: Neo-Gothic, Neo-Manueline, Neo-Renaissance and Neo-Moorish.</string>
     <string name="link_pena_palace">https://en.wikipedia.org/wiki/Pena_Palace</string>
 
-    // Pena Palace Before
+    <!-- Pena Palace Before -->
     <string name="question_pena_before">What was on the site of the Pena Palace, the former summer residence of the Portuguese royal family in Sintra?</string>
     <string-array name="variants_pena_before">
         <item>Monastery</item>
@@ -136,7 +136,7 @@
     <string name="answer_pena_before">Monastery</string>
     <string name="description_pena_before">The palace is located on the site of a small monastery, destroyed by the earthquake of 1755.</string>
 
-    // Temple of Heaven
+    <!-- Temple of Heaven -->
     <string name="question_temple_of_heaven">This is the largest building in the temple complex, called the \"Temple of Heaven\" in Beijing. What did they pray for in this temple?</string>
     <string-array name="variants_temple_of_heaven">
         <item>For good harvests</item>
@@ -148,7 +148,7 @@
     <string name="description_temple_of_heaven">The temple was built for ceremonies, mostly comprising prayers for good harvests.</string>
     <string name="link_temple_of_heaven">https://en.wikipedia.org/wiki/Temple_of_Heaven</string>
 
-    // Temple of Heven - Religion
+    <!-- Temple of Heven - Religion -->
     <string name="question_temple_religion">This is the Temple of Heaven in Beijing. What religion did this temple belong to?</string>
     <string-array name="variants_temple_religion">
         <item>Taoism</item>
@@ -160,13 +160,13 @@
     <string name="description_temple_religion">It has been considered as a Taoism temple.</string>
     <string name="link_temple_religion">https://en.wikipedia.org/wiki/Taoism</string>
 
-    // Tokyo / Kyoto
+    <!-- Tokyo / Kyoto -->
     <string name="question_tokyo_kyoto">This is the bridge and one of the buildings of the Imperial Palace of Tokyo, the capital of Japan. What is the current name of the city - the former capital of Japan (until 1868)?</string>
     <string name="answer_tokyo_kyoto">Kyoto</string>
     <string name="description_tokyo_kyoto">From 794 to 1868, the capital was in Heian-ky\ō, modern-day Kyoto.</string>
     <string name="link_tokyo_kyoto">https://en.wikipedia.org/wiki/Capital_of_Japan</string>
 
-    // Edo/Chiyoda Castle
+    <!-- Edo/Chiyoda Castle -->
     <string name="question_edo_chiyoda">The Imperial Palace of Tokyo is located on the site of an ancient castle, founded in 1457. What was the name of this castle?</string>
     <string-array name="variants_edo_chiyoda">
         <item>Edo Castle</item>
@@ -181,7 +181,7 @@
     <string name="description_edo_chiyoda">Edo Castle, also known as Chiyoda Castle, is a flatland castle that was built in 1457 by \Ōta D\ōkan.</string>
     <string name="link_edo_chiyoda">https://en.wikipedia.org/wiki/Edo_Castle</string>
 
-    // Empire State
+    <!-- Empire State -->
     <string name="question_empire_state">This view opens with one of the observatories of the Empire State Building skyscraper in New York. Which floors of this building contain observatories?</string>
     <string-array name="variants_empire_state">
         <item>86</item>
@@ -196,7 +196,7 @@
     <string name="description_empire_state">The 86th and 102nd floors contain observatories, which see a combined average of 4 million visitors per year.</string>
     <string name="link_empire_state">https://en.wikipedia.org/wiki/Empire_State_Building</string>
 
-    // Times Square
+    <!-- Times Square -->
     <string name="question_times_square">From the observation deck of the Empire State Building skyscraper you can see one of the brightest squares in New York, which is one of the most visited squares in the world. What is this square called?</string>
     <string-array name="variants_times_square">
         <item>Times Square</item>
@@ -208,7 +208,7 @@
     <string name="description_times_square">This is Times Square. This area is visited by more than 50 million people annually.</string>
     <string name="link_times_square">https://en.wikipedia.org/wiki/Times_Square</string>
 
-    // Quinta da Regaleira
+    <!-- Quinta da Regaleira -->
     <string name="question_quinta_da_regaleira">The park of the Portuguese palace Quinta da Regalera contains a lot of underground tunnels. In the photo - one of the entrances to these tunnels. What is the name of this well?</string>
     <string-array name="variants_quinta_da_regaleira">
         <item>Initiation Well</item>
@@ -220,7 +220,7 @@
     <string name="description_quinta_da_regaleira">Initiation Well is surrounded by a spiral gallery, which consists of nine spans, symbolizing the nine circles of hell, purgatory and Eden described by Dante.</string>
     <string name="link_quinta_da_regaleira">https://en.wikipedia.org/wiki/Quinta_da_Regaleira</string>
 
-    // Saint-Petersburg
+    <!-- Saint-Petersburg -->
     <string name="question_saint_petersburg">Saints Peter and Paul Cathedral is one of the main symbols of Saint Petersburg. The city was renamed several times. Please specify the previous city names:</string>
     <string-array name="variants_saint_petersburg">
         <item>Leningrad</item>
@@ -235,7 +235,7 @@
     <string name="description_saint_petersburg">Saint Petersburg was founded in 1703. In 1914, the name was changed to Petrograd, in 1924 to Leningrad, and in 1991 back to Saint Petersburg.</string>
     <string name="link_saint_petersburg">https://en.wikipedia.org/wiki/Saint_Petersburg</string>
 
-    // Bridges of St. Petersburg
+    <!-- Bridges of St. Petersburg -->
     <string name="question_petersburg_bridges">St. Petersburg is often called "Northern Venice": the city is located on 42 islands of the Neva River delta. What is the approximate number of bridges in the city?</string>
     <string-array name="variants_petersburg_bridges">
         <item>About 800</item>
@@ -246,13 +246,13 @@
     <string name="answer_peterburg_bridges">About 800</string>
     <string name="description_petersburg_bridges">About 800 bridges are thrown through the water objects of St. Petersburg. The longest bridge: Bolshoy Obukhovsky (cable-stayed) bridge across the Neva River (total length of the bridge is 2824 m), the widest bridge: the Blue Bridge on the Moika River (99.5 m).</string>
 
-    // Bronze Horseman
+    <!-- Bronze Horseman -->
     <string name="question_bronze_horseman">This monument to Peter the Great is one of the main symbols of St. Petersburg. What is it called?</string>
     <string name="answer_bronze_horseman">The Bronze Horseman</string>
     <string name="description_bronze_horseman">This is \"the Bronze Horseman\". The inscription on the pedestal reads: \"Catherine the Second to Peter the First, 1782.\"</string>
     <string name="link_bronze_horseman">https://en.wikipedia.org/wiki/Bronze_Horseman</string>
 
-    // Other
+    <!-- Other -->
     <string name="error">Error</string>
     <string name="error_link">Unable to open link!</string>
     <string name="rotate_to_full">Rotate the device to see the full image.</string>
@@ -265,14 +265,14 @@
     <string name="two_points">+2 points</string>
     <string name="the_article" translatable="false">THE</string>
 
-    // Exit dialog
+    <!-- Exit dialog -->
     <string name="dialog_title">Exit app?</string>
     <string name="dialog_message">If you exit the application, your progress will be reset.</string>
     <string name="cancel">Cancel</string>
     <string name="pause">Pause</string>
     <string name="exit">Exit</string>
 
-    // Quiz result
+    <!-- Quiz result -->
     <string name="congratulations">Congratulations!</string>
     <string name="no_bad">Not bad…</string>
     <string name="incredible">Incredible!</string>
@@ -284,7 +284,7 @@
     <string name="correct_answers_result">Correct answers:</string>
     <string name="partially_correct_answers_result">Partially correct answers:</string>
 
-    // Share
+    <!-- Share -->
     <string name="share">Share</string>
     <string name="chooser_title">Share with</string>
     <string name="share_title">I won in the photo quiz!</string>

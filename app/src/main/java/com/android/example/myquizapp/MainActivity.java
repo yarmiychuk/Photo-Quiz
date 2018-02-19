@@ -15,15 +15,15 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.android.example.myquizapp.fragments.FragmentFinish;
-import com.android.example.myquizapp.fragments.FragmentQuestion;
-import com.android.example.myquizapp.fragments.FragmentIntro;
+import com.android.example.myquizapp.fragments.FinishFragment;
+import com.android.example.myquizapp.fragments.QuestionFragment;
+import com.android.example.myquizapp.fragments.IntroFragment;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
-        implements FragmentQuestion.AnswerListener {
+        implements QuestionFragment.AnswerListener {
 
     // Views
     private Toolbar mToolbar;
@@ -147,15 +147,15 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment;
         switch (currentQuestion) {
             case QuizHelper.Q_INTRO:
-                fragment = new FragmentIntro();
+                fragment = new IntroFragment();
                 showButtonNext();
                 break;
             case QuizHelper.Q_FINISH:
-                fragment = new FragmentFinish();
+                fragment = new FinishFragment();
                 showButtonNext();
                 break;
             default:
-                fragment = new FragmentQuestion();
+                fragment = new QuestionFragment();
         }
         return fragment;
     }
